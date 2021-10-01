@@ -15,22 +15,6 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:background="@color/lightblue">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:rotationX="0"
-                android:text="@string/saludar"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
-        </LinearLayout>
-
         <ImageView
             android:id="@+id/photo_image_view"
             android:layout_width="wrap_content"
@@ -82,8 +66,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/boton" />
+            android:src="@drawable/boton"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="110dp"/>
 
 
     </LinearLayout>

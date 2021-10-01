@@ -9,6 +9,6 @@
     <string name="snackbar">"Se preciono el boton flotante"</string>
     <string name="nameUser"> Ingrese nombre de usuario</string>
     <string name="email">E-mail</string>
-    <string name="password"> contraseña</string>
+    <string name="password"> Contraseña</string>
     <string name="botonIngresar"> Ingresar</string>
 </resources>
