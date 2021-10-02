@@ -11,4 +11,6 @@
     <string name="email">E-mail</string>
     <string name="password"> Contraseña</string>
     <string name="botonIngresar"> Ingresar</string>
+    <string name="botonRegistrar"> Nuevo usuario? Registrate</string>
+    <string name="botonPass"> Olvidaste tu contraseña?</string>
 </resources>

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     static final int REQUEST = 1;   // lo seteo siempre que uso el activityForResult
     public  static final String MY_INTENT_ACTIVITY_VALUE = "Nombre de mi variable que le paso como clave a la activity que llamo";
     @Override
@@ -21,7 +21,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(R.string.miTitulo);
+        getSupportActionBar().hide();
         Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
+
+
 
         Button botonIngresar = findViewById(R.id.buttonIngresar);
         botonIngresar.setOnClickListener(new View.OnClickListener() {
