@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SingIn">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/photo_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_byu" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:focusableInTouchMode="true"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/principal_blue"
+            app:boxStrokeColor="@color/principal_blue"
+            app:startIconDrawable="@drawable/ic_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:focusableInTouchMode="true"
+            app:boxBackgroundColor="@color/white"
+            app:boxStrokeColor="@color/principal_blue"
+            app:hintTextColor="@color/principal_blue"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_candado">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/buttonIngresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/principal_blue"
+            android:text="@string/botonIngresar"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"/>
+
+        <Button
+            android:id="@+id/buttonRegister"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="@string/botonRegistrar"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textColor="#A3ABB0"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"/>
+
+        <Button
+            android:id="@+id/buttonForgetPass"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="@string/botonPass"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textColor="#A3ABB0"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/usarMetodoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/usarMetodos"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_toRightOf="@id/usarMetodoLabel"
+                android:background="@color/black"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/usarMetodoLabel"
+                android:background="@color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_izquierda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:src="@drawable/ic_google"
+                app:backgroundTint="@color/white"
+                app:borderWidth="0dp"
+
+                />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_centro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@id/button_izquierda"
+                app:backgroundTint="@color/white"
+                app:borderWidth="0dp"
+                app:srcCompat="@drawable/ic_facebook" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_derecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/button_centro"
+                android:layout_margin="3dp"
+                app:backgroundTint="@color/white"
+                app:srcCompat="@drawable/ic_twitter"
+                app:borderWidth="0dp"/>
+            </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

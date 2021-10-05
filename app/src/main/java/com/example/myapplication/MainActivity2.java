@@ -1,8 +1,7 @@
 package com.example.myapplication;
 
-import static com.example.myapplication.MainActivity.MY_INTENT_ACTIVITY_VALUE;
+import static com.example.myapplication.SingIn.MY_INTENT_ACTIVITY_VALUE;
 
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;

@@ -10,16 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-public class MainActivity extends AppCompatActivity{
+public class SingIn extends AppCompatActivity{
     static final int REQUEST = 1;   // lo seteo siempre que uso el activityForResult
     public  static final String MY_INTENT_ACTIVITY_VALUE = "Nombre de mi variable que le paso como clave a la activity que llamo";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
         getSupportActionBar().hide();
         Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
@@ -30,7 +27,7 @@ public class MainActivity extends AppCompatActivity{
         botonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, MainActivity2.class);
+                Intent myIntent = new Intent(SingIn.this, MainActivity2.class);
                 //se aplica para pasar objetos, variables, etc entre activitys
                 myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
                 //startActivity(myIntent);  //voy a la siguiente actitivy sin que me devuelva un resultado
@@ -38,6 +35,22 @@ public class MainActivity extends AppCompatActivity{
             }
 
 
+        });
+
+//        Button botonRegistrar = findViewById(R.id.buttonRegister);
+//        botonRegistrar.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view){
+//                Intent myIntent = new Intent(());
+//            startActivityForResult(myIntent, REQUEST);
+//            }
+//        });
+
+        Button botonOlvidar = findViewById(R.id.buttonForgetPass);
+        botonOlvidar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                Intent myIntent = new Intent(SingIn.this, ForgetPassword.class);
+                startActivityForResult(myIntent, REQUEST);
+            }
         });
     }
     // este metodo recien se ejecuta cuando se retorna a esta activity

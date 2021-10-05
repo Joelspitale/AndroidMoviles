@@ -2,7 +2,7 @@
     <string name="app_name"> BYU app</string>
     <string name="saludar">Bienvenido a BYU</string>
     <string name="bienvenida">Bienvenido a BYU</string>
-    <string name="enviarMail">Volver</string>
+    <string name="enviarMail">Enviar correo</string>
     <string name="respuestaMail">salio exitoso el enviar el mail</string>
     <string name="miTitulo">BYU titulo</string>
     <string name="toas">Este es el toast declararo en el OnCreate</string>
@@ -13,4 +13,7 @@
     <string name="botonIngresar"> Ingresar</string>
     <string name="botonRegistrar"> Nuevo usuario? Registrate</string>
     <string name="botonPass"> Olvidaste tu contraseña?</string>
+    <string name="usarMetodos">Usar otros metodos</string>
+    <string name="Recupera">Recuperá tu contraseña</string>
+
 </resources>
