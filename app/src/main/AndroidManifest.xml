@@ -13,7 +13,16 @@
             android:name=".ForgetPassword"
             android:exported="true" />
         <activity
-            android:name=".MainActivity3"
+            android:name=".Registro1"
+            android:exported="true" />
+        <activity
+            android:name=".Registro2"
+            android:exported="true" />
+        <activity
+            android:name=".Registro3"
+            android:exported="true" />
+        <activity
+            android:name=".Registro4"
             android:exported="true" />
         <activity
             android:name=".MainActivity2"

@@ -37,13 +37,13 @@ public class SingIn extends AppCompatActivity{
 
         });
 
-//        Button botonRegistrar = findViewById(R.id.buttonRegister);
-//        botonRegistrar.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view){
-//                Intent myIntent = new Intent(());
-//            startActivityForResult(myIntent, REQUEST);
-//            }
-//        });
+        Button botonRegistrar = findViewById(R.id.buttonRegister);
+        botonRegistrar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                Intent myIntent = new Intent(SingIn.this, Registro1.class);
+            startActivityForResult(myIntent, REQUEST);
+            }
+        });
 
         Button botonOlvidar = findViewById(R.id.buttonForgetPass);
         botonOlvidar.setOnClickListener(new View.OnClickListener() {
