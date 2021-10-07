@@ -23,7 +23,6 @@ public class SingIn extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
-        getSupportActionBar().hide();
         Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
         verifyCamara();
 

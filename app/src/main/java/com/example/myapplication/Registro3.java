@@ -14,7 +14,6 @@ public class Registro3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_register_3);
 
         Button botonVolverContra = findViewById(R.id.buttonVolverContra);
