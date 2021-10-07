@@ -18,5 +18,6 @@
     <string name="Registro">Registro Usuario</string>
     <string name="botonSiguiente">Siguiente</string>
     <string name="verifyPass">Verificar contraseña</string>
+    <string name="escaner">Escanee el codigo dentro de los limites</string>
 
 </resources>

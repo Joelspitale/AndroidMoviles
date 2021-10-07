@@ -3,8 +3,10 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
@@ -12,14 +14,16 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 
-public class CamaraPrueba extends AppCompatActivity {
+public class Camara extends AppCompatActivity {
 
     private CodeScanner mCodeScanner;
+    static final int REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camara_prueba);
+        setContentView(R.layout.activity_camara);
+        getSupportActionBar().hide();
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
@@ -28,7 +32,7 @@ public class CamaraPrueba extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(CamaraPrueba.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Camara.this, result.getText(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -37,6 +41,14 @@ public class CamaraPrueba extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCodeScanner.startPreview();
+            }
+        });
+
+        Button botonVolverQR = findViewById(R.id.buttonVolverQR);
+        botonVolverQR.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                Intent myIntent = new Intent(Camara.this, MainActivity2.class);
+                startActivityForResult(myIntent, REQUEST);
             }
         });
     }
@@ -52,4 +64,6 @@ public class CamaraPrueba extends AppCompatActivity {
         mCodeScanner.releaseResources();
         super.onPause();
     }
+
+
 }

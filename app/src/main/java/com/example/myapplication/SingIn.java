@@ -1,10 +1,15 @@
 package com.example.myapplication;
 
 
+import static android.Manifest.permission.CAMERA;
+
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +25,7 @@ public class SingIn extends AppCompatActivity{
         setTitle(R.string.miTitulo);
         getSupportActionBar().hide();
         Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
+        verifyCamara();
 
 
 
@@ -69,6 +75,31 @@ public class SingIn extends AppCompatActivity{
 
             }
         }
+    }
+
+    private boolean verifyCamara() {
+        if(checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED){
+            return true;
+        }
+        if (shouldShowRequestPermissionRationale(CAMERA)) {
+            cargarDialogoRecomendacion();
+        } else {
+            requestPermissions(new String[]{CAMERA}, 100);
+        }
+        return false;
+    }
+
+    private void cargarDialogoRecomendacion() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(SingIn.this);
+        dialogo.setTitle("Permisos desactivados");
+        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la app");
+        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                requestPermissions(new String[]{CAMERA}, 100);
+            }
+        });
+        dialogo.show();
     }
 /*
     @Override
