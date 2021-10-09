@@ -19,5 +19,7 @@
     <string name="botonSiguiente">Siguiente</string>
     <string name="verifyPass">Verificar contraseña</string>
     <string name="escaner">Escanee el codigo dentro de los limites</string>
+    <string name="volver">Volver</string>
+    <string name="tuPerfil">Tu perfil</string>
 
 </resources>

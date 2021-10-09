@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightblue">#33B8FF</color>
     <color name="principal_blue">#1492E6</color>
+    <color name="transparente">#00000000</color>
 
 
 </resources>

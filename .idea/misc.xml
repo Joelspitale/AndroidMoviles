@@ -4,15 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/boton_redondo.xml" value="0.2703125" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/circulo.xml" value="0.2703125" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/ic_byu.xml" value="0.2537037037037037" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/ic_flechaatras.xml" value="0.2015625" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/ic_google.xml" value="0.2015625" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/ic_logo.xml" value="0.2703125" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/semicirculo.xml" value="0.2703125" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camara.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camara_prueba.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_forget_password.xml" value="0.176" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_main2.xml" value="0.176" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_menu.xml" value="0.264" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_perfiles.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_register_1.xml" value="0.2" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_register_2.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_register_3.xml" value="0.264" />

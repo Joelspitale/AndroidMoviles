@@ -58,6 +58,7 @@
             app:boxStrokeColor="@color/principal_blue"
             app:hintTextColor="@color/principal_blue"
             app:passwordToggleEnabled="true"
+            pas
             app:startIconDrawable="@drawable/ic_candado">
 
             <com.google.android.material.textfield.TextInputEditText

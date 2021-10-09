@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="VOLVER"
+            android:text="@string/volver"
             android:textColor="@color/principal_blue"
             app:icon="@drawable/ic_flechaatras"
             app:iconTint="@color/principal_blue"
