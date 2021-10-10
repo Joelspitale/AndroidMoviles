@@ -22,10 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_logo" />
+            android:src="@drawable/ic_byu" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/inputTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
@@ -38,15 +38,18 @@
             app:boxStrokeColor="@color/principal_blue"
             app:startIconDrawable="@drawable/ic_email">
 
+
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/inputTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
@@ -58,12 +61,14 @@
             app:boxStrokeColor="@color/principal_blue"
             app:hintTextColor="@color/principal_blue"
             app:passwordToggleEnabled="true"
-            pas
-            app:startIconDrawable="@drawable/ic_candado">
+            app:startIconDrawable="@drawable/ic_candado"
+            app:counterEnabled="true"
+            app:counterMaxLength="20">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -150,7 +155,6 @@
                 android:layout_marginBottom="3dp"
                 android:src="@drawable/ic_google"
                 app:backgroundTint="@color/white"
-                app:tint="@null"
                 app:borderWidth="0dp"
 
                 />
@@ -163,8 +167,7 @@
                 android:layout_toRightOf="@id/button_izquierda"
                 app:backgroundTint="@color/white"
                 app:borderWidth="0dp"
-                app:srcCompat="@drawable/ic_facebook"
-                app:tint="#3b5998"/>
+                app:srcCompat="@drawable/ic_facebook" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/button_derecha"
@@ -174,7 +177,6 @@
                 android:layout_margin="3dp"
                 app:backgroundTint="@color/white"
                 app:srcCompat="@drawable/ic_twitter"
-                app:tint="@null"
                 app:borderWidth="0dp"/>
             </RelativeLayout>
     </LinearLayout>

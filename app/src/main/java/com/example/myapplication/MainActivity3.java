@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Menu extends AppCompatActivity {
+import java.util.ArrayList;
+
+import recyclerView.Exhibits;
+
+public class MainActivity3 extends AppCompatActivity {
+
+    private ArrayList<Exhibits> profileList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.header_navigation_bar);
-
-
+        setContentView(R.layout.activity_main3);
     }
 }

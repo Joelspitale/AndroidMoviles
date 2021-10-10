@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
-
-    <uses-permission android:name="android.permission.CAMERA" />
+    package="com.example.myapplication" >
 
     <application
         android:allowBackup="true"
@@ -10,46 +8,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
+        android:theme="@style/Theme.MyApplication" >
         <activity
-            android:name=".Perfiles"
-            android:exported="true" />
-        <activity
-            android:name=".Menu"
-            android:exported="true" />
-        <activity
-            android:name=".Splash"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Camara"
+            android:name=".ListExhibits"
             android:exported="true" />
         <activity
             android:name=".ForgetPassword"
-            android:exported="true" />
-        <activity
-            android:name=".Registro1"
-            android:exported="true" />
-        <activity
-            android:name=".Registro2"
-            android:exported="true" />
-        <activity
-            android:name=".Registro3"
-            android:exported="true" />
-        <activity
-            android:name=".Registro4"
             android:exported="true" />
         <activity
             android:name=".MainActivity2"
             android:exported="true" />
         <activity
             android:name=".SingIn"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
