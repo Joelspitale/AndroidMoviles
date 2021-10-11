@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class Splash extends AppCompatActivity {
 
     static final int REQUEST = 1;

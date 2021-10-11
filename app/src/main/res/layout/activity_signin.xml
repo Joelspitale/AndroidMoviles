@@ -25,7 +25,7 @@
             android:src="@drawable/ic_logo" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/inputTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
@@ -41,12 +41,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/inputTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
@@ -58,12 +59,14 @@
             app:boxStrokeColor="@color/principal_blue"
             app:hintTextColor="@color/principal_blue"
             app:passwordToggleEnabled="true"
-            pas
-            app:startIconDrawable="@drawable/ic_candado">
+            app:startIconDrawable="@drawable/ic_candado"
+            app:counterEnabled="true"
+            app:counterMaxLength="20">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
