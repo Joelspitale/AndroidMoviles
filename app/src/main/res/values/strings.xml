@@ -21,5 +21,10 @@
     <string name="escaner">Escanee el codigo dentro de los limites</string>
     <string name="volver">Volver</string>
     <string name="tuPerfil">Tu perfil</string>
+    <string name="DatosCorrectos">Datos Correctos</string>
+    <string name="tituloPorDefecto">Titulo exhibición</string>
+    <string name="introPorDefecto">introduccion</string>
+    <string name="contenidoPorDefecto">Contenido de mi exhibicion de mi museo de cordoba capital</string>
+
 
 </resources>
