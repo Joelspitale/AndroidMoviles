@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.HomeActivity;
 import com.example.myapplication.Profile;
 import com.example.myapplication.R;
 
@@ -28,7 +29,7 @@ public class PasswordVerificed extends AppCompatActivity {
         Button bottonNext = findViewById(R.id.buttonNextPasswordVerificed);
         bottonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(PasswordVerificed.this, Profile.class);
+                Intent myIntent = new Intent(PasswordVerificed.this, HomeActivity.class);
                 startActivity(myIntent);
             }
         });

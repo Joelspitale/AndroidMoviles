@@ -23,6 +23,6 @@ public class Splash extends AppCompatActivity {
                 Intent myIntent = new Intent(Splash.this, SingIn.class);
                 startActivityForResult(myIntent, REQUEST);
             }
-        },3000);
+        },2000);
     }
 }

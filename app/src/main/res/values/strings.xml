@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name"> BYU app</string>
     <string name="saludar">Bienvenido a BYU</string>
-    <string name="bienvenida">Bienvenido a BYU</string>
+    <string name="bienvenida">Bienvenido al Home</string>
     <string name="enviarMail">Enviar correo</string>
     <string name="respuestaMail">salio exitoso el enviar el mail</string>
     <string name="miTitulo">BYU titulo</string>
@@ -26,6 +26,6 @@
     <string name="tituloPorDefecto">Titulo exhibición</string>
     <string name="introPorDefecto">introduccion</string>
     <string name="contenidoPorDefecto">Contenido de mi exhibicion de mi museo de cordoba capital</string>
-
+    <string name="verContenido">Ver contenido</string>
 
 </resources>

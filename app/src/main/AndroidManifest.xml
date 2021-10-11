@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Camara"
+            android:name=".Camera"
             android:exported="true" />
         <activity
             android:name=".ForgetPassword"
@@ -51,7 +51,7 @@
             android:name=".Register.PasswordVerificed"
             android:exported="true" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".SingIn"
