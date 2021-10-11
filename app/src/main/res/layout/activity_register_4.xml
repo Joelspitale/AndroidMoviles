@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <Button
-            android:id="@+id/buttonVolver"
+            android:id="@+id/buttonVolverVerificarContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -31,15 +31,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/Recupera"
+            android:text="@string/Registro"
             android:textColor="@color/black"
             android:textAlignment="center"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editCorreo"
+            android:id="@+id/editVerificarContra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email"
+            android:hint="@string/verifyPass"
             android:inputType="textEmailAddress"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
@@ -57,12 +57,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/buttonSiguiente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/principal_blue"
             android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
-            android:text="@string/enviarMail"
+            android:text="@string/botonSiguiente"
             />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

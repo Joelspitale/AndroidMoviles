@@ -7,7 +7,7 @@
     <string name="miTitulo">BYU titulo</string>
     <string name="toas">Este es el toast declararo en el OnCreate</string>
     <string name="snackbar">"Se preciono el boton flotante"</string>
-    <string name="nameUser"> Ingrese nombre de usuario</string>
+    <string name="nameUser"> Nombre y apellido</string>
     <string name="email">E-mail</string>
     <string name="password"> Contraseña</string>
     <string name="botonIngresar"> Ingresar</string>
@@ -15,9 +15,11 @@
     <string name="botonPass"> Olvidaste tu contraseña?</string>
     <string name="usarMetodos">Usar otros metodos</string>
     <string name="Recupera">Recuperá tu contraseña</string>
-    <string name="DatosCorrectos">Datos Correctos</string>
-    <string name="tituloPorDefecto">Titulo exhibición</string>
-    <string name="introPorDefecto">introduccion</string>
-    <string name="contenidoPorDefecto">Contenido de mi exhibicion de mi museo de cordoba capital</string>
+    <string name="Registro">Registro Usuario</string>
+    <string name="botonSiguiente">Siguiente</string>
+    <string name="verifyPass">Verificar contraseña</string>
+    <string name="escaner">Escanee el codigo dentro de los limites</string>
+    <string name="volver">Volver</string>
+    <string name="tuPerfil">Tu perfil</string>
 
 </resources>
