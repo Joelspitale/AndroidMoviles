@@ -3,7 +3,6 @@ package com.example.myapplication;
 
 import static android.Manifest.permission.CAMERA;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.myapplication.Register.Name;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SingIn extends AppCompatActivity{
@@ -31,7 +31,6 @@ public class SingIn extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
-        //Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
         verifyCamara();
 
         Button botonIngresar = findViewById(R.id.buttonIngresar);
@@ -56,7 +55,7 @@ public class SingIn extends AppCompatActivity{
         Button botonRegistrar = findViewById(R.id.buttonRegister);
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(SingIn.this, Registro1.class);
+                Intent myIntent = new Intent(SingIn.this, Name.class);
             startActivityForResult(myIntent, REQUEST);
             }
         });
@@ -90,34 +89,10 @@ public class SingIn extends AppCompatActivity{
     }
 
     private void nextActivity(){
-        //Intent myIntent = new Intent(SingIn.this, MainActivity2.class);
         Intent myIntent = new Intent(SingIn.this, ListExhibits.class);
-        //se aplica para pasar objetos, variables, etc entre activitys
         myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
-        //startActivity(myIntent);  //voy a la siguiente actitivy sin que me devuelva un resultado
-        startActivityForResult(myIntent, REQUEST);
+        startActivity(myIntent);
     }
-
-
-
-    /*
-    // este metodo recien se ejecuta cuando se retorna a esta activity
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //primero tengo que ver si el REQUEST que recibo es igual al que mande
-        if (requestCode == REQUEST) {
-            //verifico que el usuario no haya cancelado ni se haya producido un error en la otra pantalla cuando el usuario la estaba usando
-            if (resultCode == RESULT_OK) {
-                data.getStringExtra("Resultado");//obtengo el resultado
-                data.getStringExtra("Resultado2");//obtengo el resultado2
-                Toast.makeText(this, data.getDataString(), Toast.LENGTH_SHORT).show();
-
-                // el argumento data contiene información del contacto seleccionado
-
-            }
-        }
-    }*/
 
     private boolean verifyCamara() {
         if(checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED){
@@ -143,12 +118,13 @@ public class SingIn extends AppCompatActivity{
         });
         dialogo.show();
     }
-/*
+
+
     @Override
     protected  void onPause() {
         super.onPause();
         Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
-    }*/
+    }
 
 
 }

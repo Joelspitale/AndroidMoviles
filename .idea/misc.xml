@@ -28,7 +28,22 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/menu.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/prueba.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18802083333333333" />
-        <entry key="app/src/main/res/layout/activity_signin.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_forget_password.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/activity_perfiles.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/activity_register_1.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_3.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_4.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_register_Name.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register_email.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_name.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_password.xml" value="0.14402173913043478" />
+        <entry key="app/src/main/res/layout/activity_registro5.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/activity_registro_lastname.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_registro_passwordverificed.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_signin.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/header_navigation_bar.xml" value="0.5" />
       </map>
     </option>
   </component>

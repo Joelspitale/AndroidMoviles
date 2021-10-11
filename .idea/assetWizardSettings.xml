@@ -295,8 +295,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_facebook" />
-                            <entry key="sourceFile" value="C:\Users\matia\Desktop\ProyectoAndroid\FaceBook.svg" />
+                            <entry key="outputName" value="ic_name" />
+                            <entry key="sourceFile" value="$USER_HOME$/Descargas/name.svg" />
                           </map>
                         </option>
                       </PersistentState>

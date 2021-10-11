@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Register.LastName"
+            android:exported="true" />
+        <activity
             android:name=".ListExhibits"
             android:exported="true" />
         <activity
-            android:name=".Perfiles"
+            android:name=".Profile"
             android:exported="true" />
         <activity
             android:name=".Menu"
@@ -36,16 +39,16 @@
             android:name=".ForgetPassword"
             android:exported="true" />
         <activity
-            android:name=".Registro1"
+            android:name=".Register.Name"
             android:exported="true" />
         <activity
-            android:name=".Registro2"
+            android:name=".Register.Email"
             android:exported="true" />
         <activity
-            android:name=".Registro3"
+            android:name=".Register.Password"
             android:exported="true" />
         <activity
-            android:name=".Registro4"
+            android:name=".Register.PasswordVerificed"
             android:exported="true" />
         <activity
             android:name=".MainActivity2"

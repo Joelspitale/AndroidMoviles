@@ -8,19 +8,17 @@ import android.view.View;
 import android.widget.Button;
 
 public class ForgetPassword extends AppCompatActivity {
-    static final int REQUEST = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
 
-        Button botonVolver = findViewById(R.id.buttonVolver);
+        Button botonVolver = findViewById(R.id.buttonReturnForgetPass);
         botonVolver.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 Intent myIntent = new Intent(ForgetPassword.this, SingIn.class);
-                startActivityForResult(myIntent, REQUEST);
+                startActivity(myIntent);
             }
         });
     }

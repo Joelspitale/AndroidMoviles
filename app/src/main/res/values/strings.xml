@@ -5,10 +5,11 @@
     <string name="enviarMail">Enviar correo</string>
     <string name="respuestaMail">salio exitoso el enviar el mail</string>
     <string name="miTitulo">BYU titulo</string>
-    <string name="toas">Este es el toast declararo en el OnCreate</string>
+    <string name="toas">Este es el toast declararo en el OnPause</string>
     <string name="snackbar">"Se preciono el boton flotante"</string>
-    <string name="nameUser"> Nombre y apellido</string>
-    <string name="email">E-mail</string>
+    <string name="InputnameUser"> Ingrese Nombre</string>
+    <string name="InputlastNameUser"> Ingrese apellido</string>
+    <string name="email">Ingrese E-mail</string>
     <string name="password"> Contraseña</string>
     <string name="botonIngresar"> Ingresar</string>
     <string name="botonRegistrar"> Nuevo usuario? Registrate</string>
