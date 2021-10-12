@@ -14,7 +14,7 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 
-public class Camera extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
 
     private CodeScanner mCodeScanner;
     static final int REQUEST = 1;
@@ -31,7 +31,7 @@ public class Camera extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Camera.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CameraActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -46,7 +46,7 @@ public class Camera extends AppCompatActivity {
         Button botonVolverQR = findViewById(R.id.buttonVolverQR);
         botonVolverQR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(Camera.this, HomeActivity.class);
+                Intent myIntent = new Intent(CameraActivity.this, HomeActivity.class);
                 startActivityForResult(myIntent, REQUEST);
             }
         });

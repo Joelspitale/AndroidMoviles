@@ -22,16 +22,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rotationX="0"
-            android:background="@color/lightblue"
+           android:background="@color/lightblue"
             android:text="@string/bienvenida"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30dp" />
+
 
         <ImageView
             android:layout_marginTop="25dp"

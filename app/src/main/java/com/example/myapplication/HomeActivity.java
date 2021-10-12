@@ -15,7 +15,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void btnScanner(View v){
-        Intent myIntent = new Intent(HomeActivity.this, Camera.class);
+        Intent myIntent = new Intent(HomeActivity.this, CameraActivity.class);
         startActivity(myIntent);
     }
 
