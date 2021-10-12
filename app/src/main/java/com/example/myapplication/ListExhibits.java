@@ -1,10 +1,18 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +32,42 @@ public class ListExhibits extends AppCompatActivity {
         loadExhibits();
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_exhibits_list);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.menu_home);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
         //le coloco el adapter que ya hemos hecho
         recyclerView.setAdapter(new ListAdapter((exhibitsList)));
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent myIntent;
+                switch (item.getItemId()) {
+                    case R.id.menu_favorites:
+                        myIntent = new Intent(ListExhibits.this, ListFavorites.class);
+                        startActivity(myIntent);
+                        return true;
+                    case R.id.menu_mi_perfil:
+                         myIntent  = new Intent(ListExhibits.this, Profile.class);
+                         startActivity(myIntent);
+                        return true;
+                    case R.id.menu_opcion3:
+                        myIntent = null;
+                        startActivity(myIntent);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+
+        FloatingActionButton botonQr = findViewById(R.id.floating_action_button_qr);
+        botonQr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(ListExhibits.this, CameraActivity.class);
+                startActivity(myIntent);
+            }
+        });
     }
     private void loadExhibits(){
         exhibitsList.add(new Exhibits("Titulo1","Introduccion 1", "Contenido 1"));

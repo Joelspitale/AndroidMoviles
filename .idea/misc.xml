@@ -12,7 +12,12 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/semicirculo.xml" value="0.2703125" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camara.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camara_prueba.xml" value="0.264" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_exhibit.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_forget_password.xml" value="0.176" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_home_drawer.xml" value="0.2441123188405797" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_list_exhibits.xml" value="0.264" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_list_favorites.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_main2.xml" value="0.176" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_menu.xml" value="0.264" />
@@ -25,16 +30,12 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/content_prueba.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/activity_main_drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/home_drawer.xml" value="0.171875" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/menu.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/prueba.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18802083333333333" />
-        <entry key="app/src/main/res/layout/activity_camara.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_camera.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_exhibit.xml" value="0.146875" />
-        <entry key="app/src/main/res/layout/activity_forget_password.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_list_exhibits.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_forget_password.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_perfiles.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_register_1.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_2.xml" value="0.25" />
@@ -47,15 +48,8 @@
         <entry key="app/src/main/res/layout/activity_registro5.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_registro_lastname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro_passwordverificed.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_signin.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/app_bar_home_drawer.xml" value="0.13125" />
-        <entry key="app/src/main/res/layout/content_home_drawer.xml" value="0.11" />
-        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.13125" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.13125" />
-        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.13125" />
+        <entry key="app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="app/src/main/res/layout/header_navigation_bar.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/item_view_exhibits.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/nav_header_home_drawer.xml" value="0.13125" />
       </map>
     </option>
   </component>
@@ -64,12 +58,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1" />
-      </ProjectState>
-    </option>
   </component>
 </project>

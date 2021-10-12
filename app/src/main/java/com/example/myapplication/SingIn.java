@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class SingIn extends AppCompatActivity{
                 startActivityForResult(myIntent, REQUEST);
             }
         });
+
     }
 
     private boolean validarDatos(){
@@ -89,7 +91,7 @@ public class SingIn extends AppCompatActivity{
     }
 
     private void nextActivity(){
-        Intent myIntent = new Intent(SingIn.this, HomeActivity.class);
+        Intent myIntent = new Intent(SingIn.this, ListExhibits.class);
         myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
         startActivity(myIntent);
     }

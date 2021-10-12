@@ -299,7 +299,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/menu/baseline_menu_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/home/baseline_home_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -309,8 +309,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_menu_24" />
-                            <entry key="sourceFile" value="$USER_HOME$/Descargas/contenido.svg" />
+                            <entry key="outputName" value="ic_baseline_home_24" />
+                            <entry key="sourceFile" value="C:\Users\matia\Descargas\contenido.svg" />
                           </map>
                         </option>
                       </PersistentState>

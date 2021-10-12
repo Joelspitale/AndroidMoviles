@@ -35,6 +35,9 @@
             android:name=".Menu"
             android:exported="true" />
         <activity
+            android:name=".ListFavorites"
+            android:exported="true" />
+        <activity
             android:name=".Splash"
             android:exported="true" >
             <intent-filter>
