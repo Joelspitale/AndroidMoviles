@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 
 import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.INTERNET;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class SingIn extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
         verifyCamara();
+        verifyInternet();
 
 
         inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
@@ -99,19 +101,31 @@ public class SingIn extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+    private boolean verifyInternet() {
+        if (checkSelfPermission(INTERNET) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+            if (shouldShowRequestPermissionRationale(INTERNET)) {
+            cargarDialogoRecomendacionInternet();
+        } else {
+            requestPermissions(new String[]{INTERNET}, 100);
+        }
+        return false;
+    }
+
     private boolean verifyCamara() {
         if (checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
         if (shouldShowRequestPermissionRationale(CAMERA)) {
-            cargarDialogoRecomendacion();
+            cargarDialogoRecomendacionCamara();
         } else {
             requestPermissions(new String[]{CAMERA}, 100);
         }
         return false;
     }
 
-    private void cargarDialogoRecomendacion() {
+    private void cargarDialogoRecomendacionCamara() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(SingIn.this);
         dialogo.setTitle("Permisos desactivados");
         dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la app");
@@ -119,6 +133,18 @@ public class SingIn extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 requestPermissions(new String[]{CAMERA}, 100);
+            }
+        });
+        dialogo.show();
+    }
+    private void cargarDialogoRecomendacionInternet() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(SingIn.this);
+        dialogo.setTitle("Permisos desactivados");
+        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la app");
+        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                requestPermissions(new String[]{INTERNET}, 100);
             }
         });
         dialogo.show();
