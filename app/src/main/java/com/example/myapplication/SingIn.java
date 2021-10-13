@@ -3,6 +3,7 @@ package com.example.myapplication;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.INTERNET;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Register.Name;
 import com.google.android.material.textfield.TextInputLayout;
+import com.journeyapps.barcodescanner.camera.CameraParametersCallback;
 
 public class SingIn extends AppCompatActivity {
     static final int REQUEST = 1;   // lo seteo siempre que uso el activityForResult
@@ -33,8 +35,9 @@ public class SingIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
-        verifyCamara();
-        verifyInternet();
+        verifyPermision(READ_EXTERNAL_STORAGE);
+        verifyPermision(CAMERA);
+        verifyPermision(INTERNET);
 
 
         inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
@@ -101,50 +104,27 @@ public class SingIn extends AppCompatActivity {
         startActivity(myIntent);
     }
 
-    private boolean verifyInternet() {
-        if (checkSelfPermission(INTERNET) == PackageManager.PERMISSION_GRANTED) {
+    private boolean verifyPermision(String permision) {
+        if (checkSelfPermission(permision) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
-            if (shouldShowRequestPermissionRationale(INTERNET)) {
-            cargarDialogoRecomendacionInternet();
+            if (shouldShowRequestPermissionRationale(permision)) {
+            cargarDialogoRecomendacion(permision);
         } else {
-            requestPermissions(new String[]{INTERNET}, 100);
+            requestPermissions(new String[]{permision}, 100);
         }
         return false;
     }
 
-    private boolean verifyCamara() {
-        if (checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(CAMERA)) {
-            cargarDialogoRecomendacionCamara();
-        } else {
-            requestPermissions(new String[]{CAMERA}, 100);
-        }
-        return false;
-    }
 
-    private void cargarDialogoRecomendacionCamara() {
+    private void cargarDialogoRecomendacion(String permision) {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(SingIn.this);
         dialogo.setTitle("Permisos desactivados");
         dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la app");
         dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                requestPermissions(new String[]{CAMERA}, 100);
-            }
-        });
-        dialogo.show();
-    }
-    private void cargarDialogoRecomendacionInternet() {
-        AlertDialog.Builder dialogo = new AlertDialog.Builder(SingIn.this);
-        dialogo.setTitle("Permisos desactivados");
-        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la app");
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                requestPermissions(new String[]{INTERNET}, 100);
+                requestPermissions(new String[]{permision}, 100);
             }
         });
         dialogo.show();
