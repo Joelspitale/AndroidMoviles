@@ -8,7 +8,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.HomeActivity;
-import com.example.myapplication.Profile;
 import com.example.myapplication.R;
 
 public class PasswordVerificed extends AppCompatActivity {

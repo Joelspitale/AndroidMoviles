@@ -10,6 +10,7 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/ic_google.xml" value="0.2015625" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/ic_logo.xml" value="0.2703125" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/drawable/semicirculo.xml" value="0.2703125" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_atraction.xml" value="0.171875" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camara.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camara_prueba.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_exhibit.xml" value="0.2441123188405797" />
@@ -22,6 +23,7 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_main2.xml" value="0.176" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_menu.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_perfiles.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_register_1.xml" value="0.2" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_register_2.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_register_3.xml" value="0.264" />
@@ -34,17 +36,9 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/menu.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/prueba.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18802083333333333" />
-        <entry key="app/src/main/res/drawable/circle.xml" value="0.19375" />
-        <entry key="app/src/main/res/drawable/circulo.xml" value="0.18981481481481483" />
-        <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.17239583333333333" />
-        <entry key="app/src/main/res/drawable/ic_png_clipart_cute_groot_digital_art_icon_groot.xml" value="0.17239583333333333" />
         <entry key="app/src/main/res/layout/activity_forget_password.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.11141304347826086" />
-        <entry key="app/src/main/res/layout/activity_list_exhibits.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_list_favorites.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_perfiles.xml" value="0.14175724637681159" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_register_1.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_3.xml" value="0.25" />
@@ -57,10 +51,7 @@
         <entry key="app/src/main/res/layout/activity_registro_lastname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro_passwordverificed.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/content_home_drawer.xml" value="0.11141304347826086" />
         <entry key="app/src/main/res/layout/header_navigation_bar.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/item_view_exhibits.xml" value="0.11141304347826086" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.5" />
       </map>
     </option>
   </component>

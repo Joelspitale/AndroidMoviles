@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,13 +18,14 @@ import android.widget.Toast;
 import com.example.myapplication.Register.Name;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class SingIn extends AppCompatActivity{
+public class SingIn extends AppCompatActivity {
     static final int REQUEST = 1;   // lo seteo siempre que uso el activityForResult
-    public  static final String MY_INTENT_ACTIVITY_VALUE = "Nombre de mi variable que le paso como clave a la activity que llamo";
+    public static final String MY_INTENT_ACTIVITY_VALUE = "Nombre de mi variable que le paso como clave a la activity que llamo";
     private TextInputLayout inputEmail;
     private TextInputLayout inputPassword;
     private int MIN_SIZE_PASSWORD = 8;
     private int MAX_SIZE_PASSWORD = 20;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +34,15 @@ public class SingIn extends AppCompatActivity{
         setTitle(R.string.miTitulo);
         verifyCamara();
 
+
+        inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
+        inputPassword = (TextInputLayout) findViewById(R.id.inputTextPassword);
+
         Button botonIngresar = findViewById(R.id.buttonIngresar);
         botonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
-                inputPassword = (TextInputLayout) findViewById(R.id.inputTextPassword);
-                if(validarDatos())
+                if (validarDatos())
                     nextActivity();
                 /*
                 Intent myIntent = new Intent(SingIn.this, MainActivity2.class);
@@ -55,49 +57,50 @@ public class SingIn extends AppCompatActivity{
 
         Button botonRegistrar = findViewById(R.id.buttonRegister);
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent myIntent = new Intent(SingIn.this, Name.class);
-            startActivityForResult(myIntent, REQUEST);
+                startActivityForResult(myIntent, REQUEST);
             }
         });
 
         Button botonOlvidar = findViewById(R.id.buttonForgetPass);
         botonOlvidar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent myIntent = new Intent(SingIn.this, ForgetPassword.class);
                 startActivityForResult(myIntent, REQUEST);
             }
         });
 
+
     }
 
-    private boolean validarDatos(){
+    private boolean validarDatos() {
         String email = inputEmail.getEditText().getText().toString();
-        String password= inputPassword.getEditText().getText().toString();
-        if(isEmailValidate(email) && isPasswordValidate(password)){
+        String password = inputPassword.getEditText().getText().toString();
+        if (isEmailValidate(email) && isPasswordValidate(password)) {
             return true;
         }
         return false;
     }
 
-    private boolean isPasswordValidate(String password){
-        if(password.length()>=MIN_SIZE_PASSWORD && password.length() <= MAX_SIZE_PASSWORD)
+    private boolean isPasswordValidate(String password) {
+        if (password.length() >= MIN_SIZE_PASSWORD && password.length() <= MAX_SIZE_PASSWORD)
             return true;
         return false;
     }
 
-    private boolean isEmailValidate(String correo){
+    private boolean isEmailValidate(String correo) {
         return Patterns.EMAIL_ADDRESS.matcher(correo).matches();
     }
 
-    private void nextActivity(){
+    private void nextActivity() {
         Intent myIntent = new Intent(SingIn.this, ListExhibits.class);
         myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
         startActivity(myIntent);
     }
 
     private boolean verifyCamara() {
-        if(checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED){
+        if (checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
         if (shouldShowRequestPermissionRationale(CAMERA)) {
@@ -123,7 +126,7 @@ public class SingIn extends AppCompatActivity{
 
 
     @Override
-    protected  void onPause() {
+    protected void onPause() {
         super.onPause();
         Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
     }

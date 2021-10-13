@@ -41,7 +41,6 @@
     <string name="edit_profile">Editar Perfil</string>
 
 
-
     <string name="closeSession">Cerrar Sesion</string>
     <string name="nameUser">Franco Gomez</string>
     <string name="language">Lenguaje</string>
@@ -49,5 +48,6 @@
     <string name="privacity">Privacidad</string>
     <string name="notifity">Notificaciones</string>
     <string name="information">Informacion</string>
+    <string name="verifyMail">El mail ingresado no es correcto</string>
 
 </resources>

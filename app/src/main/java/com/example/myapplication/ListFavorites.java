@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -51,7 +50,7 @@ public class ListFavorites extends AppCompatActivity {
                         startActivity(myIntent);
                         return true;
                     case R.id.menu_profile:
-                        myIntent  = new Intent(ListFavorites.this, Profile.class);
+                        myIntent  = new Intent(ListFavorites.this, Configuration.class);
                         startActivity(myIntent);
                         return true;
                     default:

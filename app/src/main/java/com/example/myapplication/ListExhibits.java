@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -52,7 +50,7 @@ public class ListExhibits extends AppCompatActivity {
                         startActivity(myIntent);
                         return true;
                     case R.id.menu_profile:
-                         myIntent  = new Intent(ListExhibits.this, Profile.class);
+                         myIntent  = new Intent(ListExhibits.this, Configuration.class);
                          startActivity(myIntent);
                         return true;
                     default:
