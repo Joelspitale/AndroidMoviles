@@ -6,14 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ListExhibits">
 
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/listExhibits"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="30dp"
+        tools:ignore="MissingConstraints" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="490dp"
+        tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="38dp">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_exhibits_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         tools:ignore="MissingConstraints"
+        android:layout_marginTop="4dp"
         tools:listitem="@layout/item_view_exhibits" />
-
+    </LinearLayout>
+    </ScrollView>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

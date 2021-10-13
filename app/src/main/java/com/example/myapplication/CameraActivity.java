@@ -46,7 +46,7 @@ public class CameraActivity extends AppCompatActivity {
         Button botonVolverQR = findViewById(R.id.buttonVolverQR);
         botonVolverQR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(CameraActivity.this, HomeActivity.class);
+                Intent myIntent = new Intent(CameraActivity.this, ListExhibits.class);
                 startActivityForResult(myIntent, REQUEST);
             }
         });

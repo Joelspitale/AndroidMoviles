@@ -14,12 +14,5 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Button bottonReturn = findViewById(R.id.buttonVolverQR);
-        bottonReturn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view){
-                Intent myIntent = new Intent(Profile.this, SingIn.class);
-                startActivity(myIntent);
-            }
-        });
     }
 }

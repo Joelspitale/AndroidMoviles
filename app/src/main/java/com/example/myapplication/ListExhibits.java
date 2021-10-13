@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -46,13 +47,13 @@ public class ListExhibits extends AppCompatActivity {
                         myIntent = new Intent(ListExhibits.this, ListFavorites.class);
                         startActivity(myIntent);
                         return true;
-                    case R.id.menu_mi_perfil:
+                    case R.id.menu_google:
+                        myIntent = new Intent(Intent.ACTION_WEB_SEARCH);
+                        startActivity(myIntent);
+                        return true;
+                    case R.id.menu_profile:
                          myIntent  = new Intent(ListExhibits.this, Profile.class);
                          startActivity(myIntent);
-                        return true;
-                    case R.id.menu_opcion3:
-                        myIntent = null;
-                        startActivity(myIntent);
                         return true;
                     default:
                         return false;
