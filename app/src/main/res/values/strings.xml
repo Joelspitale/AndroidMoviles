@@ -49,5 +49,12 @@
     <string name="notifity">Notificaciones</string>
     <string name="information">Informacion</string>
     <string name="verifyMail">El mail ingresado no es correcto</string>
+    <string name="nombreLugar">Nombre de la atraccion</string>
+    <string name="loremIpsum">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit blandit auctor. Duis tincidunt blandit sollicitudin.
+        Fusce egestas laoreet massa in pretium. Nunc et convallis augue, vitae pharetra metus.
+        In efficitur urna nisl, efficitur dictum augue accumsan sed.
+        Fusce lobortis, diam id convallis imperdiet, purus mauris porttitor.</string>
+    <string name="calificacion">Califica este lugar</string>
 
 </resources>

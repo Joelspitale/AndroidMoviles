@@ -32,6 +32,8 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(CameraActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Intent myIntent = new Intent(CameraActivity.this, Atraction.class);
+                        startActivity(myIntent);
                     }
                 });
             }
