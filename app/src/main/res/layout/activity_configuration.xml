@@ -58,11 +58,12 @@
                 android:id="@+id/buttonCloseSession"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:backgroundTint="@color/black"
                 android:text="@string/closeSession"
-                app:layout_constraintStart_toStartOf="@id/buttonEdit"
-                tools:ignore="MissingConstraints" />
+                android:layout_marginTop="4dp"
+                tools:ignore="MissingConstraints,OnClick"
+                android:onClick="btnSessionClose"
+                app:layout_constraintStart_toStartOf="@id/buttonEdit" />
 
             <Button
                 android:id="@+id/buttonlanguage"

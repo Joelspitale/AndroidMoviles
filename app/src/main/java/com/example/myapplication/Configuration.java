@@ -3,7 +3,9 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
@@ -14,12 +16,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Configuration extends AppCompatActivity {
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
 
+        initPreference();
         ImageView imageProfile = findViewById(R.id.image_profile);
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,5 +67,23 @@ public class Configuration extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+    }
+    public void btnSessionClose(View v){
+        setSessionActive(false);
+        boolean b =getSessionActive();
+        Intent myIntent = new Intent(Configuration.this, SingIn.class);
+        startActivity(myIntent);
+    }
+
+    public void initPreference(){
+        preferences = getSharedPreferences("SHARED_PREFEF", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+    }
+    private void setSessionActive(boolean b){
+        editor.putBoolean("sessionActive", b);
+        editor.commit();
+    }
+    private boolean getSessionActive(){
+        return preferences.getBoolean("sessionActive",false);
     }
 }

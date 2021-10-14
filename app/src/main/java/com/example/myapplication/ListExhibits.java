@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -23,6 +26,10 @@ import recyclerView.ListAdapter;
 public class ListExhibits extends AppCompatActivity {
 
     private List<Exhibits> exhibitsList;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private boolean isRemember =  true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,5 +85,21 @@ public class ListExhibits extends AppCompatActivity {
         exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2"));
         exhibitsList.add(new Exhibits("Titulo3","Introduccion 3", "Contenido 3"));
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        preferences = getSharedPreferences("SHARED_PREFEF", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        editor.putBoolean("sessionActive",isRemember);
+        editor.commit();
+        boolean aux = preferences.getBoolean("sessionActive",true);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        preferences = getSharedPreferences("SHARED_PREFEF", Context.MODE_PRIVATE);
+        isRemember = preferences.getBoolean("sessionActive",true);
+    }
 }
