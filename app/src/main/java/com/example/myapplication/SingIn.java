@@ -60,11 +60,7 @@ public class SingIn extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(SingIn.this, "Error al iniciar Sesion revise sus credenciales", Toast.LENGTH_SHORT).show();
-
-
             }
-
-
         });
 
         Button botonRegistrar = findViewById(R.id.buttonRegister);
