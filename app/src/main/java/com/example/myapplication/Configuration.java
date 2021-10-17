@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.myapplication.fragments.ActivityContentFragmentListExhibits;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,7 +43,7 @@ public class Configuration extends AppCompatActivity {
                 Intent myIntent;
                 switch (item.getItemId()) {
                     case R.id.menu_home:
-                        myIntent = new Intent(Configuration.this, ListExhibits.class);
+                        myIntent = new Intent(Configuration.this, ActivityContentFragmentListExhibits.class);
                         startActivity(myIntent);
                         return true;
                     case R.id.menu_google:

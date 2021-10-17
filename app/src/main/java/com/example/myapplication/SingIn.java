@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.myapplication.Register.Name;
+import com.example.myapplication.fragments.ActivityContentFragmentListExhibits;
 import com.google.android.material.textfield.TextInputLayout;
 import com.journeyapps.barcodescanner.camera.CameraParametersCallback;
 
@@ -114,7 +115,8 @@ public class SingIn extends AppCompatActivity {
     }
 
     private void nextActivity() {
-        Intent myIntent = new Intent(SingIn.this, ListExhibits.class);
+        //Intent myIntent = new Intent(SingIn.this, ListExhibits.class);
+        Intent myIntent = new Intent(SingIn.this, ActivityContentFragmentListExhibits.class);
         myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
         startActivity(myIntent);
     }

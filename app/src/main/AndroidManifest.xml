@@ -6,8 +6,8 @@
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name=".fragments.ActivityContentFragmentListExhibits"
+            android:exported="true" />
         <activity
             android:name=".Atraction"
             android:exported="true" />
@@ -29,9 +32,6 @@
             android:exported="true" />
         <activity
             android:name=".Register.LastName"
-            android:exported="true" />
-        <activity
-            android:name=".ListExhibits"
             android:exported="true" />
         <activity
             android:name=".Configuration"
@@ -70,10 +70,8 @@
             android:name=".Register.PasswordVerificed"
             android:exported="true" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="true" />
-        <activity
             android:name=".SingIn"
             android:exported="true" />
     </application>
+
 </manifest>

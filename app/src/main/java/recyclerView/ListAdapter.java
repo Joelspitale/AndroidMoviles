@@ -2,21 +2,21 @@ package recyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.R;
 
 import java.util.List;
 
-public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListViewHolder>{
+public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListViewHolder> implements View.OnClickListener{
 
-    private List<Exhibits> data;
+    private List<Exhibits> exhibitsList;
+    private View.OnClickListener listener;
 
-    public ListAdapter(List<Exhibits> data) {
-        this.data = data;
+    public ListAdapter(List<Exhibits> exhibitsList) {
+        this.exhibitsList = exhibitsList;
     }
 
 
@@ -24,68 +24,80 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
     @Override
     public ExhibitsListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_exhibits, parent, false);
+        row.setOnClickListener(this);
         return new ExhibitsListViewHolder(row);
     }
 
     //seteo fila por fila
     @Override
     public void onBindViewHolder(@NonNull ExhibitsListViewHolder holder, int position) {
-        Exhibits exhibits = data.get(position);
-        ((ExhibitsListViewHolder) holder).getTitleTextView().setText(exhibits.getTitle());
-        ((ExhibitsListViewHolder) holder).getIntroducctionTextView().setText(exhibits.getIntroduction());
-        ((ExhibitsListViewHolder) holder).getIntroducctionTextView().setText(exhibits.getContent());
+        Exhibits exhibits = exhibitsList.get(position);
+        ((ExhibitsListViewHolder) holder).getTxtTitle().setText(exhibits.getTitle());
+        ((ExhibitsListViewHolder) holder).getTxtIntroducction().setText(exhibits.getIntroduction());
+        ((ExhibitsListViewHolder) holder).getTxtContent().setText(exhibits.getContent());
+        ((ExhibitsListViewHolder) holder).getFoto().setImageResource(exhibits.getImagenId());
 
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return exhibitsList.size();
+    }
+
+    public void setOnClickListener( View.OnClickListener listener){
+        this.listener = listener;
+    }
+    @Override
+    public void onClick(View view) {
+        if(listener!= null){
+            listener.onClick(view);
+        }
     }
 
     public  class ExhibitsListViewHolder extends RecyclerView.ViewHolder {
-        private View circleView;
-        private TextView titleTextView;
-        private TextView introducctionTextView;
-        private TextView contentTextView;
+        private TextView txtTitle;
+        private TextView txtIntroducction;
+        private TextView txtContent;
+        private ImageView foto;
 
         public ExhibitsListViewHolder(@NonNull View itemView) {
             super(itemView);
-            circleView = itemView.findViewById(R.id.profile_circle_view);
-            titleTextView = (TextView) itemView.findViewById(R.id.text_view_exhibits_title);
-            introducctionTextView = (TextView) itemView.findViewById(R.id.text_view_exhibits_introduction);
-            contentTextView = (TextView) itemView.findViewById(R.id.text_view_exhibits_content);
+            txtTitle = (TextView) itemView.findViewById(R.id.idExhibitsTitle);
+            txtIntroducction = (TextView) itemView.findViewById(R.id.idExhibitsIntroduction);
+            txtContent = (TextView) itemView.findViewById(R.id.idExhibitsContent);
+            foto = (ImageView) itemView.findViewById(R.id.idImagen);
         }
 
-        public View getCircleView() {
-            return circleView;
+        public TextView getTxtTitle() {
+            return txtTitle;
         }
 
-        public void setCircleView(View circleView) {
-            this.circleView = circleView;
+        public void setTxtTitle(TextView txtTitle) {
+            this.txtTitle = txtTitle;
         }
 
-        public TextView getTitleTextView() {
-            return titleTextView;
+        public TextView getTxtIntroducction() {
+            return txtIntroducction;
         }
 
-        public void setTitleTextView(TextView titleTextView) {
-            this.titleTextView = titleTextView;
+        public void setTxtIntroducction(TextView txtIntroducction) {
+            this.txtIntroducction = txtIntroducction;
         }
 
-        public TextView getIntroducctionTextView() {
-            return introducctionTextView;
+        public TextView getTxtContent() {
+            return txtContent;
         }
 
-        public void setIntroducctionTextView(TextView introducctionTextView) {
-            this.introducctionTextView = introducctionTextView;
+        public void setTxtContent(TextView txtContent) {
+            this.txtContent = txtContent;
         }
 
-        public TextView getContentTextView() {
-            return contentTextView;
+        public ImageView getFoto() {
+            return foto;
         }
 
-        public void setContentTextView(TextView contentTextView) {
-            this.contentTextView = contentTextView;
+        public void setFoto(ImageView foto) {
+            this.foto = foto;
         }
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.myapplication.fragments.ActivityContentFragmentListExhibits;
 import com.google.zxing.Result;
 
 public class CameraActivity extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class CameraActivity extends AppCompatActivity {
         Button botonVolverQR = findViewById(R.id.buttonVolverQR);
         botonVolverQR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(CameraActivity.this, ListExhibits.class);
+                Intent myIntent = new Intent(CameraActivity.this, ActivityContentFragmentListExhibits.class);
                 startActivityForResult(myIntent, REQUEST);
             }
         });

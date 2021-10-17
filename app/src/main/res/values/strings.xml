@@ -54,6 +54,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit
         Fusce egestas laoreet massa in pretium. Nunc et convallis augue, vitae pharetra metus.
         In efficitur urna nisl, efficitur dictum augue accumsan sed.
         Fusce lobortis, diam id convallis imperdiet, purus mauris porttitor.</string>
-    <string name="calificacion">Califica este lugar</string>
+    <string name="calificacion">Califica la exhibicion</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.fragments.ActivityContentFragmentListExhibits;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,7 +43,7 @@ public class ListFavorites extends AppCompatActivity {
                 Intent myIntent;
                 switch (item.getItemId()) {
                     case R.id.menu_home:
-                        myIntent = new Intent(ListFavorites.this, ListExhibits.class);
+                        myIntent = new Intent(ListFavorites.this, ActivityContentFragmentListExhibits.class);
                         startActivity(myIntent);
                         return true;
                     case R.id.menu_google:
