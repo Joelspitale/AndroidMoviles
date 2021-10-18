@@ -28,9 +28,6 @@
             android:label="@string/title_activity_home_drawer"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".ExhibitActivity"
-            android:exported="true" />
-        <activity
             android:name=".Register.LastName"
             android:exported="true" />
         <activity

@@ -109,18 +109,16 @@ public class ListExhibitsFragments extends Fragment {
 
 
     private void loadExhibitsList(){
-        exhibitsList.add(new Exhibits("Titulo1","Introduccion 1", "Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación. Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación.",R.drawable.groot,R.drawable.groot_details));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.mamut,R.drawable.mamut2));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.oso_polar,R.drawable.oso_polar2));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.tiranosaurio,R.drawable.tiranosaurio2));
-        exhibitsList.add(new Exhibits("Titulo1","Introduccion 1", "Contenido 1",R.drawable.groot,R.drawable.groot_details));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.mamut,R.drawable.mamut2));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.oso_polar,R.drawable.oso_polar2));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2",R.drawable.tiranosaurio,R.drawable.tiranosaurio2));
-
-
+        exhibitsList.add(new Exhibits(R.string.titleGroot,R.string.introGroot, R.string.contentGroot,R.drawable.groot,R.drawable.groot_details));
+        exhibitsList.add(new Exhibits(R.string.titleMamut,R.string.introMamut, R.string.loremIpsum,R.drawable.mamut,R.drawable.mamut2));
+        exhibitsList.add(new Exhibits(R.string.titleOsoPolar,R.string.introOsoPolar, R.string.loremIpsum,R.drawable.oso_polar,R.drawable.oso_polar2));
+        exhibitsList.add(new Exhibits(R.string.titleTigreDientes,R.string.titleTigreDientes, R.string.loremIpsum,R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
+        exhibitsList.add(new Exhibits(R.string.titleDinosaurio,R.string.introDinosaurio, R.string.loremIpsum,R.drawable.tiranosaurio,R.drawable.tiranosaurio2));
+        exhibitsList.add(new Exhibits(R.string.titleGroot,R.string.introGroot, R.string.contentGroot,R.drawable.groot,R.drawable.groot_details));
+        exhibitsList.add(new Exhibits(R.string.titleMamut,R.string.introMamut, R.string.loremIpsum,R.drawable.mamut,R.drawable.mamut2));
+        exhibitsList.add(new Exhibits(R.string.titleOsoPolar,R.string.introOsoPolar, R.string.loremIpsum,R.drawable.oso_polar,R.drawable.oso_polar2));
+        exhibitsList.add(new Exhibits(R.string.titleTigreDientes,R.string.titleTigreDientes, R.string.loremIpsum,R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
+        exhibitsList.add(new Exhibits(R.string.titleDinosaurio,R.string.introDinosaurio, R.string.loremIpsum,R.drawable.tiranosaurio,R.drawable.tiranosaurio2));
     }
 
     //establezo la comunicacion entre la lista y el detalle de un elemento de la lista

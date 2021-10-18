@@ -69,10 +69,10 @@ public class ListFavorites extends AppCompatActivity {
         });
     }
     private void loadExhibits(){
-        exhibitsList.add(new Exhibits("Titulo1","Introduccion 1", "Contenido 1"));
-        exhibitsList.add(new Exhibits("Titulo3","Introduccion 3", "Contenido 3"));
-        exhibitsList.add(new Exhibits("Titulo5","Introduccion 5", "Contenido 5"));
-        exhibitsList.add(new Exhibits("Titulo2","Introduccion 2", "Contenido 2"));
+        exhibitsList.add(new Exhibits(R.string.titleMamut,R.string.introMamut, R.string.loremIpsum,R.drawable.mamut,R.drawable.mamut2));
+        exhibitsList.add(new Exhibits(R.string.titleOsoPolar,R.string.introOsoPolar, R.string.loremIpsum,R.drawable.oso_polar,R.drawable.oso_polar2));
+        exhibitsList.add(new Exhibits(R.string.titleTigreDientes,R.string.titleTigreDientes, R.string.loremIpsum,R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
+        exhibitsList.add(new Exhibits(R.string.titleGroot,R.string.introGroot, R.string.contentGroot,R.drawable.groot,R.drawable.groot_details));
     }
 
 }

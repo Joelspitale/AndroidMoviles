@@ -117,7 +117,7 @@ public class SingIn extends AppCompatActivity {
     private void nextActivity() {
         //Intent myIntent = new Intent(SingIn.this, ListExhibits.class);
         Intent myIntent = new Intent(SingIn.this, ActivityContentFragmentListExhibits.class);
-        myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
+        //myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
         startActivity(myIntent);
     }
 

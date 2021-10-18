@@ -55,7 +55,26 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit
         In efficitur urna nisl, efficitur dictum augue accumsan sed.
         Fusce lobortis, diam id convallis imperdiet, purus mauris porttitor.</string>
     <string name="calificacion">Califica la exhibicion</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- GROOT -->
+    <string name="titleGroot">groot</string>
+    <string name="introGroot">Introduccion groot</string>
+    <string name="contentGroot">Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación. Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación</string>
+    <!-- Mamut -->
+    <string name="titleMamut">Mamut</string>
+    <string name="introMamut">Introduccion mamut</string>
+    <string name="contentMamut">Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación. Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación</string>
+    <!-- Oso Polar -->
+    <string name="titleOsoPolar">Oso polar</string>
+    <string name="introOsoPolar">Introduccion oso polar</string>
+    <string name="contentOsoPolar">El oso polar u oso blanco (Ursus maritimus) es una especie de mamífero carnívoro de la familia de los osos (Ursidae).2​ Es junto con su pariente, el oso Kodiak (Ursus arctos middendorffi), uno de los carnívoros terrestres más grandes de la Tierra.3​ Vive en el medio polar y zonas heladas del hemisferio norte. Es el único superdepredador del Ártico</string>
+    <!-- Tigre Dientes Sable -->
+    <string name="titleTigreDientes">groot</string>
+    <string name="introTigreDientes">Introduccion groot</string>
+    <string name="contentTigreDientes">Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación. Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación</string>
+    <!-- Dinosaurio -->
+    <string name="titleDinosaurio">Tiranosaurio Rex</string>
+    <string name="introDinosaurio">Introduccion dinosaurio</string>
+    <string name="contentDinosaurio">Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación. Groot es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por Stan Lee, Larry Lieber y Jack Kirby, el personaje apareció por primera vez en Tales to Astonish # 13 (noviembre de 1960). Una criatura extraterrestre, similar a un árbol sensible, el Groot original apareció por primera vez como un invasor que pretendía capturar humanos para la experimentación</string>
+
 
 </resources>
