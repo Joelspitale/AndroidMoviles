@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -78,6 +79,15 @@ public class FragmentExhibitsDetaills extends Fragment {
         FloatingActionButton botonQr = view.findViewById(R.id.floating_action_button_qr);
         headClickMenuIcon(bottomNavigationView,botonQr);
 
+        Button bottomVolverExhibits = view.findViewById(R.id.buttonReturnAtractionDetaills);
+        bottomVolverExhibits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getActivity(), ActivityContentFragmentListExhibits.class);
+                startActivity(myIntent);
+            }
+        });
+
         //recibo y extraigo el objeto en el que hizo click en la lista
         Bundle objectExhibit = getArguments();
         Exhibits exhibits = null;
@@ -100,6 +110,10 @@ public class FragmentExhibitsDetaills extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent myIntent;
                 switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        myIntent = new Intent(getActivity(), ActivityContentFragmentListExhibits.class);
+                        startActivity(myIntent);
+                        return true;
                     case R.id.menu_favorites:
                         myIntent = new Intent(getActivity(), ListFavorites.class);
                         startActivity(myIntent);
