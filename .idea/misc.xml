@@ -15,6 +15,7 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camara_prueba.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_camera.xml" value="0.171875" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_configuration.xml" value="0.176" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_content_fragment_list_exhibits.xml" value="0.1703125" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_exhibit.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_forget_password.xml" value="0.176" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/activity_home.xml" value="0.2" />
@@ -38,6 +39,7 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/fragment_exhibits_detaills.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/fragment_gallery.xml" value="0.171875" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/fragment_home.xml" value="0.171875" />
+        <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/fragment_list_exhibits_fragments.xml" value="0.2" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/fragment_slideshow.xml" value="0.171875" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/header_navigation_bar.xml" value="0.171875" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/layout/item_view_exhibits.xml" value="0.171875" />

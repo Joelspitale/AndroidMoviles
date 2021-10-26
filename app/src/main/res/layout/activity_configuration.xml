@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/lightblue"
     tools:context=".Configuration">
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="490dp"
+        android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
@@ -113,12 +112,22 @@
                 android:text="@string/notifity"
                 app:layout_constraintStart_toStartOf="@id/buttonInformacion"
                 tools:ignore="MissingConstraints" />
+
+            //Es bobo solo se realiza para que el menu no tape nada
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom"
+                />
         </LinearLayout>
     </ScrollView>
+
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_action_button_qr"
