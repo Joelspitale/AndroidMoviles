@@ -28,7 +28,7 @@
             android:label="@string/title_activity_home_drawer"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".Register.LastName"
+            android:name=".register.LastName"
             android:exported="true" />
         <activity
             android:name=".Configuration"
@@ -55,16 +55,16 @@
             android:name=".ForgetPassword"
             android:exported="true" />
         <activity
-            android:name=".Register.Name"
+            android:name=".register.Name"
             android:exported="true" />
         <activity
-            android:name=".Register.Email"
+            android:name=".register.Email"
             android:exported="true" />
         <activity
-            android:name=".Register.Password"
+            android:name=".register.Password"
             android:exported="true" />
         <activity
-            android:name=".Register.PasswordVerificed"
+            android:name=".register.PasswordVerificed"
             android:exported="true" />
         <activity
             android:name=".SingIn"

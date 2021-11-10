@@ -22,7 +22,7 @@ import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteract
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import recyclerView.Exhibits;
+import com.example.myapplication.modelo.Exhibits;
 
 public class FragmentExhibitsDetaills extends Fragment {
 
@@ -99,7 +99,7 @@ public class FragmentExhibitsDetaills extends Fragment {
             txtTitleDetaills.setText(exhibits.getTitle());
             txtIntroductionDetails.setText(exhibits.getIntroduction());
             txtContentDetails.setText(exhibits.getContent());
-            imageDetails.setImageResource(exhibits.getImagenDetails());
+            //imageDetails.setImageResource(exhibits.getImagenDetails());
         }
         return view;
     }

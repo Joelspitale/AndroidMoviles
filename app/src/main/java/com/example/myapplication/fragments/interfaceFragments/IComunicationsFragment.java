@@ -1,6 +1,6 @@
 package com.example.myapplication.fragments.interfaceFragments;
 
-import recyclerView.Exhibits;
+import com.example.myapplication.modelo.Exhibits;
 
 //utilizo esta interfaz para pasar un objeto exhibicion de un fragments a otro
 public interface IComunicationsFragment {

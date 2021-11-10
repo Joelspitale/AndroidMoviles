@@ -1,4 +1,4 @@
-package com.example.myapplication.Register;
+package com.example.myapplication.register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,29 +8,27 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.SingIn;
 
-public class Name extends AppCompatActivity {
+public class Email extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_name);
+        setContentView(R.layout.activity_register_email);
 
-        Button bottonReturn = findViewById(R.id.buttonReturnName);
+        Button bottonReturn = findViewById(R.id.buttonReturnEmail);
         bottonReturn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(Name.this, SingIn.class);
+                Intent myIntent = new Intent(Email.this, LastName.class);
                 startActivity(myIntent);
-
             }
         });
 
-        Button bottonNext = findViewById(R.id.buttonNextName);
+        Button bottonNext = findViewById(R.id.buttonNextEmail);
         bottonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(Name.this, LastName.class);
+                Intent myIntent = new Intent(Email.this, Password.class);
                 startActivity(myIntent);
             }
         });

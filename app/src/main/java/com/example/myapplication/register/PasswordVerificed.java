@@ -1,4 +1,4 @@
-package com.example.myapplication.Register;
+package com.example.myapplication.register;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -22,14 +22,19 @@ import com.example.myapplication.ListFavorites;
 import com.example.myapplication.R;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
+import com.example.myapplication.network.RetrofitClientInstance;
+import com.example.myapplication.network.ServiceExhibits;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import recyclerView.Exhibits;
+import com.example.myapplication.modelo.Exhibits;
 import recyclerView.ListAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListExhibitsFragments extends Fragment {
 
@@ -46,6 +51,7 @@ public class ListExhibitsFragments extends Fragment {
 
     Activity activity;
     IComunicationsFragment interfaceComunicaFragments;
+
 
     public ListExhibitsFragments() {
         // Required empty public constructor
@@ -75,13 +81,25 @@ public class ListExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
         //inflo el vista
         View view = inflater.inflate(R.layout.fragment_list_exhibits_fragments, container, false);
-        exhibitsList = new ArrayList<>();
-        //cargo los items en mi lista
-        loadExhibitsList();
+        //instancio el service para hacer el get a la api
+        ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
+        Call<List<Exhibits>> call = serviceExhibits.getAllExhibits(); //hago la llamada
+        call.enqueue(new Callback<List<Exhibits>>() {
+            @Override
+            public void onResponse(Call<List<Exhibits>> call, Response<List<Exhibits>> response) {
+                if(!response.isSuccessful()){
+                    System.out.println("Codigo: " + response.code());
+                }
+                System.out.println("Se obtuvo el json correctamente");
+                //cargo los items en mi lista
+                loadExhibitsList(response.body(),view);
+            }
 
-        //direcciono mi recycler view
-        recyclerExhibits = view.findViewById(R.id.recyclerId);
-        recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
+            @Override
+            public void onFailure(Call<List<Exhibits>> call, Throwable t) {
+                System.out.println("Hubo un error inesperado" + t.getMessage());
+            }
+        });
 
         //direcciono mis botones de mi menu
         BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottomNavigationView);
@@ -89,7 +107,18 @@ public class ListExhibitsFragments extends Fragment {
         FloatingActionButton botonQr = view.findViewById(R.id.floating_action_button_qr);
         headClickMenuIcon(bottomNavigationView,botonQr);
 
-        ListAdapter listAdapterExhibits = new ListAdapter((exhibitsList));
+
+
+        return view;
+    }
+
+
+
+    private void loadExhibitsList(List<Exhibits> exhibitsList, View view){
+        //direcciono mi recycler view
+        recyclerExhibits = view.findViewById(R.id.recyclerId);
+        recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
+        ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(),exhibitsList);
         //le coloco el adapter que ya hemos hecho
         recyclerExhibits.setAdapter(listAdapterExhibits);
 
@@ -102,23 +131,6 @@ public class ListExhibitsFragments extends Fragment {
                 interfaceComunicaFragments.sentExhibits(exhibitsSelected);
             }
         });
-
-        return view;
-    }
-
-
-
-    private void loadExhibitsList(){
-        exhibitsList.add(new Exhibits(R.string.titleGroot,R.string.introGroot, R.string.contentGroot,R.drawable.groot,R.drawable.groot_details));
-        exhibitsList.add(new Exhibits(R.string.titleMamut,R.string.introMamut, R.string.loremIpsum,R.drawable.mamut,R.drawable.mamut2));
-        exhibitsList.add(new Exhibits(R.string.titleOsoPolar,R.string.introOsoPolar, R.string.loremIpsum,R.drawable.oso_polar,R.drawable.oso_polar2));
-        exhibitsList.add(new Exhibits(R.string.titleTigreDientes,R.string.titleTigreDientes, R.string.loremIpsum,R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
-        exhibitsList.add(new Exhibits(R.string.titleDinosaurio,R.string.introDinosaurio, R.string.loremIpsum,R.drawable.tiranosaurio,R.drawable.tiranosaurio2));
-        exhibitsList.add(new Exhibits(R.string.titleGroot,R.string.introGroot, R.string.contentGroot,R.drawable.groot,R.drawable.groot_details));
-        exhibitsList.add(new Exhibits(R.string.titleMamut,R.string.introMamut, R.string.loremIpsum,R.drawable.mamut,R.drawable.mamut2));
-        exhibitsList.add(new Exhibits(R.string.titleOsoPolar,R.string.introOsoPolar, R.string.loremIpsum,R.drawable.oso_polar,R.drawable.oso_polar2));
-        exhibitsList.add(new Exhibits(R.string.titleTigreDientes,R.string.titleTigreDientes, R.string.loremIpsum,R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
-        exhibitsList.add(new Exhibits(R.string.titleDinosaurio,R.string.introDinosaurio, R.string.loremIpsum,R.drawable.tiranosaurio,R.drawable.tiranosaurio2));
     }
 
     //establezo la comunicacion entre la lista y el detalle de un elemento de la lista

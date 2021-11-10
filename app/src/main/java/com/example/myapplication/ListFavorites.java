@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import recyclerView.Exhibits;
+import com.example.myapplication.modelo.Exhibits;
 import recyclerView.ListAdapter;
 
 
@@ -36,7 +36,7 @@ public class ListFavorites extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.menu_favorites);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
         //le coloco el adapter que ya hemos hecho
-        recyclerView.setAdapter(new ListAdapter((exhibitsList)));
+        recyclerView.setAdapter(new ListAdapter(getBaseContext(),exhibitsList));
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -68,11 +68,12 @@ public class ListFavorites extends AppCompatActivity {
             }
         });
     }
-    private void loadExhibits(){
+    private void loadExhibits(){/*
         exhibitsList.add(new Exhibits(R.string.titleMamut,R.string.introMamut, R.string.loremIpsum,R.drawable.mamut,R.drawable.mamut2));
         exhibitsList.add(new Exhibits(R.string.titleOsoPolar,R.string.introOsoPolar, R.string.loremIpsum,R.drawable.oso_polar,R.drawable.oso_polar2));
         exhibitsList.add(new Exhibits(R.string.titleTigreDientes,R.string.titleTigreDientes, R.string.loremIpsum,R.drawable.tigre_dientes,R.drawable.tigre_dientes2));
         exhibitsList.add(new Exhibits(R.string.titleGroot,R.string.introGroot, R.string.contentGroot,R.drawable.groot,R.drawable.groot_details));
+        */
     }
 
 }

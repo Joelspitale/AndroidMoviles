@@ -1,14 +1,13 @@
 package com.example.myapplication.fragments;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.net.Uri;
 import android.os.Bundle;
 import com.example.myapplication.R;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
 
-import recyclerView.Exhibits;
+import com.example.myapplication.modelo.Exhibits;
 
 public class ActivityContentFragmentListExhibits extends AppCompatActivity implements
         OnFragmentInteractionListener, IComunicationsFragment {
@@ -46,4 +45,6 @@ public class ActivityContentFragmentListExhibits extends AppCompatActivity imple
                 replace(R.id.containerFragmentsExhibits,fragmentExhibitsDetaills)
                 .addToBackStack(null).commit();
     }
+
+
 }

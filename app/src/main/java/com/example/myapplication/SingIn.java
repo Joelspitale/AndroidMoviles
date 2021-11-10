@@ -19,10 +19,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.myapplication.Register.Name;
+import com.example.myapplication.register.Name;
 import com.example.myapplication.fragments.ActivityContentFragmentListExhibits;
 import com.google.android.material.textfield.TextInputLayout;
-import com.journeyapps.barcodescanner.camera.CameraParametersCallback;
 
 public class SingIn extends AppCompatActivity {
     static final int REQUEST = 1;   // lo seteo siempre que uso el activityForResult
