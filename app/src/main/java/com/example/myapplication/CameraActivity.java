@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +13,6 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.example.myapplication.fragments.ActivityContentFragmentListExhibits;
 import com.google.zxing.Result;
 
 public class CameraActivity extends AppCompatActivity {
@@ -33,8 +33,8 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(CameraActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
-                        Intent myIntent = new Intent(CameraActivity.this, Atraction.class);
-                        startActivity(myIntent);
+//                        Intent myIntent = new Intent(CameraActivity.this, Atraction.class);
+//                        startActivity(myIntent);
                     }
                 });
             }
@@ -49,7 +49,7 @@ public class CameraActivity extends AppCompatActivity {
         Button botonVolverQR = findViewById(R.id.buttonVolverQR);
         botonVolverQR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(CameraActivity.this, ActivityContentFragmentListExhibits.class);
+                Intent myIntent = new Intent(CameraActivity.this, Principal.class);
                 startActivityForResult(myIntent, REQUEST);
             }
         });

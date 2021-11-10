@@ -2,7 +2,6 @@ package com.example.myapplication.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,23 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.myapplication.CameraActivity;
-import com.example.myapplication.Configuration;
-import com.example.myapplication.ListFavorites;
 import com.example.myapplication.R;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.myapplication.modelo.Exhibits;
@@ -101,14 +93,6 @@ public class ListExhibitsFragments extends Fragment {
             }
         });
 
-        //direcciono mis botones de mi menu
-        BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.menu_home);
-        FloatingActionButton botonQr = view.findViewById(R.id.floating_action_button_qr);
-        headClickMenuIcon(bottomNavigationView,botonQr);
-
-
-
         return view;
     }
 
@@ -141,38 +125,6 @@ public class ListExhibitsFragments extends Fragment {
             this.activity = (Activity) context;
             interfaceComunicaFragments = (IComunicationsFragment) this.activity;
         }
-    }
-
-    private void headClickMenuIcon(BottomNavigationView bottomNavigationView, FloatingActionButton botonQr) {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent myIntent;
-                switch (item.getItemId()) {
-                    case R.id.menu_favorites:
-                        myIntent = new Intent(getActivity(), ListFavorites.class);
-                        startActivity(myIntent);
-                        return true;
-                    case R.id.menu_google:
-                        myIntent = new Intent(Intent.ACTION_WEB_SEARCH);
-                        startActivity(myIntent);
-                        return true;
-                    case R.id.menu_profile:
-                        myIntent  = new Intent(getActivity(), Configuration.class);
-                        startActivity(myIntent);
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-        });
-        botonQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getActivity(), CameraActivity.class);
-                startActivity(myIntent);
-            }
-        });
     }
 
 }

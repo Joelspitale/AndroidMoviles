@@ -5,7 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".fragments.FragmentExhibitsDetaills">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <Button
+        android:id="@+id/buttonReturnAtractionDetaills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="1dp"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/volver"
+        android:textColor="@color/principal_blue"
+        app:strokeWidth="0dp"
+        app:strokeColor="@color/white"
+        app:icon="@drawable/ic_flechaatras"
+        app:iconTint="@color/principal_blue"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,26 +38,29 @@
         android:paddingRight="10dp"
         android:paddingLeft="10dp">
 
-        <Button
-            android:id="@+id/buttonReturnAtractionDetaills"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/volver"
-            android:textColor="@color/principal_blue"
-            app:strokeWidth="0dp"
-            app:strokeColor="@color/white"
-            app:icon="@drawable/ic_flechaatras"
-            app:iconTint="@color/principal_blue"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
         <ImageView
             android:id="@+id/imageAtractionDetaills"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:layout_marginTop="50dp"
             android:textAlignment="center"
             android:background="@color/black"
             />
+            <CheckBox
+                android:id="@+id/icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_toEndOf="@id/imageAtractionDetaills"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="-30dp"
+                android:button="@drawable/sl_favourite_24dp"
+                app:buttonTint="@android:color/white"
+                />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/titleAtractionDetaills"
@@ -99,32 +122,6 @@
             />
     </LinearLayout>
     </ScrollView>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+</RelativeLayout>
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:backgroundTint="@color/principal_blue">
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/principal_blue"
-                app:menu="@menu/menu"
-                app:itemIconTint="@color/black"
-                app:itemTextColor="@color/black"/>
-        </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_action_button_qr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_qr_code_scanner_24"
-            app:layout_anchor="@id/bottomAppBar" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </FrameLayout>

@@ -8,9 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.myapplication.fragments.ActivityContentFragmentListExhibits;
-import com.google.android.material.textfield.TextInputLayout;
-
 public class Splash extends AppCompatActivity {
 
     static final String EMAIL = "admin@admin.com";
@@ -52,7 +49,7 @@ public class Splash extends AppCompatActivity {
 
     private void nextActivity(){
         if(isRemember){
-            Intent myIntent = new Intent(Splash.this, ActivityContentFragmentListExhibits.class);
+            Intent myIntent = new Intent(Splash.this, Principal.class);
             startActivity(myIntent);
             finish();
         }else {

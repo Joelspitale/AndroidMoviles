@@ -3,24 +3,21 @@ package com.example.myapplication.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.CameraActivity;
-import com.example.myapplication.Configuration;
-import com.example.myapplication.ListFavorites;
+import com.example.myapplication.Principal;
 import com.example.myapplication.R;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import com.example.myapplication.modelo.Exhibits;
 
@@ -73,21 +70,23 @@ public class FragmentExhibitsDetaills extends Fragment {
         txtContentDetails = view.findViewById(R.id.contentAtractionDetaills);
         imageDetails = view.findViewById(R.id.imageAtractionDetaills);
 
-        //direcciono mis botones de mi menu
-        BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.menu_home);
-        FloatingActionButton botonQr = view.findViewById(R.id.floating_action_button_qr);
-        headClickMenuIcon(bottomNavigationView,botonQr);
-
         Button bottomVolverExhibits = view.findViewById(R.id.buttonReturnAtractionDetaills);
         bottomVolverExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getActivity(), ActivityContentFragmentListExhibits.class);
-                startActivity(myIntent);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainer, new ListExhibitsFragments()).commit();
+                transaction.addToBackStack(null);
             }
         });
 
+        CheckBox bottomFavorites = view.findViewById(R.id.icon);
+        bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+            }
+        });
         //recibo y extraigo el objeto en el que hizo click en la lista
         Bundle objectExhibit = getArguments();
         Exhibits exhibits = null;
@@ -102,41 +101,5 @@ public class FragmentExhibitsDetaills extends Fragment {
             //imageDetails.setImageResource(exhibits.getImagenDetails());
         }
         return view;
-    }
-
-    private void headClickMenuIcon(BottomNavigationView bottomNavigationView, FloatingActionButton botonQr) {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent myIntent;
-                switch (item.getItemId()) {
-                    case R.id.menu_home:
-                        myIntent = new Intent(getActivity(), ActivityContentFragmentListExhibits.class);
-                        startActivity(myIntent);
-                        return true;
-                    case R.id.menu_favorites:
-                        myIntent = new Intent(getActivity(), ListFavorites.class);
-                        startActivity(myIntent);
-                        return true;
-                    case R.id.menu_google:
-                        myIntent = new Intent(Intent.ACTION_WEB_SEARCH);
-                        startActivity(myIntent);
-                        return true;
-                    case R.id.menu_profile:
-                        myIntent  = new Intent(getActivity(), Configuration.class);
-                        startActivity(myIntent);
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-        });
-        botonQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getActivity(), CameraActivity.class);
-                startActivity(myIntent);
-            }
-        });
     }
 }

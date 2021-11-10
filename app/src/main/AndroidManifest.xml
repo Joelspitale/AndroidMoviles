@@ -17,10 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".fragments.ActivityContentFragmentListExhibits"
-            android:exported="true" />
-        <activity
-            android:name=".Atraction"
+            android:name=".Principal"
             android:exported="true" />
         <activity
             android:name=".HomeDrawerActivity"
@@ -31,13 +28,7 @@
             android:name=".register.LastName"
             android:exported="true" />
         <activity
-            android:name=".Configuration"
-            android:exported="true" />
-        <activity
             android:name=".Menu"
-            android:exported="true" />
-        <activity
-            android:name=".ListFavorites"
             android:exported="true" />
         <activity
             android:name=".Splash"
