@@ -110,7 +110,6 @@ public class ListExhibitsFragments extends Fragment {
             @Override
             public void onClick(View view) {
                 Exhibits exhibitsSelected = exhibitsList.get(recyclerExhibits.getChildAdapterPosition(view));
-
                 Toast.makeText(getContext(), "Selecciono :"+  exhibitsSelected.getTitle(), Toast.LENGTH_SHORT).show();
                 interfaceComunicaFragments.sentExhibits(exhibitsSelected);
             }

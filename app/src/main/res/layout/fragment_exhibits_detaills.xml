@@ -20,6 +20,7 @@
         android:backgroundTint="@color/white"
         android:text="@string/volver"
         android:textColor="@color/principal_blue"
+        android:visibility="invisible"
         app:strokeWidth="0dp"
         app:strokeColor="@color/white"
         app:icon="@drawable/ic_flechaatras"
@@ -28,9 +29,11 @@
         />
 
     <ScrollView
+        android:id="@+id/ScrollDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:visibility="invisible">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,7 +52,7 @@
                 android:layout_height="300dp"
                 android:layout_marginTop="50dp"
                 android:background="@color/black"
-                android:textAlignment="center" />
+                android:textAlignment="center"/>
             <CheckBox
                 android:id="@+id/icon"
                 android:layout_width="40dp"
@@ -122,6 +125,15 @@
             />
     </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_details"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+
+        />
+
 </RelativeLayout>
 
 </FrameLayout>

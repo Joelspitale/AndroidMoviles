@@ -1,6 +1,7 @@
 package com.example.myapplication.fragments;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.myapplication.Principal;
@@ -41,6 +44,8 @@ public class FragmentExhibitsDetaills extends Fragment {
     private TextView txtIntroductionDetails;
     private TextView txtContentDetails;
     private ImageView imageDetails;
+    private ProgressBar progressBar;
+    private ScrollView scrollView;
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
         FragmentExhibitsDetaills fragment = new FragmentExhibitsDetaills();
@@ -71,6 +76,9 @@ public class FragmentExhibitsDetaills extends Fragment {
         txtIntroductionDetails = view.findViewById(R.id.introductionAtractionDetaills);
         txtContentDetails = view.findViewById(R.id.contentAtractionDetaills);
         imageDetails = view.findViewById(R.id.imageAtractionDetaills);
+        progressBar = view.findViewById(R.id.progress_bar_details);
+        scrollView = view.findViewById(R.id.ScrollDetails);
+
 
         Button bottomVolverExhibits = view.findViewById(R.id.buttonReturnAtractionDetaills);
         bottomVolverExhibits.setOnClickListener(new View.OnClickListener() {
@@ -106,9 +114,12 @@ public class FragmentExhibitsDetaills extends Fragment {
                     if(!response.isSuccessful()){
                         System.out.println("Codigo: " + response.code());
                     }
-                    System.out.println("Se obtuvo el json correctamente");
                     //cargo los items en mi lista
-                    loadExhibit(response.body(),view);
+                    loadExhibit(response.body());
+                    bottomVolverExhibits.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    scrollView.setVisibility(View.VISIBLE);
+                    System.out.println("Se obtuvo el json correctamente");
                 }
 
                 @Override
@@ -146,7 +157,10 @@ public class FragmentExhibitsDetaills extends Fragment {
 
     }
 
-    private void loadExhibit(Exhibits exhibits, View view) {
+
+
+    private void loadExhibit(Exhibits exhibits){
+
         txtTitleDetaills.setText(exhibits.getTitle());
         txtIntroductionDetails.setText(exhibits.getIntroduction());
         txtContentDetails.setText(exhibits.getContent());
