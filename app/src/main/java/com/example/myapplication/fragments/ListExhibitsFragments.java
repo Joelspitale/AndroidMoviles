@@ -23,7 +23,7 @@ import com.example.myapplication.network.ServiceExhibits;
 import java.util.List;
 
 import com.example.myapplication.modelo.Exhibits;
-import recyclerView.ListAdapter;
+import com.example.myapplication.recyclerView.ListAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -64,6 +64,8 @@
         <entry key="app/src/main/res/layout/activity_list_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_perfiles.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/activity_principal.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/activity_progress_bar.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_register_1.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_3.xml" value="0.25" />
@@ -76,7 +78,7 @@
         <entry key="app/src/main/res/layout/activity_registro_lastname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro_passwordverificed.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_exhibits_detaills.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_exhibits_detaills.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_list_exhibits_fragments.xml" value="0.18" />
         <entry key="app/src/main/res/layout/header_navigation_bar.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_view_exhibits.xml" value="0.33" />

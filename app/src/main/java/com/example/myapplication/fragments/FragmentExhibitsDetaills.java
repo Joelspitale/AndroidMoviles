@@ -20,25 +20,27 @@ import com.example.myapplication.R;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
 
 import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.network.RetrofitClientInstance;
+import com.example.myapplication.network.ServiceExhibits;
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentExhibitsDetaills extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
     private TextView txtTitleDetaills;
     private TextView txtIntroductionDetails;
     private TextView txtContentDetails;
     private ImageView imageDetails;
-
-    public FragmentExhibitsDetaills() {
-        // Required empty public constructor
-    }
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
         FragmentExhibitsDetaills fragment = new FragmentExhibitsDetaills();
@@ -89,17 +91,76 @@ public class FragmentExhibitsDetaills extends Fragment {
         });
         //recibo y extraigo el objeto en el que hizo click en la lista
         Bundle objectExhibit = getArguments();
-        Exhibits exhibits = null;
+        Exhibits exhibit = null;
 
         //verifico que el objeto que me enviaron no esta vacio
         if (objectExhibit != null) {
-            exhibits = (Exhibits) objectExhibit.getSerializable("objeto");
-            //ahora que recibi una exhibicion con contenido empiezo a setear los componentes del fragments
-            txtTitleDetaills.setText(exhibits.getTitle());
-            txtIntroductionDetails.setText(exhibits.getIntroduction());
-            txtContentDetails.setText(exhibits.getContent());
-            //imageDetails.setImageResource(exhibits.getImagenDetails());
+            exhibit = (Exhibits) objectExhibit.getSerializable("objeto");
+            ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
+
+            //Call<Exhibits> call = serviceExhibits.getOne(); //hago la llamada
+            Call<Exhibits> call = elegirEndPoint(serviceExhibits,exhibit.getId());
+            call.enqueue(new Callback<Exhibits>() {
+                @Override
+                public void onResponse(Call<Exhibits> call, Response<Exhibits> response) {
+                    if(!response.isSuccessful()){
+                        System.out.println("Codigo: " + response.code());
+                    }
+                    System.out.println("Se obtuvo el json correctamente");
+                    //cargo los items en mi lista
+                    loadExhibit(response.body(),view);
+                }
+
+                @Override
+                public void onFailure(Call<Exhibits> call, Throwable t) {
+                    System.out.println("Hubo un error inesperado" + t.getMessage());
+                }
+            });
         }
         return view;
     }
+
+    private Call<Exhibits> elegirEndPoint(ServiceExhibits serviceExhibits, long id) {
+        switch ((int) id){
+            case 1:
+                return serviceExhibits.getOneFirstExhibit();
+            case 2:
+                return serviceExhibits.getOneSecondExhibit();
+            case 3:
+                return serviceExhibits.getOneThirdExhibit();
+            case 4:
+                return serviceExhibits.getOneFourthExhibit();
+            case 5:
+                return serviceExhibits.getOneFifthExhibit();
+            case 6:
+                return serviceExhibits.getOneSixthExhibit();
+            case 7:
+                return serviceExhibits.getOneSeventhExhibit();
+            case 8:
+                return serviceExhibits.getOneEighthExhibit();
+            case 9:
+                return serviceExhibits.getOneNinthExhibit();
+            default:
+                return serviceExhibits.getOneTenthExhibit();
+        }
+
+    }
+
+    private void loadExhibit(Exhibits exhibits, View view) {
+        txtTitleDetaills.setText(exhibits.getTitle());
+        txtIntroductionDetails.setText(exhibits.getIntroduction());
+        txtContentDetails.setText(exhibits.getContent());
+
+        Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
+        builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
+        builder.build().load(exhibits.getImagenId()) //busco la imagen de la url del json
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
+                .into(imageDetails);
+                 //si la obtiene la meto en el layaout de la imagen de la card
+
+
+    }
+
+
 }

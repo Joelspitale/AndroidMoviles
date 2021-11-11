@@ -1,4 +1,4 @@
-package recyclerView;
+package com.example.myapplication.recyclerView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +20,6 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
     private View.OnClickListener listener;
     private Context context;
 
-    /*
-    public ListAdapter(List<Exhibits> exhibitsList) {
-        this.exhibitsList = exhibitsList;
-    }
-    */
 
     public ListAdapter(Context context,List<Exhibits> exhibitsList) {
         this.exhibitsList = exhibitsList;
