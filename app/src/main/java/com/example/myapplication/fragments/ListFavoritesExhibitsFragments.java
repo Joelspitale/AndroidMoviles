@@ -72,7 +72,7 @@ public class ListFavoritesExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
         //inflo el vista
         View view = inflater.inflate(R.layout.fragment_list_favorites_exhibits_fragments, container, false);
-        //instancio el service para hacer el get a la api
+        //instancio el service para hacer el get a la api--->> puedo meterlo en la interfaz al .create(ServiceExhibits.class);
         ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
         Call<List<Exhibits>> call = serviceExhibits.getAllExhibits(); //hago la llamada
         call.enqueue(new Callback<List<Exhibits>>() {
