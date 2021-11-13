@@ -7,8 +7,6 @@ public interface ExhibitsRepository {
 
     List<Exhibits> getAllFavorites();
 
-    Exhibits deleteById(long id);
-
     void insert(Exhibits exhibits);
 
     void update(Exhibits exhibits);

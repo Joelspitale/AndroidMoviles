@@ -13,9 +13,6 @@ public interface ExhibitsDAO {
     @Query("select * from Exhibits")
     List<Exhibits> getAllFavorites();
 
-    @Query("delete from Exhibits where id=:id ")
-    Exhibits deleteById(long id);
-
     @Insert
     void insert(Exhibits exhibits);
 

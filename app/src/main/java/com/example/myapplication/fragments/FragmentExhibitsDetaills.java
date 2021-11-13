@@ -1,12 +1,8 @@
 package com.example.myapplication.fragments;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +13,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.example.myapplication.Principal;
 import com.example.myapplication.R;
-import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
-
+import com.example.myapplication.database.AppDatabase;
+import com.example.myapplication.database.business.ExhibitsBusiness;
+import com.example.myapplication.database.dao.ExhibitsDAO;
+import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.modelo.Exhibits;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -90,13 +83,7 @@ public class FragmentExhibitsDetaills extends Fragment {
             }
         });
 
-        CheckBox bottomFavorites = view.findViewById(R.id.icon);
-        bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-            }
-        });
         //recibo y extraigo el objeto en el que hizo click en la lista
         Bundle objectExhibit = getArguments();
         Exhibits exhibit = null;
@@ -128,6 +115,22 @@ public class FragmentExhibitsDetaills extends Fragment {
                 }
             });
         }
+
+        //obtengo el icono del favorito
+        CheckBox bottomFavorites = view.findViewById(R.id.icon);
+        Exhibits finalExhibit = exhibit;
+        bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                System.out.println("Agregar a favoritos la exibicion con id:" + finalExhibit.getId()+
+                        "titulo" + finalExhibit.getTitle());
+                //uso la instancia de la bd y guardo una exibicion en la bd
+                AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+                ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
+                ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
+                exhibitsRepository.insert(finalExhibit);
+            }
+        });
         return view;
     }
 

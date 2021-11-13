@@ -7,13 +7,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.myapplication.database.dao.ExhibitsDAO;
+import com.example.myapplication.modelo.Exhibits;
 
 //luego tengo que agregar el del user
-@Database(entities = {Entity.class},version = 1)
+@Database(entities = {Exhibits.class},version = 1)
 public abstract class  AppDatabase extends RoomDatabase {
 
     public static AppDatabase INSTANCE;
-    public static ExhibitsDAO exhibitsDAO;
+    public abstract ExhibitsDAO exhibitsDAO();
 
     public static AppDatabase getInstance(Context context){
         if(INSTANCE == null){
@@ -24,4 +25,5 @@ public abstract class  AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
 }

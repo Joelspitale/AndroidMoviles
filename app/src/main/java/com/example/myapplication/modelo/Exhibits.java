@@ -1,23 +1,20 @@
 package com.example.myapplication.modelo;
 
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-//tengo que hacerlo seriaalizable para trasportar este objeto de un fragments a otro
+
 @Entity(tableName = "Exhibits")
 public class Exhibits implements Serializable {
 
     @PrimaryKey
-    @NonNull
     @ColumnInfo(name = "id")
     private long id;
     @ColumnInfo(name = "title")
     private String title;
-    @ColumnInfo(name = "introduction")
     private String introduction;
     private String content;
     @ColumnInfo(name = "imagenId")

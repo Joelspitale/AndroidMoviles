@@ -21,11 +21,6 @@ public class ExhibitsBusiness implements ExhibitsRepository {
     }
 
     @Override
-    public Exhibits deleteById(long id) {
-        return exhibitsDAO.deleteById(id);
-    }
-
-    @Override
     public void insert(Exhibits exhibits) {
         exhibitsDAO.insert(exhibits);
     }
