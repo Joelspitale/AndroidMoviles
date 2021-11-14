@@ -52,10 +52,10 @@
                 android:layout_height="300dp"
                 android:layout_marginTop="50dp"
                 android:background="@color/black"
-                android:textAlignment="center"/>
+                android:textAlignment="center" />
 
             <CheckBox
-                android:id="@+id/icon"
+                android:id="@+id/like"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="-30dp"

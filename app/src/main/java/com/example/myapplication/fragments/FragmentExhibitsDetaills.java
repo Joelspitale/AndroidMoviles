@@ -18,6 +18,9 @@ import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.ExhibitsBusiness;
 import com.example.myapplication.database.dao.ExhibitsDAO;
 import com.example.myapplication.database.repository.ExhibitsRepository;
+import com.example.myapplication.excepciones.EncontradoException;
+import com.example.myapplication.excepciones.NegocioException;
+import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.Exhibits;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
@@ -39,6 +42,7 @@ public class FragmentExhibitsDetaills extends Fragment {
     private ImageView imageDetails;
     private ProgressBar progressBar;
     private ScrollView scrollView;
+    private CheckBox checkBox;
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
         FragmentExhibitsDetaills fragment = new FragmentExhibitsDetaills();
@@ -71,6 +75,7 @@ public class FragmentExhibitsDetaills extends Fragment {
         imageDetails = view.findViewById(R.id.imageAtractionDetaills);
         progressBar = view.findViewById(R.id.progress_bar_details);
         scrollView = view.findViewById(R.id.ScrollDetails);
+        checkBox = view.findViewById(R.id.like);
 
 
         Button bottomVolverExhibits = view.findViewById(R.id.buttonReturnAtractionDetaills);
@@ -117,21 +122,53 @@ public class FragmentExhibitsDetaills extends Fragment {
         }
 
         //obtengo el icono del favorito
-        CheckBox bottomFavorites = view.findViewById(R.id.icon);
+        CheckBox bottomFavorites = view.findViewById(R.id.like);
         Exhibits finalExhibit = exhibit;
         bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 System.out.println("Agregar a favoritos la exibicion con id:" + finalExhibit.getId()+
                         "titulo" + finalExhibit.getTitle());
-                //uso la instancia de la bd y guardo una exibicion en la bd
-                AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-                ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
-                ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
-                exhibitsRepository.insert(finalExhibit);
+                try {
+                    addOrDeleteFavoritesExhibits(finalExhibit);
+                } catch (NegocioException e) {
+                    e.printStackTrace();
+                } catch (NoEncontradoException e) {
+                    e.printStackTrace();
+                } catch (EncontradoException e) {
+                    e.printStackTrace();
+                }
             }
         });
         return view;
+    }
+
+    //si existe en la bd entonces activo el check box
+    private void addOrDeleteFavoritesExhibits(Exhibits exhibits) throws NegocioException, NoEncontradoException, EncontradoException {
+        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
+        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
+        if(checkBox.isChecked()){
+            System.out.println("la exhibicion esta activada");
+            exhibitsRepository.insert(exhibits);
+            checkBox.setChecked(false);
+        }else{
+            System.out.println("la exhibicion esta desactivada");
+            exhibitsRepository.delete(exhibits);
+            checkBox.setChecked(true);
+        }
+    }
+
+    private void exhibitsExistInBd(Exhibits exhibits){
+        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
+        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
+        try {
+            exhibitsRepository.load(exhibits.getId());
+            checkBox.setChecked(true);
+        }catch (Exception e){
+            checkBox.setChecked(false);
+        }
     }
 
     private Call<Exhibits> elegirEndPoint(ServiceExhibits serviceExhibits, long id) {
@@ -176,6 +213,8 @@ public class FragmentExhibitsDetaills extends Fragment {
                 .into(imageDetails);
                  //si la obtiene la meto en el layaout de la imagen de la card
 
+        //pinto el corazon o no en funcion si existe en la bd
+        exhibitsExistInBd(exhibits);
 
     }
 

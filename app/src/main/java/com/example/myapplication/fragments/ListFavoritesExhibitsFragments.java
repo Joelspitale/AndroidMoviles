@@ -14,6 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.database.AppDatabase;
+import com.example.myapplication.database.business.ExhibitsBusiness;
+import com.example.myapplication.database.dao.ExhibitsDAO;
+import com.example.myapplication.database.repository.ExhibitsRepository;
+import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
 import com.example.myapplication.modelo.Exhibits;
@@ -72,26 +77,16 @@ public class ListFavoritesExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
         //inflo el vista
         View view = inflater.inflate(R.layout.fragment_list_favorites_exhibits_fragments, container, false);
-        //instancio el service para hacer el get a la api--->> puedo meterlo en la interfaz al .create(ServiceExhibits.class);
-        ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
-        Call<List<Exhibits>> call = serviceExhibits.getAllExhibits(); //hago la llamada
-        call.enqueue(new Callback<List<Exhibits>>() {
-            @Override
-            public void onResponse(Call<List<Exhibits>> call, Response<List<Exhibits>> response) {
-                if(!response.isSuccessful()){
-                    System.out.println("Codigo: " + response.code());
-                }
-                System.out.println("Se obtuvo el json correctamente");
-                //cargo los items en mi lista
-                loadExhibitsList(response.body(),view);
-            }
 
-            @Override
-            public void onFailure(Call<List<Exhibits>> call, Throwable t) {
-                System.out.println("Hubo un error inesperado" + t.getMessage());
-            }
-        });
-
+        //instancio mi db
+        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
+        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
+        try {
+            loadExhibitsList(exhibitsRepository.getAllFavorites(),view);
+        } catch (NegocioException e) {
+            Toast.makeText(getContext(),"Hubo un error al acceder a la base de datos, por favor intente mas tarde", Toast.LENGTH_SHORT).show();
+        }
         return view;
     }
 
