@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
+import com.example.myapplication.modelo.Exhibits;
 import com.google.zxing.Result;
 
 public class CameraActivity extends AppCompatActivity {
@@ -33,8 +35,10 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(CameraActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
-//                        Intent myIntent = new Intent(CameraActivity.this, Atraction.class);
-//                        startActivity(myIntent);
+                        Intent myIntent = new Intent(CameraActivity.this, CamaraDetails.class);
+                        //Esta harcodeado pero aca hay que probar como mandar el objeto
+                        myIntent.putExtra("objeto", new Exhibits(2,"Preuba","Intro Prueba",null,null,null));
+                        startActivity(myIntent);
                     }
                 });
             }
@@ -49,7 +53,7 @@ public class CameraActivity extends AppCompatActivity {
         Button botonVolverQR = findViewById(R.id.buttonVolverQR);
         botonVolverQR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                Intent myIntent = new Intent(CameraActivity.this, Principal.class);
+                Intent myIntent = new Intent( CameraActivity.this, Principal.class);
                 startActivityForResult(myIntent, REQUEST);
             }
         });

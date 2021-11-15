@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CamaraDetails">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <Button
+            android:id="@+id/buttonReturnAtractionDetailsCamara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="1dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/volver"
+            android:textColor="@color/principal_blue"
+            android:visibility="invisible"
+            app:strokeWidth="0dp"
+            app:strokeColor="@color/white"
+            app:icon="@drawable/ic_flechaatras"
+            app:iconTint="@color/principal_blue"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+
+        <ScrollView
+            android:id="@+id/ScrollDetailsCamara"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints"
+            android:visibility="invisible">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp">
+
+                    <ImageView
+                        android:id="@+id/imageAtractionDetailsCamara"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="50dp"
+                        android:background="@color/black"
+                        android:textAlignment="center" />
+
+                    <CheckBox
+                        android:id="@+id/likeCamara"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="-30dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_toEndOf="@id/imageAtractionDetailsCamara"
+                        android:button="@drawable/sl_favourite_24dp"
+                        app:buttonTint="@android:color/white" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/titleAtractionDetailsCamara"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombreLugar"
+                    android:layout_marginTop="14dp"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/introductionAtractionDetailsCamara"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/loremIpsum"/>
+
+                <TextView
+                    android:id="@+id/contentAtractionDetailsCamara"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/loremIpsum"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/calificacion"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_thumb_up_24"
+                        android:layout_marginRight="10dp"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_baseline_thumb_down_24"/>
+                </LinearLayout>
+
+                //Es bobo solo se realiza para que el menu no tape nada
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_gravity="bottom"
+                    />
+            </LinearLayout>
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_detailsCamara"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+
+            />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

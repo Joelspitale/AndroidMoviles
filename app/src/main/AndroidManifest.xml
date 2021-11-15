@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".CamaraDetails"
+            android:exported="true" />
+        <activity
             android:name=".Principal"
             android:exported="true" />
         <activity
