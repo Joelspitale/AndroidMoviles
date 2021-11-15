@@ -27,7 +27,6 @@ public class ExhibitsBusiness implements ExhibitsRepository {
         }catch (Exception e){
             throw new NegocioException(e);
         }
-
     }
     public Exhibits load(long id) throws NegocioException, NoEncontradoException {
         Optional<Exhibits> exhibits;

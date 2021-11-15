@@ -4,7 +4,6 @@ package com.example.myapplication.modelo;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 
 @Entity(tableName = "Exhibits")
@@ -77,65 +76,6 @@ public class Exhibits implements Serializable {
     public void setImagenDetails(String imagenDetails) {
         this.imagenDetails = imagenDetails;
     }
-    /*
-    private int title;
-    private int introduction;
-    private int content;
-    private int imagenId;
-    private int imagenDetails;
 
-    public Exhibits(int title, int introduction, int content, int imagenId, int imagenDetails) {
-        this.title = title;
-        this.introduction = introduction;
-        this.content = content;
-        this.imagenId = imagenId;
-        this.imagenDetails = imagenDetails;
-    }
-
-    public Exhibits(int title, int introduction, int content) {
-        this.title = title;
-        this.introduction = introduction;
-        this.content = content;
-    }
-
-    public int getTitle() {
-        return title;
-    }
-
-    public void setTitle(int title) {
-        this.title = title;
-    }
-
-    public int getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(int introduction) {
-        this.introduction = introduction;
-    }
-
-    public int getContent() {
-        return content;
-    }
-
-    public void setContent(int content) {
-        this.content = content;
-    }
-
-    public int getImagenId() {
-        return imagenId;
-    }
-
-    public void setImagenId(int imagenId) {
-        this.imagenId = imagenId;
-    }
-
-    public int getImagenDetails() {
-        return imagenDetails;
-    }
-
-    public void setImagenDetails(int imagenDetails) {
-        this.imagenDetails = imagenDetails;
-    }*/
 
 }
