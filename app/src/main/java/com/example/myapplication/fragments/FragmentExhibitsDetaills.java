@@ -82,9 +82,7 @@ public class FragmentExhibitsDetaills extends Fragment {
         bottomVolverExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmentContainer, new ListExhibitsFragments()).commit();
-                transaction.addToBackStack(null);
+                    getActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
@@ -131,6 +129,7 @@ public class FragmentExhibitsDetaills extends Fragment {
                         "titulo" + finalExhibit.getTitle());
                 try {
                     addOrDeleteFavoritesExhibits(finalExhibit);
+                    //Recarga fragment
                 } catch (NegocioException e) {
                     e.printStackTrace();
                 } catch (NoEncontradoException e) {
@@ -151,11 +150,11 @@ public class FragmentExhibitsDetaills extends Fragment {
         if(checkBox.isChecked()){
             System.out.println("la exhibicion esta activada");
             exhibitsRepository.insert(exhibits);
-            checkBox.setChecked(false);
+            checkBox.setChecked(true);
         }else{
             System.out.println("la exhibicion esta desactivada");
             exhibitsRepository.delete(exhibits);
-            checkBox.setChecked(true);
+            checkBox.setChecked(false);
         }
     }
 

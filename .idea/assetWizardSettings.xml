@@ -309,8 +309,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_favorite_border_24" />
-                            <entry key="sourceFile" value="C:\Users\matia\Descargas\gallo.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_estrellallorando" />
+                            <entry key="sourceFile" value="C:\Users\matia\Desktop\ProyectoAndroid\EstrellaLlorando.svg" />
                           </map>
                         </option>
                       </PersistentState>

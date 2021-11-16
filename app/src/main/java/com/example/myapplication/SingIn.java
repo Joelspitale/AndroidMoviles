@@ -41,9 +41,8 @@ public class SingIn extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
         initPreference();
-        verifyPermision(READ_EXTERNAL_STORAGE);
-        verifyPermision(CAMERA);
-        verifyPermision(INTERNET);
+        String[] permisos= {READ_EXTERNAL_STORAGE, CAMERA, INTERNET};
+        verifyPermision(permisos);
 
 
         inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
@@ -119,37 +118,22 @@ public class SingIn extends AppCompatActivity {
         startActivity(myIntent);
     }
 
-    private boolean verifyPermision(String permision) {
-        if (checkSelfPermission(permision) == PackageManager.PERMISSION_GRANTED) {
+    private boolean verifyPermision(String[] permision) {
+        if (checkSelfPermission(permision[0]) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(permision[1]) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(permision[2]) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
-            if (shouldShowRequestPermissionRationale(permision)) {
-            cargarDialogoRecomendacion(permision);
-        } else {
-            requestPermissions(new String[]{permision}, 100);
+        else {
+            requestPermissions(permision, 100);
         }
         return false;
-    }
-
-
-    private void cargarDialogoRecomendacion(String permision) {
-        AlertDialog.Builder dialogo = new AlertDialog.Builder(SingIn.this);
-        dialogo.setTitle("Permisos desactivados");
-        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la app");
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                requestPermissions(new String[]{permision}, 100);
-            }
-        });
-        dialogo.show();
     }
 
     private void setSessionActive(boolean b){
         editor.putBoolean("sessionActive", b);
         editor.commit();
     }
-
 
     @Override
     protected void onPause() {

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -78,12 +80,18 @@ public class ListFavoritesExhibitsFragments extends Fragment {
         //inflo el vista
         View view = inflater.inflate(R.layout.fragment_list_favorites_exhibits_fragments, container, false);
 
+        LinearLayout linearLayout = view.findViewById(R.id.faltaFavs);
+
         //instancio mi db
         AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
         ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
         ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
         try {
-            loadExhibitsList(exhibitsRepository.getAllFavorites(),view);
+            if(exhibitsRepository.getAllFavorites().size() !=0)
+                loadExhibitsList(exhibitsRepository.getAllFavorites(),view);
+            else{
+                linearLayout.setVisibility(View.VISIBLE);
+            }
         } catch (NegocioException e) {
             Toast.makeText(getContext(),"Hubo un error al acceder a la base de datos, por favor intente mas tarde", Toast.LENGTH_SHORT).show();
         }

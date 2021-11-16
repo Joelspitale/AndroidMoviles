@@ -61,8 +61,8 @@
                 android:layout_marginLeft="-30dp"
                 android:layout_marginTop="50dp"
                 android:layout_toEndOf="@id/imageAtractionDetaills"
-                android:button="@drawable/sl_favourite_24dp"
-                app:buttonTint="@android:color/white" />
+                android:backgroundTint="@color/white"
+                android:button="@drawable/sl_favourite_24dp" />
         </RelativeLayout>
 
         <TextView

@@ -55,8 +55,7 @@
                 android:backgroundTint="@color/black"
                 android:text="@string/closeSession"
                 android:layout_marginTop="4dp"
-                tools:ignore="MissingConstraints,OnClick"
-                android:onClick="btnSessionClose" />
+                tools:ignore="MissingConstraints,OnClick"/>
 
             <Button
                 android:id="@+id/buttonlanguage"
