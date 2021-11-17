@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity(tableName = "User")
 public class User implements Serializable {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
     @ColumnInfo(name = "name")
@@ -19,6 +19,8 @@ public class User implements Serializable {
     private String email;
     @ColumnInfo(name = "password")
     private String password;
+
+    public User() {}
 
     public User(long id, String name, String lastname, String email, String password) {
         this.id = id;

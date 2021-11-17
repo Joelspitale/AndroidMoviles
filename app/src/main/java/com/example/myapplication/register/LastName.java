@@ -8,13 +8,18 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.R;
+import com.example.myapplication.modelo.User;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LastName extends AppCompatActivity {
+
+    private TextInputLayout inputLastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_lastname);
+        inputLastName = (TextInputLayout) findViewById(R.id.inputLastName);
 
         Button bottonReturn = findViewById(R.id.buttonReturnLastName);
         bottonReturn.setOnClickListener(new View.OnClickListener() {
@@ -28,7 +33,11 @@ public class LastName extends AppCompatActivity {
         Button bottonNext = findViewById(R.id.buttonNextLastName);
         bottonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
+                User user = (User) getIntent().getExtras().getSerializable("user");
+                String lastName = inputLastName.getEditText().getText().toString();
+                user.setLastname(lastName);
                 Intent myIntent = new Intent(LastName.this, Email.class);
+                myIntent.putExtra("user", user);
                 startActivity(myIntent);
             }
         });

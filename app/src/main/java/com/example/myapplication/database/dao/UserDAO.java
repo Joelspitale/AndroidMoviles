@@ -14,6 +14,9 @@ public interface UserDAO {
     @Query("select * from User")
     List<User> getAllUser();
 
+    @Query("select * from User where email=:email")
+    Optional<User> findUserByEmail(String email);
+
     @Query("select * from User where id=:id")
     Optional<User> findUserById(long id);
 

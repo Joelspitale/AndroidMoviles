@@ -20,6 +20,7 @@ public class Exhibits implements Serializable {
     private String imagenId;
     private String imagenDetails;
 
+
     public Exhibits(long id, String title, String introduction, String content, String imagenId, String imagenDetails) {
         this.id = id;
         this.title = title;

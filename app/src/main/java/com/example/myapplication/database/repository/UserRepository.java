@@ -16,6 +16,8 @@ public interface UserRepository {
 
     public User load(long id) throws NegocioException, NoEncontradoException;
 
+    public User findUserByEmail(String email) throws NegocioException, NoEncontradoException;
+
     void update(User user) throws NegocioException, NoEncontradoException;
 
     void delete(User user) throws NegocioException, NoEncontradoException;

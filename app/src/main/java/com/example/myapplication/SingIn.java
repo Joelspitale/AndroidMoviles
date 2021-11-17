@@ -19,6 +19,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.myapplication.database.AppDatabase;
+import com.example.myapplication.database.business.UserBusinnes;
+import com.example.myapplication.database.dao.UserDAO;
+import com.example.myapplication.database.repository.UserRepository;
+import com.example.myapplication.excepciones.NegocioException;
+import com.example.myapplication.excepciones.NoEncontradoException;
+import com.example.myapplication.modelo.User;
 import com.example.myapplication.register.Name;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -94,11 +101,38 @@ public class SingIn extends AppCompatActivity {
     }
 
     private boolean isConcidentCredentials(String email, String password) {
-        String emailAux =  preferences.getString("email","No existe ningun email registrado");
-        String passwordAux =  preferences.getString("password","No existe ninguna password registrado");
-        if(email.equals(emailAux) && password.equals(passwordAux))
-            return true;
+        if(email.equals(EMAIL)){
+            String emailAux =  preferences.getString("email","No existe ningun email registrado");
+            String passwordAux =  preferences.getString("password","No existe ninguna password registrado");
+            if(email.equals(emailAux) && password.equals(passwordAux))
+                return true;
+            return false;
+        }else{
+            User userAux = userExistInBd(email);
+            if(userAux.getEmail().equals(email) && password.equals(userAux.getPassword()))
+                return true;
+        }
         return false;
+    }
+
+    private User userExistInBd(String email){
+        AppDatabase db = AppDatabase.getInstance(getBaseContext());
+        UserDAO userDAO = db.userDAO();
+        UserRepository userRepository = new UserBusinnes(userDAO);
+        User userAux = new User();
+        userAux.setEmail("No existe el usuario");
+        userAux.setPassword("No existe usuario");
+
+        try {
+            userAux =  userRepository.findUserByEmail(email);
+        }catch (NoEncontradoException e){
+            e.printStackTrace();
+            System.out.println("no se encontro el usuario en la base de datos");
+        } catch (NegocioException e) {
+            e.printStackTrace();
+            System.out.println("Problemas con la bd");
+        }
+        return userAux;
     }
 
     private boolean isPasswordValidate(String password) {
@@ -112,9 +146,7 @@ public class SingIn extends AppCompatActivity {
     }
 
     private void nextActivity() {
-        //Intent myIntent = new Intent(SingIn.this, ListExhibits.class);
         Intent myIntent = new Intent(SingIn.this, Principal.class);
-        //myIntent.putExtra(MY_INTENT_ACTIVITY_VALUE, "Mi nombre es Joel"); //le paso un dato a la activity a la que voy, por medio de clave-valor
         startActivity(myIntent);
     }
 
@@ -138,7 +170,6 @@ public class SingIn extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this, R.string.toas, Toast.LENGTH_SHORT).show();
     }
 
 

@@ -61,6 +61,7 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/drawable/sl_favourite_24dp.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_atraction.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_camara_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_camera.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_content_fragment_list_exhibits.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_exhibit.xml" value="0.11413043478260869" />

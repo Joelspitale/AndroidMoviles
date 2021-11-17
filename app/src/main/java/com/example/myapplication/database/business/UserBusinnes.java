@@ -41,6 +41,20 @@ public class UserBusinnes implements UserRepository {
     }
 
     @Override
+    public User findUserByEmail(String email) throws NegocioException, NoEncontradoException {
+        Optional<User> user;
+        try {
+            user = userDAO.findUserByEmail(email);
+        }catch (Exception e){
+            throw new NegocioException(e);
+        }
+        if (!user.isPresent()) {
+            throw new NoEncontradoException("No se encuentra el user con email=" + email);
+        }
+        return user.get();
+    }
+
+    @Override
     public void insert(User user) throws NegocioException, EncontradoException {
         try {
             load(user.getId());

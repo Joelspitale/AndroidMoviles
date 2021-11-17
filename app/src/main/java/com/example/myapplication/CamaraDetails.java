@@ -62,18 +62,11 @@ public class CamaraDetails extends AppCompatActivity {
             }
         });
 
-        //recibo y extraigo el objeto en el que hizo click en la lista
-        Bundle objectExhibit = getIntent().getExtras();
-        Exhibits exhibit = null;
 
-        //verifico que el objeto que me enviaron no esta vacio
-        if (objectExhibit != null) {
-            exhibit = (Exhibits) objectExhibit.getSerializable("objeto");
-            ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
-
-            //Call<Exhibits> call = serviceExhibits.getOne(); //hago la llamada
-            Call<Exhibits> call = elegirEndPoint(serviceExhibits,exhibit.getId());
-            call.enqueue(new Callback<Exhibits>() {
+        Exhibits exhibit = (Exhibits) getIntent().getExtras().getSerializable("codigoQR");
+        ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
+        Call<Exhibits> call = elegirEndPoint(serviceExhibits,exhibit.getId());
+        call.enqueue(new Callback<Exhibits>() {
                 @Override
                 public void onResponse(Call<Exhibits> call, Response<Exhibits> response) {
                     if(!response.isSuccessful()){
@@ -92,18 +85,16 @@ public class CamaraDetails extends AppCompatActivity {
                     System.out.println("Hubo un error inesperado" + t.getMessage());
                 }
             });
-        }
 
         //obtengo el icono del favorito
         CheckBox bottomFavorites = findViewById(R.id.likeCamara);
-        Exhibits finalExhibit = exhibit;
         bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                System.out.println("Agregar a favoritos la exibicion con id:" + finalExhibit.getId()+
-                        "titulo" + finalExhibit.getTitle());
+                System.out.println("Agregar a favoritos la exibicion con id:" + exhibit.getId()+
+                        "titulo" + exhibit.getTitle());
                 try {
-                    addOrDeleteFavoritesExhibits(finalExhibit);
+                    addOrDeleteFavoritesExhibits(exhibit);
                 } catch (NegocioException e) {
                     e.printStackTrace();
                 } catch (NoEncontradoException e) {
