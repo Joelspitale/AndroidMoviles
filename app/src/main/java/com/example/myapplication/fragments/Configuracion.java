@@ -17,6 +17,15 @@ import android.widget.ImageView;
 import com.example.myapplication.Principal;
 import com.example.myapplication.R;
 import com.example.myapplication.SingIn;
+import com.example.myapplication.database.AppDatabase;
+import com.example.myapplication.database.business.ExhibitsBusiness;
+import com.example.myapplication.database.dao.ExhibitsDAO;
+import com.example.myapplication.database.repository.ExhibitsRepository;
+import com.example.myapplication.excepciones.NegocioException;
+import com.example.myapplication.excepciones.NoEncontradoException;
+import com.example.myapplication.modelo.Exhibits;
+
+import java.util.List;
 
 public class Configuracion extends Fragment {
     private SharedPreferences preferences;
@@ -58,6 +67,7 @@ public class Configuracion extends Fragment {
             public void onClick(View view) {
                 setSessionActive(false);
                 boolean b =getSessionActive();
+                deleteAllFavorites();
                 Intent myIntent = new Intent(getActivity(), SingIn.class);
                 startActivity(myIntent);
             }
@@ -79,5 +89,26 @@ public class Configuracion extends Fragment {
         return preferences.getBoolean("sessionActive",false);
     }
 
+
+
+
+    private void deleteAllFavorites(){
+        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
+        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
+
+        try {
+            System.out.println("Eliminando todos los favoritos de usuario ");
+            List<Exhibits> exhibitsList = exhibitsRepository.getAllFavorites();
+            for(int i= 0 ; i<exhibitsList.size();i++) {
+                exhibitsRepository.delete(exhibitsList.get(i));
+            }
+
+        } catch (NegocioException e) {
+            e.printStackTrace();
+        } catch (NoEncontradoException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

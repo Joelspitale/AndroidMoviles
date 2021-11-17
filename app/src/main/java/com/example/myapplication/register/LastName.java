@@ -41,14 +41,5 @@ public class LastName extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
-
-
-//        Button botonSiguiente = findViewById(R.id.buttonSiguiente);
-//        botonVolver.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view){
-//                Intent myIntent = new Intent(Registro3.this, Registro3.class);
-//                startActivityForResult(myIntent, REQUEST);
-//            }
-//        });
     }
 }
