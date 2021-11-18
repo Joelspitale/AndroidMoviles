@@ -63,9 +63,10 @@ public class CamaraDetails extends AppCompatActivity {
         });
 
 
-        Exhibits exhibit = (Exhibits) getIntent().getExtras().getSerializable("codigoQR");
+        long id =  (long) getIntent().getExtras().getSerializable("codigoQR");
+        final Exhibits[] exhibit = {new Exhibits()};
         ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
-        Call<Exhibits> call = elegirEndPoint(serviceExhibits,exhibit.getId());
+        Call<Exhibits> call = elegirEndPoint(serviceExhibits,id);
         call.enqueue(new Callback<Exhibits>() {
                 @Override
                 public void onResponse(Call<Exhibits> call, Response<Exhibits> response) {
@@ -74,6 +75,7 @@ public class CamaraDetails extends AppCompatActivity {
                     }
                     //cargo los items en mi lista
                     loadExhibit(response.body());
+                    exhibit[0] = response.body();
                     bottomVolButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     scrollView.setVisibility(View.VISIBLE);
@@ -91,10 +93,9 @@ public class CamaraDetails extends AppCompatActivity {
         bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                System.out.println("Agregar a favoritos la exibicion con id:" + exhibit.getId()+
-                        "titulo" + exhibit.getTitle());
                 try {
-                    addOrDeleteFavoritesExhibits(exhibit);
+
+                    addOrDeleteFavoritesExhibits(exhibit[0]);
                 } catch (NegocioException e) {
                     e.printStackTrace();
                 } catch (NoEncontradoException e) {

@@ -30,6 +30,10 @@ public class Exhibits implements Serializable {
         this.imagenDetails = imagenDetails;
     }
 
+    public Exhibits() {
+
+    }
+
     public long getId() {
         return id;
     }

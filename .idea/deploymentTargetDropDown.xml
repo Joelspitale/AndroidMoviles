@@ -7,12 +7,12 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\matia\.android\avd\Pixel_2_API_26_1.avd" />
+            <value value="C:\Users\matia\.android\avd\Nexus_One_API_26_1.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2021-11-16T13:19:19.385060100Z" />
+    <timeTargetWasSelectedWithDropDown value="2021-11-16T18:50:35.100735900Z" />
     <targetsSelectedWithDialog>
       <Target>
         <type value="QUICK_BOOT_TARGET" />

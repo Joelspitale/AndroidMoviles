@@ -34,11 +34,11 @@ public class CameraActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String codigo = result.getText();
-                        Toast.makeText(CameraActivity.this, codigo, Toast.LENGTH_SHORT).show();
+                        long codigo = Long.parseLong(result.getText());
+                        Toast.makeText(CameraActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
                         Intent myIntent = new Intent(CameraActivity.this, CamaraDetails.class);
                         //Esta harcodeado pero aca hay que probar como mandar el objeto
-                        myIntent.putExtra("codigoQR",codigo);
+                        myIntent.putExtra("codigoQR", codigo);
                         startActivity(myIntent);
                     }
                 });
