@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -70,6 +71,16 @@ public class Configuracion extends Fragment {
                 deleteAllFavorites();
                 Intent myIntent = new Intent(getActivity(), SingIn.class);
                 startActivity(myIntent);
+            }
+        });
+
+        Button buttonProfile = view.findViewById(R.id.buttonEdit);
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainer, new Perfil()).commit();
+                transaction.addToBackStack(null);
             }
         });
         // Inflate the layout for this fragment

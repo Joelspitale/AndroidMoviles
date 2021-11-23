@@ -114,11 +114,11 @@ public class CamaraDetails extends AppCompatActivity {
         if(checkBox.isChecked()){
             System.out.println("la exhibicion esta activada");
             exhibitsRepository.insert(exhibits);
-            checkBox.setChecked(false);
+            checkBox.setChecked(true);
         }else{
             System.out.println("la exhibicion esta desactivada");
             exhibitsRepository.delete(exhibits);
-            checkBox.setChecked(true);
+            checkBox.setChecked(false);
         }
     }
 

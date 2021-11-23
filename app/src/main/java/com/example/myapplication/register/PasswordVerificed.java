@@ -61,6 +61,7 @@ public class PasswordVerificed extends AppCompatActivity {
         UserRepository userRepository = new UserBusinnes(userDAO);
         try {
             userRepository.insert(user);
+            Toast.makeText(PasswordVerificed.this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show();
         } catch (NegocioException e) {
             e.printStackTrace();
             Toast.makeText(PasswordVerificed.this, "Hubo un error con la bd", Toast.LENGTH_SHORT).show();
