@@ -9,12 +9,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class ForgetPassword extends AppCompatActivity {
+import com.example.myapplication.database.AppDatabase;
+import com.example.myapplication.database.business.UserBusinnes;
+import com.example.myapplication.database.dao.UserDAO;
+import com.example.myapplication.database.repository.UserRepository;
+import com.example.myapplication.excepciones.EncontradoException;
+import com.example.myapplication.excepciones.NegocioException;
+import com.example.myapplication.excepciones.NoEncontradoException;
+import com.example.myapplication.modelo.User;
+import com.example.myapplication.register.PasswordVerificed;
+import com.google.android.material.textfield.TextInputLayout;
 
+public class ForgetPassword extends AppCompatActivity {
+    private TextInputLayout inputEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
+        inputEmail= (TextInputLayout) findViewById(R.id.sentCorreoUser);
 
         Button botonVolver = findViewById(R.id.buttonReturnForgetPass);
         botonVolver.setOnClickListener(new View.OnClickListener() {
@@ -25,36 +37,38 @@ public class ForgetPassword extends AppCompatActivity {
             }
         });
 
-        Button botonSentCorreo = findViewById(R.id.sentCorreo);
-        botonVolver.setOnClickListener(new View.OnClickListener() {
+        Button botonSentCorreo = findViewById(R.id.sentCorreoForgenPassword);
+        botonSentCorreo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                sendEmail();
-                Intent myIntent = new Intent(ForgetPassword.this, SingIn.class);
-                startActivity(myIntent);
+                String emailValidate = inputEmail.getEditText().getText().toString();
+                User user = saveUserDatabase(emailValidate);
+                if(null != user){
+                    new SendMailAsynTask(ForgetPassword.this,emailValidate, "Recuperar Contraseña", "su contraseña es :" + user.getPassword()).execute();
+                    Intent myIntent = new Intent(ForgetPassword.this, SingIn.class);
+                    startActivity(myIntent);
+                }
+
 
             }
         });
 
     }
 
-    protected void sendEmail() {
-        String[] TO = {"majoarrispi9@gmail.com"};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
 
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Recuperar Contraseña");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "contraseña");
-
+    private User saveUserDatabase(String email) {
+        AppDatabase db = AppDatabase.getInstance(getBaseContext());
+        UserDAO userDAO = db.userDAO();
+        UserRepository userRepository = new UserBusinnes(userDAO);
         try {
-            startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
-            finish();
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this,
-                    "No tienes clientes de email instalados.", Toast.LENGTH_SHORT).show();
+            return userRepository.findUserByEmail(email);
+        } catch (NegocioException e) {
+            Toast.makeText(this, "Hubo un problema con la bd", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        } catch (NoEncontradoException e) {
+            Toast.makeText(this, "No existe el mail ingresado", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
+    return null;
+
     }
 }
