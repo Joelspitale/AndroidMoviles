@@ -84,6 +84,7 @@
         <entry key="app/src/main/res/layout/activity_registro5.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_registro_lastname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro_passwordverificed.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.10416666666666667" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_configuracion.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_exhibits_detaills.xml" value="0.18" />

@@ -69,7 +69,6 @@ public class PasswordVerificed extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(PasswordVerificed.this, "El usuario con correo :"+ user.getEmail() +" ya existe, ingrese otro", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private boolean consistencyBetweenPassword(String passwordValidate,String passwordInitial) {
