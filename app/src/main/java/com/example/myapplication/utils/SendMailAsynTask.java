@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.utils;
 import static com.example.myapplication.utils.Constants.EMAIL;
 import static com.example.myapplication.utils.Constants.PASSWORD;
 
