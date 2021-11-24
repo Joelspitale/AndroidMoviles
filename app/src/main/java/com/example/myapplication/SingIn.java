@@ -1,24 +1,17 @@
 package com.example.myapplication;
-
-
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-
-import androidx.appcompat.app.AlertDialog;
+import static com.example.myapplication.utils.Constants.MAX_SIZE_PASSWORD;
+import static com.example.myapplication.utils.Constants.MIN_SIZE_PASSWORD;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.UserBusinnes;
 import com.example.myapplication.database.dao.UserDAO;
@@ -27,27 +20,21 @@ import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.register.Name;
+import com.example.myapplication.utils.Preference;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SingIn extends AppCompatActivity {
-    static final int REQUEST = 1;   // lo seteo siempre que uso el activityForResult
-    public static final String MY_INTENT_ACTIVITY_VALUE = "Nombre de mi variable que le paso como clave a la activity que llamo";
+    static final int REQUEST = 1;
     private TextInputLayout inputEmail;
     private TextInputLayout inputPassword;
-    static final private int MIN_SIZE_PASSWORD = 8;
-    static final private int MAX_SIZE_PASSWORD = 20;
-    static final String EMAIL = "admin@admin.com";
-    static final String PASSWORD = "administrador";
-
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+    private Preference preferences = new Preference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
-        initPreference();
+        preferences.initPreference(getBaseContext());
         String[] permisos= {READ_EXTERNAL_STORAGE, CAMERA, INTERNET};
         verifyPermision(permisos);
 
@@ -61,7 +48,7 @@ public class SingIn extends AppCompatActivity {
             public void onClick(View view) {
                 if (validarDatos()) {
                     nextActivity();
-                    setSessionActive(true);
+                    preferences.setSessionActive(true);
                 }
                 else
                     Toast.makeText(SingIn.this, "Error al iniciar Sesion revise sus credenciales", Toast.LENGTH_SHORT).show();
@@ -86,10 +73,6 @@ public class SingIn extends AppCompatActivity {
 
 
     }
-    private void initPreference(){
-        preferences = getSharedPreferences("SHARED_PREFEF", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-    }
 
     private boolean validarDatos() {
         String email = inputEmail.getEditText().getText().toString();
@@ -101,13 +84,9 @@ public class SingIn extends AppCompatActivity {
     }
 
     private boolean isConcidentCredentials(String email, String password) {
-        if(email.equals(EMAIL)){
-            String emailAux =  preferences.getString("email","No existe ningun email registrado");
-            String passwordAux =  preferences.getString("password","No existe ninguna password registrado");
-            if(email.equals(emailAux) && password.equals(passwordAux))
+        if(email.equals(preferences.getEmailSharedPreferences()) && password.equals(preferences.getPasswordSharedPreferens()) )
                 return true;
-            return false;
-        }else{
+        else{
             User userAux = userExistInBd(email);
             if(userAux.getEmail().equals(email) && password.equals(userAux.getPassword()))
                 return true;
@@ -162,10 +141,6 @@ public class SingIn extends AppCompatActivity {
         return false;
     }
 
-    private void setSessionActive(boolean b){
-        editor.putBoolean("sessionActive", b);
-        editor.commit();
-    }
 
     @Override
     protected void onPause() {

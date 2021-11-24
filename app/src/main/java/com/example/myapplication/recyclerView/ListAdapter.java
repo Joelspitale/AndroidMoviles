@@ -39,7 +39,7 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
     public void onBindViewHolder(@NonNull ExhibitsListViewHolder holder, int position) {
         Exhibits exhibit = exhibitsList.get(position);
         ((ExhibitsListViewHolder) holder).getTxtTitle().setText(exhibit.getTitle());
-        ((ExhibitsListViewHolder) holder).getTxtIntroducction().setText(exhibit.getIntroduction());
+        ((ExhibitsListViewHolder) holder).getTxtIntroducction().setText(exhibit.getRoomName());
         ((ExhibitsListViewHolder) holder).getTxtContent().setText(exhibit.getContent());
 
         //extraigo la imagen de la url y la cargo en el layaout o en su defecto traigo una icono por defecto

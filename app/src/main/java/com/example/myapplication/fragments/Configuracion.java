@@ -1,21 +1,16 @@
 package com.example.myapplication.fragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 
+import android.content.Intent;
+import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-
-import com.example.myapplication.Principal;
 import com.example.myapplication.R;
 import com.example.myapplication.SingIn;
 import com.example.myapplication.database.AppDatabase;
@@ -25,12 +20,11 @@ import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.Exhibits;
-
+import com.example.myapplication.utils.Preference;
 import java.util.List;
 
 public class Configuracion extends Fragment {
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+    private Preference preference1 = new Preference();
 
     public Configuracion() {
         // Required empty public constructor
@@ -50,7 +44,7 @@ public class Configuracion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        initPreference();
+        preference1.initPreference(getActivity().getBaseContext());
         View view = inflater.inflate(R.layout.fragment_configuracion, container, false);
         ImageView imageProfile = view.findViewById(R.id.image_profile);
         imageProfile.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +60,8 @@ public class Configuracion extends Fragment {
         buttonCloseSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setSessionActive(false);
-                boolean b =getSessionActive();
+                preference1.setSessionActive(false);
+                boolean b =preference1.getSessionActive();
                 deleteAllFavorites();
                 Intent myIntent = new Intent(getActivity(), SingIn.class);
                 startActivity(myIntent);
@@ -83,25 +77,8 @@ public class Configuracion extends Fragment {
                 transaction.addToBackStack(null);
             }
         });
-        // Inflate the layout for this fragment
         return view;
     }
-
-
-    public void initPreference(){
-        preferences = getActivity().getSharedPreferences("SHARED_PREFEF", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-    }
-    private void setSessionActive(boolean b){
-        editor.putBoolean("sessionActive", b);
-        editor.commit();
-    }
-    private boolean getSessionActive(){
-        return preferences.getBoolean("sessionActive",false);
-    }
-
-
-
 
     private void deleteAllFavorites(){
         AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());

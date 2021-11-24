@@ -2,7 +2,7 @@ package com.example.myapplication.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +96,6 @@ public class FragmentExhibitsDetaills extends Fragment {
             exhibit = (Exhibits) objectExhibit.getSerializable("objeto");
             ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
 
-            //Call<Exhibits> call = serviceExhibits.getOne(); //hago la llamada
             Call<Exhibits> call = elegirEndPoint(serviceExhibits,exhibit.getId());
             call.enqueue(new Callback<Exhibits>() {
                 @Override
@@ -201,7 +200,7 @@ public class FragmentExhibitsDetaills extends Fragment {
     private void loadExhibit(Exhibits exhibits){
 
         txtTitleDetaills.setText(exhibits.getTitle());
-        txtIntroductionDetails.setText(exhibits.getIntroduction());
+        txtIntroductionDetails.setText(exhibits.getRoomName());
         txtContentDetails.setText(exhibits.getContent());
 
         Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());

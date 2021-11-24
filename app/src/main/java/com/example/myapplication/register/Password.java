@@ -1,5 +1,8 @@
 package com.example.myapplication.register;
 
+import static com.example.myapplication.utils.Constants.MAX_SIZE_PASSWORD;
+import static com.example.myapplication.utils.Constants.MIN_SIZE_PASSWORD;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +17,6 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class Password extends AppCompatActivity {
     private TextInputLayout inputPassword;
-    static final private int MIN_SIZE_PASSWORD = 8;
-    static final private int MAX_SIZE_PASSWORD = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
