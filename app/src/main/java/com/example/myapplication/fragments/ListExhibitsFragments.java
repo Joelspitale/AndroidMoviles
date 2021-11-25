@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -32,6 +34,8 @@ public class ListExhibitsFragments extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ProgressBar progressBar;
+    private ScrollView scrollView;
 
     private String mParam1;
     private String mParam2;
@@ -73,6 +77,8 @@ public class ListExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
         //inflo el vista
         View view = inflater.inflate(R.layout.fragment_list_exhibits_fragments, container, false);
+        progressBar = view.findViewById(R.id.progress_bar_listExhibits);
+        scrollView = view.findViewById(R.id.scrollListExhibits);
         //instancio el service para hacer el get a la api
         ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
         Call<List<Exhibits>> call = serviceExhibits.getAllExhibits(); //hago la llamada
@@ -83,8 +89,9 @@ public class ListExhibitsFragments extends Fragment {
                     System.out.println("Codigo: " + response.code());
                 }
                 System.out.println("Se obtuvo el json correctamente");
-                //cargo los items en mi lista
                 loadExhibitsList(response.body(),view);
+                progressBar.setVisibility(View.INVISIBLE);
+                scrollView.setVisibility(View.VISIBLE);
             }
 
             @Override

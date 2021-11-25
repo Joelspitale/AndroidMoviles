@@ -14,17 +14,17 @@ public class Exhibits implements Serializable {
     private long id;
     @ColumnInfo(name = "title")
     private String title;
-    private String roomName;
+    private String introduction;
     private String content;
     @ColumnInfo(name = "imagenId")
     private String imagenId;
     private String imagenDetails;
 
 
-    public Exhibits(long id, String title, String roomName, String content, String imagenId, String imagenDetails) {
+    public Exhibits(long id, String title, String introduction, String content, String imagenId, String imagenDetails) {
         this.id = id;
         this.title = title;
-        this.roomName = roomName;
+        this.introduction = introduction;
         this.content = content;
         this.imagenId = imagenId;
         this.imagenDetails = imagenDetails;
@@ -50,12 +50,12 @@ public class Exhibits implements Serializable {
         this.title = title;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public String getIntroduction() {
+        return introduction;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
     public String getContent() {

@@ -165,7 +165,7 @@ public class CamaraDetails extends AppCompatActivity {
     private void loadExhibit(Exhibits exhibits){
 
         txtTitleDetaills.setText(exhibits.getTitle());
-        txtIntroductionDetails.setText(exhibits.getRoomName());
+        txtIntroductionDetails.setText(exhibits.getIntroduction());
         txtContentDetails.setText(exhibits.getContent());
 
         Picasso.Builder builder = new Picasso.Builder(getBaseContext());

@@ -6,8 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".fragments.ListExhibitsFragments">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
     <ScrollView
+        android:id="@+id/scrollListExhibits"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
@@ -30,4 +35,14 @@
         </LinearLayout>
 
     </ScrollView>
+        <ProgressBar
+        android:id="@+id/progress_bar_listExhibits"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+
+        />
+
+</RelativeLayout>
+
 </FrameLayout>

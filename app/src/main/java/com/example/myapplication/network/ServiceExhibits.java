@@ -8,8 +8,8 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface ServiceExhibits {
-//3b3782a8-c219-45e9-9291-f598334bbb48
-    @GET("v1/8c99be4c-a98c-4920-ba2a-cee5cd5eb76a")
+    //v1/8c99be4c-a98c-4920-ba2a-cee5cd5eb76a
+    @GET("v1/a38e06e8-3b7d-43fc-a165-ee2a7ccd5c35")
     Call<List<Exhibits>> getAllExhibits();
 
     @GET("v1/f078b696-865a-4d65-9825-faa9c94c1f63")
