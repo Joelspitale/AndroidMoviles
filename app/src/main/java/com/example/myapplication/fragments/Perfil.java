@@ -45,12 +45,19 @@ public class Perfil extends Fragment {
         System.out.println("el mail del usuario logueado actualmente es :" + preference.getEmailSharedPreferences());
         User user = userExistInBd(preference.getEmailSharedPreferences());
 
-
         Button btnModificar = view.findViewById(R.id.btnModificar);
+        Button btnAtras = view.findViewById(R.id.buttonReturnPerfil);
         EditText modificarMail = view.findViewById(R.id.mailModificar);
         EditText modificarNombre = view.findViewById(R.id.nombreModificar);
         EditText modificarApellido = view.findViewById(R.id.apellidoModificar);
         EditText modificarPass = view.findViewById(R.id.passModificar);
+
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
 
         //se los coloca como fondo
         modificarMail.setHint(user.getEmail());

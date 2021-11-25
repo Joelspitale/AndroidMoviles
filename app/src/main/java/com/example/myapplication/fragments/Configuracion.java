@@ -11,15 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.example.myapplication.R;
 import com.example.myapplication.SingIn;
 import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.ExhibitsBusiness;
+import com.example.myapplication.database.business.UserBusinnes;
 import com.example.myapplication.database.dao.ExhibitsDAO;
+import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.ExhibitsRepository;
+import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.modelo.User;
 import com.example.myapplication.utils.Preference;
 import java.util.List;
 
@@ -47,8 +53,12 @@ public class Configuracion extends Fragment {
                              Bundle savedInstanceState) {
 
         preference.initPreference(getActivity().getBaseContext());
+        User user = userExistInBd(preference.getEmailSharedPreferences());
         View view = inflater.inflate(R.layout.fragment_configuracion, container, false);
         System.out.println("el mail del usuario logueado actualmente es :" + preference.getEmailSharedPreferences());
+
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setHint(user.getName());
 
         ImageView imageProfile = view.findViewById(R.id.image_profile);
         imageProfile.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +92,26 @@ public class Configuracion extends Fragment {
             }
         });
         return view;
+    }
+
+    private User userExistInBd(String email){
+        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+        UserDAO userDAO = db.userDAO();
+        UserRepository userRepository = new UserBusinnes(userDAO);
+        User userAux = new User();
+        userAux.setEmail("No existe el usuario");
+        userAux.setPassword("No existe usuario");
+
+        try {
+            userAux =  userRepository.findUserByEmail(email);
+        }catch (NoEncontradoException e){
+            e.printStackTrace();
+            System.out.println("no se encontro el usuario en la base de datos");
+        } catch (NegocioException e) {
+            e.printStackTrace();
+            System.out.println("Problemas con la bd");
+        }
+        return userAux;
     }
 
     private void deleteAllFavorites(){
