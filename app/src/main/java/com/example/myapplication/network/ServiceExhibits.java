@@ -12,34 +12,34 @@ public interface ServiceExhibits {
     @GET("v1/a38e06e8-3b7d-43fc-a165-ee2a7ccd5c35")
     Call<List<Exhibits>> getAllExhibits();
 
-    @GET("v1/f078b696-865a-4d65-9825-faa9c94c1f63")
+    @GET("v1/20fc5fef-b1b4-440d-8062-4581e2a73478")
     Call<Exhibits> getOneFirstExhibit();
 
-    @GET("v1/f894a3f2-d9b9-4b6c-bcdd-bc8f72f527a4")
+    @GET("v1/8e735e18-59d6-4c35-a838-f63b7615bd72")
     Call<Exhibits> getOneSecondExhibit();
 
-    @GET("v1/f529918a-17b1-4d3b-9604-e13c0ab2999d")
+    @GET("v1/d0532eb6-001e-48f8-9c94-39d2e6052b2f")
     Call<Exhibits> getOneThirdExhibit();
 
-    @GET("v1/9ea9bc15-49b4-438a-8980-b0fd6241fdca")
+    @GET("v1/fb038cd4-6e42-4560-b867-0fd086f37e42")
     Call<Exhibits> getOneFourthExhibit();
 
-    @GET("v1/38d1b40a-5998-4caf-a51d-7610caab34af")
+    @GET("v1/417d8944-8d1a-45fc-8f21-f2c0f5e895ef")
     Call<Exhibits> getOneFifthExhibit();
 
-    @GET("v1/60e1451c-8789-4f1d-92ea-330ebe546f68")
+    @GET("v1/c3049623-7b5a-4999-90c8-4f4a817ced49")
     Call<Exhibits> getOneSixthExhibit();
 
-    @GET("v1/ce787d51-c3d2-4079-893b-4d32cdc637ff")
+    @GET("v1/65c19be1-3c32-4ef4-9673-0837b9ef5fa1")
     Call<Exhibits> getOneSeventhExhibit();
 
-    @GET("v1/0037a2f6-5235-49c2-8d31-ec5c0bb542e1")
+    @GET("v1/7429634a-957c-4a29-b47b-f82387023e80")
     Call<Exhibits> getOneEighthExhibit();
 
-    @GET("v1/1e01247a-68a5-4a93-a479-671a0014589e")
+    @GET("v1/c12e83ef-9ea2-43b8-b13e-1197a4200bc4")
     Call<Exhibits> getOneNinthExhibit();
 
-    @GET("v1/a139dbdf-4912-4200-8db1-538eb0134939")
+    @GET("v1/cf78d999-d60a-4d19-b976-c456fc8f1d59")
     Call<Exhibits> getOneTenthExhibit();
 
 }
