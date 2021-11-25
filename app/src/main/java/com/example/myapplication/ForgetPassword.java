@@ -79,7 +79,7 @@ public class ForgetPassword extends AppCompatActivity {
         UserDAO userDAO = db.userDAO();
         UserRepository userRepository = new UserBusinnes(userDAO);
         try {
-            userRepository.update(user);
+            userRepository.update(user.getName(),user.getLastname(),user.getEmail(),user.getPassword(),user.getId());
         } catch (NegocioException e) {
             Toast.makeText(this, "Hubo un problema con la bd", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class ForgetPassword extends AppCompatActivity {
     }
 
     private String createPassword(){
-        String bankWord = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String bankWord = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#&*";
         String password ="";
         Random random = new Random();
         for(int i = 0; i<10;i++){

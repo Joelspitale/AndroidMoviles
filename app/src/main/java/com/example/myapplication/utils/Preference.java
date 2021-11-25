@@ -1,7 +1,5 @@
 package com.example.myapplication.utils;
 
-import static com.example.myapplication.utils.Constants.EMAIL;
-import static com.example.myapplication.utils.Constants.PASSWORD;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -49,9 +47,8 @@ public class Preference {
         return preferences.getBoolean("sessionActive",false);
     }
 
-    public void savePreference(){
-        editor.putString("email", EMAIL);
-        editor.putString("password", PASSWORD);
+    public void savePreference(String email){
+        editor.putString("email", email);
         editor.commit();
     }
 

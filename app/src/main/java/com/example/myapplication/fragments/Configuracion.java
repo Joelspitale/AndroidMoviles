@@ -24,7 +24,8 @@ import com.example.myapplication.utils.Preference;
 import java.util.List;
 
 public class Configuracion extends Fragment {
-    private Preference preference1 = new Preference();
+    private Preference preference = new Preference();
+    Fragment fragmentProfile;
 
     public Configuracion() {
         // Required empty public constructor
@@ -38,14 +39,17 @@ public class Configuracion extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fragmentProfile = new Perfil();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        preference1.initPreference(getActivity().getBaseContext());
+        preference.initPreference(getActivity().getBaseContext());
         View view = inflater.inflate(R.layout.fragment_configuracion, container, false);
+        System.out.println("el mail del usuario logueado actualmente es :" + preference.getEmailSharedPreferences());
+
         ImageView imageProfile = view.findViewById(R.id.image_profile);
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +64,7 @@ public class Configuracion extends Fragment {
         buttonCloseSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                preference1.setSessionActive(false);
-                boolean b =preference1.getSessionActive();
+                preference.setSessionActive(false);
                 deleteAllFavorites();
                 Intent myIntent = new Intent(getActivity(), SingIn.class);
                 startActivity(myIntent);
@@ -73,8 +76,9 @@ public class Configuracion extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmentContainer, new Perfil()).commit();
+                transaction.replace(R.id.fragmentContainer,fragmentProfile).commit();
                 transaction.addToBackStack(null);
+                System.out.println("voy a editar");
             }
         });
         return view;

@@ -20,5 +20,7 @@ public interface UserRepository {
 
     void update(User user) throws NegocioException, NoEncontradoException;
 
+    public void update(String name, String lastName, String email, String password, long id) throws NegocioException, NoEncontradoException;
+
     void delete(User user) throws NegocioException, NoEncontradoException;
 }

@@ -28,6 +28,7 @@ public class SingIn extends AppCompatActivity {
     private TextInputLayout inputEmail;
     private TextInputLayout inputPassword;
     private Preference preferences = new Preference();
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,6 @@ public class SingIn extends AppCompatActivity {
         String[] permisos= {READ_EXTERNAL_STORAGE, CAMERA, INTERNET};
         verifyPermision(permisos);
 
-
         inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
         inputPassword = (TextInputLayout) findViewById(R.id.inputTextPassword);
 
@@ -47,8 +47,9 @@ public class SingIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validarDatos()) {
-                    nextActivity();
+                    preferences.savePreference(email);
                     preferences.setSessionActive(true);
+                    nextActivity();
                 }
                 else
                     Toast.makeText(SingIn.this, "Error al iniciar Sesion revise sus credenciales", Toast.LENGTH_SHORT).show();
@@ -70,27 +71,20 @@ public class SingIn extends AppCompatActivity {
                 startActivityForResult(myIntent, REQUEST);
             }
         });
-
-
     }
 
     private boolean validarDatos() {
-        String email = inputEmail.getEditText().getText().toString();
+        email = inputEmail.getEditText().getText().toString();
         String password = inputPassword.getEditText().getText().toString();
-        if (isEmailValidate(email) && isPasswordValidate(password) && isConcidentCredentials(email,password)) {
+        if (isEmailValidate(email) && isPasswordValidate(password) && isConcidentCredentials(email,password))
             return true;
-        }
         return false;
     }
 
     private boolean isConcidentCredentials(String email, String password) {
-        if(email.equals(preferences.getEmailSharedPreferences()) && password.equals(preferences.getPasswordSharedPreferens()) )
-                return true;
-        else{
-            User userAux = userExistInBd(email);
-            if(userAux.getEmail().equals(email) && password.equals(userAux.getPassword()))
-                return true;
-        }
+        User userAux = userExistInBd(email);
+        if(userAux.getEmail().equals(email) && password.equals(userAux.getPassword()))
+            return true;
         return false;
     }
 

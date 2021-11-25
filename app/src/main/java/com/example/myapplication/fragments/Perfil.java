@@ -23,21 +23,13 @@ import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.register.PasswordVerificed;
+import com.example.myapplication.utils.Preference;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class Perfil extends Fragment {
-
-    AppDatabase db;
-    UserDAO userDAO;
-    UserRepository userRepository;
+    private Preference preference = new Preference();
 
     public Perfil() {
-        // Required empty public constructor
-    }
-
-    public static Perfil newInstance(String param1, String param2) {
-        Perfil fragment = new Perfil();
-        return fragment;
     }
 
     @Override
@@ -49,13 +41,10 @@ public class Perfil extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        preference.initPreference(getActivity().getBaseContext());
+        System.out.println("el mail del usuario logueado actualmente es :" + preference.getEmailSharedPreferences());
+        User user = userExistInBd(preference.getEmailSharedPreferences());
 
-        final User[] user = {null};
-        final User[] userAux = {null};
-
-        db = AppDatabase.getInstance(getActivity().getBaseContext());
-        userDAO = db.userDAO();
-        userRepository = new UserBusinnes(userDAO);
 
         Button btnModificar = view.findViewById(R.id.btnModificar);
         EditText modificarMail = view.findViewById(R.id.mailModificar);
@@ -63,18 +52,11 @@ public class Perfil extends Fragment {
         EditText modificarApellido = view.findViewById(R.id.apellidoModificar);
         EditText modificarPass = view.findViewById(R.id.passModificar);
 
-        try {
-            user[0] = userRepository.findUserByEmail("arrietematias@gmail.com");
-        } catch (NegocioException e) {
-            e.printStackTrace();
-        } catch (NoEncontradoException e) {
-            e.printStackTrace();
-        }
-
-        modificarMail.setHint(user[0].getEmail());
-        modificarNombre.setHint(user[0].getName());
-        modificarApellido.setHint(user[0].getLastname());
-        modificarPass.setHint(user[0].getPassword());
+        //se los coloca como fondo
+        modificarMail.setHint(user.getEmail());
+        modificarNombre.setHint(user.getName());
+        modificarApellido.setHint(user.getLastname());
+        modificarPass.setHint(user.getPassword());
 
         btnModificar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,41 +68,34 @@ public class Perfil extends Fragment {
                     modificarPass.setEnabled(true);
                     btnModificar.setText(R.string.Confirmar);
                 } else {
-                    userAux[0] = new User();
+                    User userAux = new User();
+                    //id
+                    userAux.setId(user.getId());
+                    //mail
+                    if(modificarMail.getText().length() > 0)
+                        userAux.setEmail(String.valueOf(modificarMail.getText()));
+                    else
+                        userAux.setEmail(String.valueOf(modificarMail.getHint()));
+                    //password
+                    if(modificarPass.getText().length() > 0)
+                        userAux.setPassword(String.valueOf(modificarPass.getText()));
+                    else
+                        userAux.setPassword(String.valueOf(modificarPass.getHint()));
+                    //name
+                    if(modificarNombre.getText().length() > 0)
+                        userAux.setName(String.valueOf(modificarNombre.getText()));
+                    else
+                        userAux.setName(String.valueOf(modificarNombre.getHint()));
+                    //lastname
+                    if(modificarApellido.getText().length() > 0)
+                        userAux.setLastname(String.valueOf(modificarApellido.getText()));
+                    else
+                        userAux.setLastname(String.valueOf(modificarApellido.getHint()));
 
-                    if(modificarMail.getText().length() > 0) {userAux[0].setEmail(String.valueOf(modificarMail.getText()));}
-                    else {userAux[0].setEmail(String.valueOf(modificarMail.getHint()));}
+                    System.out.println("antes de la actualizacion"+userAux.toString());
+                    actualizacion(userAux);
+                    preference.savePreference(userAux.getEmail());
 
-                    if(modificarPass.getText().length() > 0) {userAux[0].setPassword(String.valueOf(modificarPass.getText()));}
-                    else {userAux[0].setPassword(String.valueOf(modificarPass.getHint()));}
-
-                    if(modificarNombre.getText().length() > 0) {userAux[0].setName(String.valueOf(modificarNombre.getText()));}
-                    else {userAux[0].setName(String.valueOf(modificarNombre.getHint()));}
-
-                    if(modificarApellido.getText().length() > 0) {userAux[0].setLastname(String.valueOf(modificarApellido.getText()));}
-                    else {userAux[0].setLastname(String.valueOf(modificarApellido.getHint()));}
-
-                    if (userAux[0].getEmail() != user[0].getEmail()) {
-                        actualizacion(userAux[0]);
-                    } else {
-                        if (userAux[0].getName() != user[0].getName()) {
-                            actualizacion(userAux[0]);
-                        } else {
-                            if (userAux[0].getLastname() != user[0].getLastname()) {
-                                actualizacion(userAux[0]);
-                            } else {
-                                if (userAux[0].getPassword() != user[0].getPassword()) {
-                                    actualizacion(userAux[0]);
-                                } else {
-                                  Toast.makeText(getActivity().getBaseContext(), "No se actualizo", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        }
-                    }
-                    Toast.makeText(getActivity().getBaseContext(), userAux[0].getEmail(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getActivity().getBaseContext(), userAux[0].getPassword(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getActivity().getBaseContext(), userAux[0].getName(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getActivity().getBaseContext(), userAux[0].getLastname(), Toast.LENGTH_LONG).show();
                     modificarMail.setEnabled(false);
                     modificarNombre.setEnabled(false);
                     modificarApellido.setEnabled(false);
@@ -132,11 +107,33 @@ public class Perfil extends Fragment {
 
         return view;
     }
+    private User userExistInBd(String email){
+        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+        UserDAO userDAO = db.userDAO();
+        UserRepository userRepository = new UserBusinnes(userDAO);
+        User userAux = new User();
+        userAux.setEmail("No existe el usuario");
+        userAux.setPassword("No existe usuario");
+
+        try {
+            userAux =  userRepository.findUserByEmail(email);
+        }catch (NoEncontradoException e){
+            e.printStackTrace();
+            System.out.println("no se encontro el usuario en la base de datos");
+        } catch (NegocioException e) {
+            e.printStackTrace();
+            System.out.println("Problemas con la bd");
+        }
+        return userAux;
+    }
 
     public void actualizacion(User user) {
+        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
+        UserDAO userDAO = db.userDAO();
+        UserRepository userRepository = new UserBusinnes(userDAO);
         try {
-            userRepository = new UserBusinnes(userDAO);
-            userRepository.update(user);
+            userRepository.update(user.getName(),user.getLastname(),user.getEmail(),user.getPassword(),user.getId());
+            //userRepository.update(user);
         } catch (NegocioException e) {
             e.printStackTrace();
         } catch (NoEncontradoException e) {

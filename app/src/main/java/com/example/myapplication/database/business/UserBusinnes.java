@@ -57,7 +57,7 @@ public class UserBusinnes implements UserRepository {
     @Override
     public void insert(User user) throws NegocioException, EncontradoException {
         try {
-            load(user.getId());
+            findUserByEmail(user.getEmail());
             throw new EncontradoException("Ya existe un user con id ="+ user.getId());
         }catch (NoEncontradoException e){
         }
@@ -71,6 +71,22 @@ public class UserBusinnes implements UserRepository {
     @Override
     public void update(User user) throws NegocioException, NoEncontradoException {
         userDAO.update(user);
+    }
+
+    @Override   //chequearlo ma;ana
+    public void update(String name, String lastName, String email, String password, long id) throws NegocioException, NoEncontradoException {
+        load(id);
+        User userWithEmail=null;
+        try{
+             userWithEmail = findUserByEmail(email);
+             if (userWithEmail.getId() != id)
+                throw new NegocioException("Ya existe otro usuario con el mail " + email);	//Paso 3_a
+
+             userDAO.update(name, lastName,email,password,id);
+        }catch (NoEncontradoException e){
+             userDAO.update(name, lastName,email,password,id);
+        }
+
     }
 
     @Override

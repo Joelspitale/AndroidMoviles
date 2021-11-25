@@ -26,6 +26,9 @@ public interface UserDAO {
     @Update
     void update(User user);
 
+    @Query("UPDATE User SET name =:name, lastname =:lastName, email =:email, password=:password WHERE id =:id")
+    void update(String name, String lastName, String email, String password, long id);
+
     @Delete
     void delete(User user);
 }
