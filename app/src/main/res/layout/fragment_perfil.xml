@@ -138,6 +138,7 @@
 
                         <EditText
                             android:id="@+id/passModificar"
+                            android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:backgroundTint="#33000000"

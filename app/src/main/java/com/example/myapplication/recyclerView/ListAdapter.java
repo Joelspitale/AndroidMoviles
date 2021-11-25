@@ -40,16 +40,16 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
         Exhibits exhibit = exhibitsList.get(position);
         ((ExhibitsListViewHolder) holder).getTxtTitle().setText(exhibit.getTitle());
         ((ExhibitsListViewHolder) holder).getTxtIntroducction().setText(exhibit.getIntroduction());
-        ((ExhibitsListViewHolder) holder).getTxtContent().setText(exhibit.getContent());
-
+//        ((ExhibitsListViewHolder) holder).getTxtContent().setText(exhibit.getContent());
+//
         //extraigo la imagen de la url y la cargo en el layaout o en su defecto traigo una icono por defecto
         //((ExhibitsListViewHolder) holder).getFoto().setImageResource(exhibit.getImagenId());
-        Picasso.Builder builder = new Picasso.Builder(context);
-        builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(exhibit.getImagenId()) //busco la imagen de la url del json
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
-                .into(((ExhibitsListViewHolder) holder).getFoto()); //si la obtiene la meto en el layaout de la imagen de la card
+//        Picasso.Builder builder = new Picasso.Builder(context);
+//        builder.downloader(new OkHttp3Downloader(context));
+//        builder.build().load(exhibit.getImagenId()) //busco la imagen de la url del json
+//                .placeholder(R.drawable.ic_launcher_background)
+//                .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
+//                .into(((ExhibitsListViewHolder) holder).getFoto()); //si la obtiene la meto en el layaout de la imagen de la card
     }
 
     @Override
@@ -71,15 +71,15 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
         private TextView txtTitle;
         private TextView txtIntroducction;
         private TextView txtContent;
-        private ImageView foto;
+//        private ImageView foto;
 
         //direcciono layaout con variables de java
         public ExhibitsListViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.idExhibitsTitle);
             txtIntroducction = (TextView) itemView.findViewById(R.id.idExhibitsIntroduction);
-            txtContent = (TextView) itemView.findViewById(R.id.idExhibitsContent);
-            foto = (ImageView) itemView.findViewById(R.id.idImagen);
+//            txtContent = (TextView) itemView.findViewById(R.id.idExhibitsContent);
+//            foto = (ImageView) itemView.findViewById(R.id.idImagen);
         }
 
         public TextView getTxtTitle() {
@@ -98,20 +98,20 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
             this.txtIntroducction = txtIntroducction;
         }
 
-        public TextView getTxtContent() {
-            return txtContent;
-        }
-
-        public void setTxtContent(TextView txtContent) {
-            this.txtContent = txtContent;
-        }
-
-        public ImageView getFoto() {
-            return foto;
-        }
-
-        public void setFoto(ImageView foto) {
-            this.foto = foto;
-        }
+//        public TextView getTxtContent() {
+//            return txtContent;
+//        }
+//
+//        public void setTxtContent(TextView txtContent) {
+//            this.txtContent = txtContent;
+//        }
+//
+//        public ImageView getFoto() {
+//            return foto;
+//        }
+//
+//        public void setFoto(ImageView foto) {
+//            this.foto = foto;
+//        }
     }
 }

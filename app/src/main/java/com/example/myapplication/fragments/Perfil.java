@@ -9,22 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.AppDatabase;
-import com.example.myapplication.database.business.ExhibitsBusiness;
 import com.example.myapplication.database.business.UserBusinnes;
-import com.example.myapplication.database.dao.ExhibitsDAO;
 import com.example.myapplication.database.dao.UserDAO;
-import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
-import com.example.myapplication.register.PasswordVerificed;
 import com.example.myapplication.utils.Preference;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class Perfil extends Fragment {
     private Preference preference = new Preference();
@@ -63,7 +57,11 @@ public class Perfil extends Fragment {
         modificarMail.setHint(user.getEmail());
         modificarNombre.setHint(user.getName());
         modificarApellido.setHint(user.getLastname());
-        modificarPass.setHint(user.getPassword());
+        String pass = "";
+        for (int i = 0; i < user.getPassword().length(); i++){
+            pass = pass + "*";
+        }
+        modificarPass.setHint(pass);
 
         btnModificar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.ExhibitsBusiness;
@@ -154,8 +156,13 @@ public class CamaraDetails extends AppCompatActivity {
                 return serviceExhibits.getOneEighthExhibit();
             case 9:
                 return serviceExhibits.getOneNinthExhibit();
-            default:
+            case 10:
                 return serviceExhibits.getOneTenthExhibit();
+            default:
+                Toast.makeText(getBaseContext(), "No se encontro ninguna obra", Toast.LENGTH_LONG).show();
+                Intent myIntent = new Intent(CamaraDetails.this, CameraActivity.class);
+                startActivity(myIntent);
+                return null;
         }
 
     }
@@ -175,7 +182,6 @@ public class CamaraDetails extends AppCompatActivity {
                 .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
                 .into(imageDetails);
         //si la obtiene la meto en el layaout de la imagen de la card
-
         //pinto el corazon o no en funcion si existe en la bd
         exhibitsExistInBd(exhibits);
 
