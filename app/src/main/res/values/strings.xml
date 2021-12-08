@@ -81,5 +81,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit
     <string name="btnModificar">MODIFICAR</string>
     <string name="mi_perfil">MI PERFIL</string>
     <string name="Confirmar">CONFIRMAR</string>
+    <string name="sugerencia">Dejanos tu sugerencia</string>
+    <string name="InputSugerencia">Sugerencia</string>
+    <string name="sendSugest">Enviar sugerencia</string>
 
 </resources>

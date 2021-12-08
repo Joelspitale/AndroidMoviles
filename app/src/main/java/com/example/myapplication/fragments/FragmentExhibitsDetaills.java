@@ -1,5 +1,6 @@
 package com.example.myapplication.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -30,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentExhibitsDetaills extends Fragment {
+public class FragmentExhibitsDetaills extends Fragment{
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -104,6 +105,7 @@ public class FragmentExhibitsDetaills extends Fragment {
                         System.out.println("Codigo: " + response.code());
                     }
                     //cargo los items en mi lista
+
                     loadExhibit(response.body());
                     bottomVolverExhibits.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
@@ -202,7 +204,6 @@ public class FragmentExhibitsDetaills extends Fragment {
         txtTitleDetaills.setText(exhibits.getTitle());
         txtIntroductionDetails.setText(exhibits.getIntroduction());
         txtContentDetails.setText(exhibits.getContent());
-
         Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
         builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
         builder.build().load(exhibits.getImagenId()) //busco la imagen de la url del json

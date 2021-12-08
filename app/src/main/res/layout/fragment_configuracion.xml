@@ -64,12 +64,12 @@
                 android:text="@string/language" />
 
             <Button
-                android:id="@+id/buttonPrivacidad"
+                android:id="@+id/buttonSugerencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:backgroundTint="@color/black"
-                android:text="@string/privacity"
+                android:text="@string/sugerencia"
                 tools:ignore="MissingConstraints" />
 
             <Button

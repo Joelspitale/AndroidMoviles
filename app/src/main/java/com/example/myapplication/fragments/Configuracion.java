@@ -32,6 +32,7 @@ import java.util.List;
 public class Configuracion extends Fragment {
     private Preference preference = new Preference();
     Fragment fragmentProfile;
+    Fragment fragmentSugerencia;
 
     public Configuracion() {
         // Required empty public constructor
@@ -46,6 +47,7 @@ public class Configuracion extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentProfile = new Perfil();
+        fragmentSugerencia = new Sugerencia();
     }
 
     @Override
@@ -67,6 +69,16 @@ public class Configuracion extends Fragment {
                 Intent myIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 myIntent.setType("image/");
                 startActivity(myIntent.createChooser(myIntent, "Seleccione la Aplicacion"));
+            }
+        });
+
+        Button buttonSugerencia = view.findViewById(R.id.buttonSugerencia);
+        buttonSugerencia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainer,fragmentSugerencia).commit();
+                transaction.addToBackStack(null);
             }
         });
 

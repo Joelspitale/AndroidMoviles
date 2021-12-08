@@ -156,13 +156,8 @@ public class CamaraDetails extends AppCompatActivity {
                 return serviceExhibits.getOneEighthExhibit();
             case 9:
                 return serviceExhibits.getOneNinthExhibit();
-            case 10:
-                return serviceExhibits.getOneTenthExhibit();
             default:
-                Toast.makeText(getBaseContext(), "No se encontro ninguna obra", Toast.LENGTH_LONG).show();
-                Intent myIntent = new Intent(CamaraDetails.this, CameraActivity.class);
-                startActivity(myIntent);
-                return null;
+                return serviceExhibits.getOneTenthExhibit();
         }
 
     }
