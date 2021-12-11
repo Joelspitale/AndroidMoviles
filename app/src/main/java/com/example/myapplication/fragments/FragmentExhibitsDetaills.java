@@ -45,6 +45,7 @@ public class FragmentExhibitsDetaills extends Fragment{
     private ProgressBar progressBar;
     private ScrollView scrollView;
     private CheckBox checkBox;
+    private ItemMuseo exhibit;
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
         FragmentExhibitsDetaills fragment = new FragmentExhibitsDetaills();
@@ -91,14 +92,12 @@ public class FragmentExhibitsDetaills extends Fragment{
 
         //recibo y extraigo el objeto en el que hizo click en la lista
         Bundle objectExhibit = getArguments();
-        ItemMuseo exhibit = null;
-
         //verifico que el objeto que me enviaron no esta vacio
         if (objectExhibit != null) {
 
-            exhibit = (ItemMuseo) objectExhibit.getSerializable("objeto");
+            ItemMuseo exhibitMemoria = (ItemMuseo) objectExhibit.getSerializable("objeto");
             ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
-            Call<ItemMuseo> call = serviceExhibits.getOneItemMuseoById(exhibit.getId());
+            Call<ItemMuseo> call = serviceExhibits.getOneItemMuseoById(exhibitMemoria.getId());
             call.enqueue(new Callback<ItemMuseo>() {
                 @Override
                 public void onResponse(Call<ItemMuseo> call, Response<ItemMuseo> response) {
@@ -106,9 +105,10 @@ public class FragmentExhibitsDetaills extends Fragment{
                         System.out.println("Codigo: " + response.code());
                     }
                     System.out.println("Se obtuvo el json correctamente");
-                    loadExhibit(response.body());
+                    exhibit = response.body();
+                    loadExhibit(exhibit);
+                    for(int i= 0 ; i<100000000;i++);    //para darle mas tiempo a la ap
                     bottomVolverExhibits.setVisibility(View.VISIBLE);
-                    for(int i= 0 ; i<10000000;i++);
                     progressBar.setVisibility(View.INVISIBLE);
                     scrollView.setVisibility(View.VISIBLE);
                 }
@@ -128,14 +128,13 @@ public class FragmentExhibitsDetaills extends Fragment{
 
         //obtengo el icono del favorito
         CheckBox bottomFavorites = view.findViewById(R.id.like);
-        ItemMuseo finalExhibit = exhibit;
         bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                System.out.println("Agregar a favoritos la exibicion con id:" + finalExhibit.getId()+
-                        "titulo" + finalExhibit.getItemTitle());
+                System.out.println("Agregar a favoritos la exibicion con id:" + exhibit.getId()+
+                        "titulo" + exhibit.getItemTitle());
                 try {
-                    addOrDeleteFavoritesExhibits(finalExhibit);
+                    addOrDeleteFavoritesExhibits(exhibit);
                     //Recarga fragment
                 } catch (NegocioException e) {
                     e.printStackTrace();
@@ -226,6 +225,7 @@ public class FragmentExhibitsDetaills extends Fragment{
                     }
                     System.out.println("Se obtuvo el json correctamente");
                     loadExhibit(response.body());
+                    for(int i= 0 ; i<100000000;i++);    //para darle mas tiempo a la ap
                 }
 
                 @Override

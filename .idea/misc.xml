@@ -63,7 +63,13 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/menu.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/prueba.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.10833333333333334" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/drawable/sl_favourite_24dp.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/Item_view_museo.xml" value="0.161231884057971" />
@@ -86,6 +92,7 @@
         <entry key="app/src/main/res/layout/activity_register_4.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_register_Name.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register_email.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_lastname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register_name.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_password.xml" value="0.14402173913043478" />
         <entry key="app/src/main/res/layout/activity_registro5.xml" value="0.14175724637681159" />
@@ -102,6 +109,9 @@
         <entry key="app/src/main/res/layout/header_navigation_bar.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_view_exhibits.xml" value="0.33" />
         <entry key="app/src/main/res/layout/nav_header_home_drawer.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15648148148148147" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_menuApps.xml" value="0.15648148148148147" />
       </map>
     </option>
   </component>

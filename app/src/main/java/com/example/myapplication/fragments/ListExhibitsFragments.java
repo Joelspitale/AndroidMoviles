@@ -102,8 +102,6 @@ public class ListExhibitsFragments extends Fragment {
                 System.out.println("Hubo un error inesperado" + t.getMessage());
             }
         });
-
-
         /*
         MiTareaAsincrona tarea2 = new MiTareaAsincrona(view,scrollView,progressBar,serviceExhibits);
         tarea2.execute();*/
@@ -124,6 +122,7 @@ public class ListExhibitsFragments extends Fragment {
             @Override
             public void onClick(View view) {
                 ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
+
                 Toast.makeText(getContext(), "Selecciono :"+  itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
                 interfaceComunicaFragments.sentExhibits(itemMuseoSelected);
             }
@@ -137,72 +136,6 @@ public class ListExhibitsFragments extends Fragment {
         if(context instanceof Activity){
             this.activity = (Activity) context;
             interfaceComunicaFragments = (IComunicationsFragment) this.activity;
-        }
-    }
-
-    private class MiTareaAsincrona extends AsyncTask<Void, Void, Boolean> {
-        private View view;
-        private ScrollView scrollView;
-        private ProgressBar progressBar;
-        private ServiceExhibits serviceExhibits;
-
-
-        public MiTareaAsincrona(View view, ScrollView scrollView, ProgressBar progressBar, ServiceExhibits serviceExhibits) {
-            this.view = view;
-            this.scrollView = scrollView;
-            this.progressBar = progressBar;
-            this.serviceExhibits = serviceExhibits;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-          Call<List<ItemMuseo>> call = serviceExhibits.getAllItemsMuseo(); //hago la llamada
-            call.enqueue(new Callback<List<ItemMuseo>>() {
-                @Override
-                public void onResponse(Call<List<ItemMuseo>> call, Response<List<ItemMuseo>> response) {
-                    if(!response.isSuccessful()){
-                        System.out.println("Codigo: " + response.code());
-                    }
-                    System.out.println("Se obtuvo el json correctamente");
-                    loadExhibitsList(response.body(),view);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    scrollView.setVisibility(View.VISIBLE);
-                }
-
-                @Override
-                public void onFailure(Call<List<ItemMuseo>> call, Throwable t) {
-                    System.out.println("Hubo un error inesperado" + t.getMessage());
-                }
-            });
-
-            return true;
-        }
-
-        /*@Override
-        protected void onProgressUpdate(Integer... values) {
-            int progreso = values[0].intValue();
-
-            //pbarProgreso.setProgress(progreso);
-        }*/
-
-        @Override
-        protected void onPreExecute() {
-            //pbarProgreso.setMax(100);
-            //pbarProgreso.setProgress(0);
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            System.out.println("Se ingreso a onPostExecute");
-            progressBar.setVisibility(View.INVISIBLE);
-            scrollView.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected void onCancelled() {
-            Toast.makeText(getActivity().getBaseContext(), "Tarea cancelada!",
-                    Toast.LENGTH_SHORT).show();
         }
     }
 

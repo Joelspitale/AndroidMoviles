@@ -55,8 +55,8 @@
 
                     <CheckBox
                         android:id="@+id/likeCamara"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="17dp"
+                        android:layout_height="34dp"
                         android:layout_marginLeft="-30dp"
                         android:layout_marginTop="50dp"
                         android:layout_toEndOf="@id/imageAtractionDetailsCamara"

@@ -35,7 +35,7 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
     public void onBindViewHolder(@NonNull ItemMuseoListViewHolder holder, int position) {
         ItemMuseo itemMuseo = itemMuseoList.get(position);
         ((ItemMuseoListViewHolder) holder).getTxtTitle().setText(itemMuseo.getItemTitle());
-        ((ItemMuseoListViewHolder) holder).getTxtIntroducction().setText(itemMuseo.getItemIntro());
+        ((ItemMuseoListViewHolder) holder).getTxtRoomName().setText(itemMuseo.getRoomName());
 //        ((ExhibitsListViewHolder) holder).getTxtContent().setText(exhibit.getContent());
 //
         //extraigo la imagen de la url y la cargo en el layaout o en su defecto traigo una icono por defecto
@@ -65,7 +65,7 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
 
     public  class ItemMuseoListViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle;
-        private TextView txtIntroducction;
+        private TextView txtRoomName;
 //        private TextView txtContent;
 //        private ImageView foto;
 
@@ -73,7 +73,7 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
         public ItemMuseoListViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.idExhibitsTitle);
-            txtIntroducction = (TextView) itemView.findViewById(R.id.idExhibitsIntroduction);
+            txtRoomName = (TextView) itemView.findViewById(R.id.idExhibitsIntroduction);
 //            txtContent = (TextView) itemView.findViewById(R.id.idExhibitsContent);
 //            foto = (ImageView) itemView.findViewById(R.id.idImagen);
         }
@@ -86,12 +86,12 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
             this.txtTitle = txtTitle;
         }
 
-        public TextView getTxtIntroducction() {
-            return txtIntroducction;
+        public TextView getTxtRoomName() {
+            return txtRoomName;
         }
 
-        public void setTxtIntroducction(TextView txtIntroducction) {
-            this.txtIntroducction = txtIntroducction;
+        public void setTxtRoomName(TextView txtRoomName) {
+            this.txtRoomName = txtRoomName;
         }
 
 

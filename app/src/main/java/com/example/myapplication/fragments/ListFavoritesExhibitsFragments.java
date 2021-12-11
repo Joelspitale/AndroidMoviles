@@ -45,9 +45,7 @@ public class ListFavoritesExhibitsFragments extends Fragment {
     IComunicationsFragment interfaceComunicaFragments;
 
 
-    public ListFavoritesExhibitsFragments() {
-        // Required empty public constructor
-    }
+    public ListFavoritesExhibitsFragments() {}
 
 
     public static ListFavoritesExhibitsFragments newInstance(String param1, String param2) {
@@ -71,7 +69,7 @@ public class ListFavoritesExhibitsFragments extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //inflo el vista
+
         View view = inflater.inflate(R.layout.fragment_list_favorites_exhibits_fragments, container, false);
 
         LinearLayout linearLayout = view.findViewById(R.id.faltaFavs);

@@ -39,6 +39,7 @@ public class CamaraDetails extends AppCompatActivity {
     private ProgressBar progressBar;
     private ScrollView scrollView;
     private CheckBox checkBox;
+    private ItemMuseo itemMuseo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,22 +65,19 @@ public class CamaraDetails extends AppCompatActivity {
 
 
         long id =  (long) getIntent().getExtras().getSerializable("codigoQR");
-        final ItemMuseo[] exhibit = {new ItemMuseo()};
         ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
-        /*Call<ItemMuseo> call = elegirEndPoint(serviceExhibits,id);
+        Call<ItemMuseo> call = serviceExhibits.getOneItemMuseoById(id);
         call.enqueue(new Callback<ItemMuseo>() {
                 @Override
                 public void onResponse(Call<ItemMuseo> call, Response<ItemMuseo> response) {
                     if(!response.isSuccessful()){
                         System.out.println("Codigo: " + response.code());
                     }
-                    //cargo los items en mi lista
-                    loadExhibit(response.body());
-                    exhibit[0] = response.body();
+                    itemMuseo = response.body();
+                    loadExhibit(itemMuseo);
                     bottomVolButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     scrollView.setVisibility(View.VISIBLE);
-                    System.out.println("Se obtuvo el json correctamente");
                 }
 
                 @Override
@@ -94,8 +92,7 @@ public class CamaraDetails extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 try {
-
-                    addOrDeleteFavoritesExhibits(exhibit[0]);
+                    addOrDeleteFavoritesExhibits(itemMuseo);
                 } catch (NegocioException e) {
                     e.printStackTrace();
                 } catch (NoEncontradoException e) {
@@ -104,7 +101,7 @@ public class CamaraDetails extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        });*/
+        });
     }
 
     private void addOrDeleteFavoritesExhibits(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException, EncontradoException {
@@ -133,36 +130,7 @@ public class CamaraDetails extends AppCompatActivity {
             checkBox.setChecked(false);
         }
     }
-
-    /*private Call<ItemMuseo> elegirEndPoint(ServiceExhibits serviceExhibits, long id) {
-        switch ((int) id){
-            case 1:
-                return serviceExhibits.getOneFirstExhibit();
-            case 2:
-                return serviceExhibits.getOneSecondExhibit();
-            case 3:
-                return serviceExhibits.getOneThirdExhibit();
-            case 4:
-                return serviceExhibits.getOneFourthExhibit();
-            case 5:
-                return serviceExhibits.getOneFifthExhibit();
-            case 6:
-                return serviceExhibits.getOneSixthExhibit();
-            case 7:
-                return serviceExhibits.getOneSeventhExhibit();
-            case 8:
-                return serviceExhibits.getOneEighthExhibit();
-            case 9:
-                return serviceExhibits.getOneNinthExhibit();
-            default:
-                return serviceExhibits.getOneTenthExhibit();
-        }
-
-    }*/
-
-
-
-    private void loadExhibit(ItemMuseo itemMuseo){
+        private void loadExhibit(ItemMuseo itemMuseo){
 
         txtTitleDetaills.setText(itemMuseo.getItemTitle());
         txtIntroductionDetails.setText(itemMuseo.getItemIntro());

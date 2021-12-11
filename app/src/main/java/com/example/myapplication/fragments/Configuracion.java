@@ -1,8 +1,13 @@
 package com.example.myapplication.fragments;
 
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.provider.MediaStore;
@@ -33,6 +38,7 @@ public class Configuracion extends Fragment {
     private Preference preference = new Preference();
     Fragment fragmentProfile;
     Fragment fragmentSugerencia;
+    private  ImageView imageProfile;
 
     public Configuracion() {
         // Required empty public constructor
@@ -62,13 +68,11 @@ public class Configuracion extends Fragment {
         TextView text_name = view.findViewById(R.id.text_name);
         text_name.setHint(user.getName());
 
-        ImageView imageProfile = view.findViewById(R.id.image_profile);
+        imageProfile = view.findViewById(R.id.image_profile);
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                myIntent.setType("image/");
-                startActivity(myIntent.createChooser(myIntent, "Seleccione la Aplicacion"));
+               loadImagen();
             }
         });
 
@@ -145,4 +149,18 @@ public class Configuracion extends Fragment {
         }
     }
 
+    private void loadImagen(){
+        Intent myIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        myIntent.setType("image/");
+        startActivityForResult(myIntent.createChooser(myIntent, "Seleccione la Aplicacion"),1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RESULT_OK){
+            Uri path = data.getData();
+            imageProfile.setImageURI(path);
+        }
+    }
 }

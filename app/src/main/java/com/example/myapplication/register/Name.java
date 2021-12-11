@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,13 +36,24 @@ public class Name extends AppCompatActivity {
         bottonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 String name = inputName.getEditText().getText().toString();
-                User user = new User();
-                user.setName(name);
-                Intent myIntent = new Intent(Name.this, LastName.class);
-                myIntent.putExtra("user", user);
-                startActivity(myIntent);
+                if(validateName(name)){
+                    User user = new User();
+                    user.setName(name);
+                    Intent myIntent = new Intent(Name.this, LastName.class);
+                    myIntent.putExtra("user", user);
+                    startActivity(myIntent);
+                }
+                else
+                    Toast.makeText(Name.this, "El nombre no puede estar vacio", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private boolean validateName(String name){
+        String nameAux = name.replace(" ","");
+        if(nameAux.length()==0)
+            return false;
+        return true;
     }
 
 

@@ -90,7 +90,7 @@ public class ForgetPassword extends AppCompatActivity {
     }
 
     private String createPassword(){
-        String bankWord = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#&*";
+        String bankWord = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String password ="";
         Random random = new Random();
         for(int i = 0; i<10;i++){

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.modelo.User;
@@ -35,11 +36,21 @@ public class LastName extends AppCompatActivity {
             public void onClick(View view){
                 User user = (User) getIntent().getExtras().getSerializable("user");
                 String lastName = inputLastName.getEditText().getText().toString();
-                user.setLastname(lastName);
-                Intent myIntent = new Intent(LastName.this, Email.class);
-                myIntent.putExtra("user", user);
-                startActivity(myIntent);
+                if(validateLastName(lastName)) {
+                    user.setLastname(lastName);
+                    Intent myIntent = new Intent(LastName.this, Email.class);
+                    myIntent.putExtra("user", user);
+                    startActivity(myIntent);
+                }else
+                    Toast.makeText(LastName.this, "El Apellido no puede estar vacio", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private boolean validateLastName(String lastName){
+        String lastNameAux = lastName.replace(" ","");
+        if(lastNameAux.length()==0)
+            return false;
+        return true;
     }
 }
