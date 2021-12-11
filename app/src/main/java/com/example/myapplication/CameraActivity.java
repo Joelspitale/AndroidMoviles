@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +12,6 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
-import com.example.myapplication.modelo.Exhibits;
 import com.google.zxing.Result;
 
 public class CameraActivity extends AppCompatActivity {

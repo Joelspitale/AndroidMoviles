@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.myapplication.database.AppDatabase;
@@ -66,10 +67,10 @@ public class Splash extends AppCompatActivity {
         UserRepository userRepository = new UserBusinnes(userDAO);
         try {
             userRepository.insert(user);
-            Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show();
+            Log.i( "Splash", "Usuario creado correctamente");
         } catch (NegocioException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Hubo un error con la bd", Toast.LENGTH_SHORT).show();
+            Log.i( "Splash", "Hubo un error con la bd");
         } catch (EncontradoException e) {
             e.printStackTrace();
         }

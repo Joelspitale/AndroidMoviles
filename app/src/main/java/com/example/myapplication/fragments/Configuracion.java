@@ -24,7 +24,7 @@ import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
-import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.utils.Preference;
 import java.util.List;
@@ -133,9 +133,9 @@ public class Configuracion extends Fragment {
 
         try {
             System.out.println("Eliminando todos los favoritos de usuario ");
-            List<Exhibits> exhibitsList = exhibitsRepository.getAllFavorites();
-            for(int i= 0 ; i<exhibitsList.size();i++) {
-                exhibitsRepository.delete(exhibitsList.get(i));
+            List<ItemMuseo> itemMuseoList = exhibitsRepository.getAllFavorites();
+            for(int i = 0; i< itemMuseoList.size(); i++) {
+                exhibitsRepository.delete(itemMuseoList.get(i));
             }
 
         } catch (NegocioException e) {

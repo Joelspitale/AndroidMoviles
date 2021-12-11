@@ -5,9 +5,8 @@ import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
-import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.modelo.ItemMuseo;
 
-import java.security.spec.ECField;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,15 +20,15 @@ public class ExhibitsBusiness implements ExhibitsRepository {
     }
 
     @Override
-    public List<Exhibits> getAllFavorites() throws NegocioException{
+    public List<ItemMuseo> getAllFavorites() throws NegocioException{
         try{
             return exhibitsDAO.getAllFavorites();
         }catch (Exception e){
             throw new NegocioException(e);
         }
     }
-    public Exhibits load(long id) throws NegocioException, NoEncontradoException {
-        Optional<Exhibits> exhibits;
+    public ItemMuseo load(long id) throws NegocioException, NoEncontradoException {
+        Optional<ItemMuseo> exhibits;
         try {
             exhibits = exhibitsDAO.findFavoritesById(id);
         }catch (Exception e){
@@ -42,14 +41,14 @@ public class ExhibitsBusiness implements ExhibitsRepository {
     }
 
     @Override
-    public void insert(Exhibits exhibits) throws NegocioException, EncontradoException {
+    public void insert(ItemMuseo itemMuseo) throws NegocioException, EncontradoException {
         try {
-            load(exhibits.getId());
-            throw new EncontradoException("Ya existe una exhibicion con id ="+ exhibits.getId());
+            load(itemMuseo.getId());
+            throw new EncontradoException("Ya existe una exhibicion con id ="+ itemMuseo.getId());
         }catch (NoEncontradoException e){
         }
         try {
-            exhibitsDAO.insert(exhibits);
+            exhibitsDAO.insert(itemMuseo);
         } catch (Exception e) {
             throw new NegocioException(e);
         }
@@ -57,15 +56,15 @@ public class ExhibitsBusiness implements ExhibitsRepository {
     }
 
     @Override
-    public void update(Exhibits exhibits) throws NegocioException, NoEncontradoException{
-        exhibitsDAO.update(exhibits);
+    public void update(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException{
+        exhibitsDAO.update(itemMuseo);
     }
 
     @Override
-    public void delete(Exhibits exhibits) throws NegocioException, NoEncontradoException {
-        load(exhibits.getId());
+    public void delete(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException {
+        load(itemMuseo.getId());
         try{
-            exhibitsDAO.delete(exhibits);
+            exhibitsDAO.delete(itemMuseo);
         }catch (Exception e) {
             throw new NegocioException(e);
         }

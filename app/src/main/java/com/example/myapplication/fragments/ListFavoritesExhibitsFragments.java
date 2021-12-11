@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,16 +22,11 @@ import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
-import com.example.myapplication.modelo.Exhibits;
-import com.example.myapplication.network.RetrofitClientInstance;
-import com.example.myapplication.network.ServiceExhibits;
+import com.example.myapplication.modelo.ItemMuseo;
 
 import java.util.List;
 
 import com.example.myapplication.recyclerView.ListAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ListFavoritesExhibitsFragments extends Fragment {
 
@@ -44,7 +38,7 @@ public class ListFavoritesExhibitsFragments extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    List<Exhibits> exhibitsList;
+    List<ItemMuseo> itemMuseoList;
     RecyclerView recyclerExhibits;
 
     Activity activity;
@@ -100,21 +94,21 @@ public class ListFavoritesExhibitsFragments extends Fragment {
 
 
 
-    private void loadExhibitsList(List<Exhibits> exhibitsList, View view){
+    private void loadExhibitsList(List<ItemMuseo> itemMuseoList, View view){
         //direcciono mi recycler view
         recyclerExhibits = view.findViewById(R.id.recyclerId);
         recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
-        ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(),exhibitsList);
+        ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(), itemMuseoList);
         //le coloco el adapter que ya hemos hecho
         recyclerExhibits.setAdapter(listAdapterExhibits);
 
         listAdapterExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Exhibits exhibitsSelected = exhibitsList.get(recyclerExhibits.getChildAdapterPosition(view));
+                ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
 
-                Toast.makeText(getContext(), "Selecciono :"+  exhibitsSelected.getTitle(), Toast.LENGTH_SHORT).show();
-                interfaceComunicaFragments.sentExhibits(exhibitsSelected);
+                Toast.makeText(getContext(), "Selecciono :"+  itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
+                interfaceComunicaFragments.sentExhibits(itemMuseoSelected);
             }
         });
     }

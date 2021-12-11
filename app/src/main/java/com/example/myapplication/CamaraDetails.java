@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.ExhibitsBusiness;
@@ -22,7 +20,7 @@ import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
-import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
 import com.jakewharton.picasso.OkHttp3Downloader;
@@ -66,12 +64,12 @@ public class CamaraDetails extends AppCompatActivity {
 
 
         long id =  (long) getIntent().getExtras().getSerializable("codigoQR");
-        final Exhibits[] exhibit = {new Exhibits()};
+        final ItemMuseo[] exhibit = {new ItemMuseo()};
         ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
-        Call<Exhibits> call = elegirEndPoint(serviceExhibits,id);
-        call.enqueue(new Callback<Exhibits>() {
+        /*Call<ItemMuseo> call = elegirEndPoint(serviceExhibits,id);
+        call.enqueue(new Callback<ItemMuseo>() {
                 @Override
-                public void onResponse(Call<Exhibits> call, Response<Exhibits> response) {
+                public void onResponse(Call<ItemMuseo> call, Response<ItemMuseo> response) {
                     if(!response.isSuccessful()){
                         System.out.println("Codigo: " + response.code());
                     }
@@ -85,7 +83,7 @@ public class CamaraDetails extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Exhibits> call, Throwable t) {
+                public void onFailure(Call<ItemMuseo> call, Throwable t) {
                     System.out.println("Hubo un error inesperado" + t.getMessage());
                 }
             });
@@ -106,37 +104,37 @@ public class CamaraDetails extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
     }
 
-    private void addOrDeleteFavoritesExhibits(Exhibits exhibits) throws NegocioException, NoEncontradoException, EncontradoException {
+    private void addOrDeleteFavoritesExhibits(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException, EncontradoException {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
         ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
         if(checkBox.isChecked()){
             System.out.println("la exhibicion esta activada");
-            exhibitsRepository.insert(exhibits);
+            exhibitsRepository.insert(itemMuseo);
             checkBox.setChecked(true);
         }else{
             System.out.println("la exhibicion esta desactivada");
-            exhibitsRepository.delete(exhibits);
+            exhibitsRepository.delete(itemMuseo);
             checkBox.setChecked(false);
         }
     }
 
-    private void exhibitsExistInBd(Exhibits exhibits){
+    private void exhibitsExistInBd(ItemMuseo itemMuseo){
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
         ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
         try {
-            exhibitsRepository.load(exhibits.getId());
+            exhibitsRepository.load(itemMuseo.getId());
             checkBox.setChecked(true);
         }catch (Exception e){
             checkBox.setChecked(false);
         }
     }
 
-    private Call<Exhibits> elegirEndPoint(ServiceExhibits serviceExhibits, long id) {
+    /*private Call<ItemMuseo> elegirEndPoint(ServiceExhibits serviceExhibits, long id) {
         switch ((int) id){
             case 1:
                 return serviceExhibits.getOneFirstExhibit();
@@ -160,25 +158,25 @@ public class CamaraDetails extends AppCompatActivity {
                 return serviceExhibits.getOneTenthExhibit();
         }
 
-    }
+    }*/
 
 
 
-    private void loadExhibit(Exhibits exhibits){
+    private void loadExhibit(ItemMuseo itemMuseo){
 
-        txtTitleDetaills.setText(exhibits.getTitle());
-        txtIntroductionDetails.setText(exhibits.getIntroduction());
-        txtContentDetails.setText(exhibits.getContent());
+        txtTitleDetaills.setText(itemMuseo.getItemTitle());
+        txtIntroductionDetails.setText(itemMuseo.getItemIntro());
+        txtContentDetails.setText(itemMuseo.getItemMainContent());
 
         Picasso.Builder builder = new Picasso.Builder(getBaseContext());
         builder.downloader(new OkHttp3Downloader(getBaseContext()));
-        builder.build().load(exhibits.getImagenId()) //busco la imagen de la url del json
+        builder.build().load(itemMuseo.getItemMainPicture()) //busco la imagen de la url del json
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
                 .into(imageDetails);
         //si la obtiene la meto en el layaout de la imagen de la card
         //pinto el corazon o no en funcion si existe en la bd
-        exhibitsExistInBd(exhibits);
+        exhibitsExistInBd(itemMuseo);
 
     }
 }

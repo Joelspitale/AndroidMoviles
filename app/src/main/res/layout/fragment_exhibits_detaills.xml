@@ -125,11 +125,10 @@
     </ScrollView>
 
     <ProgressBar
-        android:id="@+id/progress_bar_details"
+        android:id="@+id/progress_bar_item_Museo"
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-
         />
 
 </RelativeLayout>

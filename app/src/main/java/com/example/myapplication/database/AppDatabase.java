@@ -2,17 +2,16 @@ package com.example.myapplication.database;
 
 import android.content.Context;
 import androidx.room.Database;
-import androidx.room.Entity;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.myapplication.database.dao.ExhibitsDAO;
 import com.example.myapplication.database.dao.UserDAO;
-import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.modelo.User;
 
 //luego tengo que agregar el del user
-@Database(entities = {Exhibits.class,User.class},version = 1)
+@Database(entities = {ItemMuseo.class,User.class},version = 1)
 public abstract class  AppDatabase extends RoomDatabase {
 
     public static AppDatabase INSTANCE;

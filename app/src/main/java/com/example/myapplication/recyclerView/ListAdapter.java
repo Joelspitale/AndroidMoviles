@@ -3,43 +3,39 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
-import com.example.myapplication.modelo.Exhibits;
-import com.jakewharton.picasso.OkHttp3Downloader;
-import com.squareup.picasso.Picasso;
+import com.example.myapplication.modelo.ItemMuseo;
 
 import java.util.List;
 
-public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListViewHolder> implements View.OnClickListener{
+public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoListViewHolder> implements View.OnClickListener{
 
-    private List<Exhibits> exhibitsList;
+    private List<ItemMuseo> itemMuseoList;
     private View.OnClickListener listener;
     private Context context;
 
-
-    public ListAdapter(Context context,List<Exhibits> exhibitsList) {
-        this.exhibitsList = exhibitsList;
+    public ListAdapter(Context context,List<ItemMuseo> itemMuseoList) {
+        this.itemMuseoList = itemMuseoList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ExhibitsListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemMuseoListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_exhibits, parent, false);
         row.setOnClickListener(this);
-        return new ExhibitsListViewHolder(row);
+        return new ItemMuseoListViewHolder(row);
     }
 
     //mapeo cada elemento de la lista en el recycler view
     @Override
-    public void onBindViewHolder(@NonNull ExhibitsListViewHolder holder, int position) {
-        Exhibits exhibit = exhibitsList.get(position);
-        ((ExhibitsListViewHolder) holder).getTxtTitle().setText(exhibit.getTitle());
-        ((ExhibitsListViewHolder) holder).getTxtIntroducction().setText(exhibit.getIntroduction());
+    public void onBindViewHolder(@NonNull ItemMuseoListViewHolder holder, int position) {
+        ItemMuseo itemMuseo = itemMuseoList.get(position);
+        ((ItemMuseoListViewHolder) holder).getTxtTitle().setText(itemMuseo.getItemTitle());
+        ((ItemMuseoListViewHolder) holder).getTxtIntroducction().setText(itemMuseo.getItemIntro());
 //        ((ExhibitsListViewHolder) holder).getTxtContent().setText(exhibit.getContent());
 //
         //extraigo la imagen de la url y la cargo en el layaout o en su defecto traigo una icono por defecto
@@ -54,7 +50,7 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
 
     @Override
     public int getItemCount() {
-        return exhibitsList.size();
+        return itemMuseoList.size();
     }
 
     public void setOnClickListener( View.OnClickListener listener){
@@ -67,14 +63,14 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
         }
     }
 
-    public  class ExhibitsListViewHolder extends RecyclerView.ViewHolder {
+    public  class ItemMuseoListViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle;
         private TextView txtIntroducction;
-        private TextView txtContent;
+//        private TextView txtContent;
 //        private ImageView foto;
 
         //direcciono layaout con variables de java
-        public ExhibitsListViewHolder(@NonNull View itemView) {
+        public ItemMuseoListViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.idExhibitsTitle);
             txtIntroducction = (TextView) itemView.findViewById(R.id.idExhibitsIntroduction);
@@ -98,20 +94,6 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ExhibitsListV
             this.txtIntroducction = txtIntroducction;
         }
 
-//        public TextView getTxtContent() {
-//            return txtContent;
-//        }
-//
-//        public void setTxtContent(TextView txtContent) {
-//            this.txtContent = txtContent;
-//        }
-//
-//        public ImageView getFoto() {
-//            return foto;
-//        }
-//
-//        public void setFoto(ImageView foto) {
-//            this.foto = foto;
-//        }
+
     }
 }

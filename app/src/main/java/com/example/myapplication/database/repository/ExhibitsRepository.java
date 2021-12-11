@@ -3,18 +3,19 @@ package com.example.myapplication.database.repository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
-import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.modelo.ItemMuseo;
+
 import java.util.List;
 
 public interface ExhibitsRepository {
 
-    List<Exhibits> getAllFavorites() throws NegocioException;
+    List<ItemMuseo> getAllFavorites() throws NegocioException;
 
-    void insert(Exhibits exhibits) throws NegocioException, EncontradoException;
+    void insert(ItemMuseo itemMuseo) throws NegocioException, EncontradoException;
 
-    public Exhibits load(long id) throws NegocioException, NoEncontradoException;
+    public ItemMuseo load(long id) throws NegocioException, NoEncontradoException;
 
-    void update(Exhibits exhibits) throws NegocioException, NoEncontradoException;
+    void update(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException;
 
-    void delete(Exhibits exhibits) throws NegocioException, NoEncontradoException;
+    void delete(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException;
 }

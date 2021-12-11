@@ -2,6 +2,7 @@ package com.example.myapplication.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,12 +20,12 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
+import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
 
 import java.util.List;
 
-import com.example.myapplication.modelo.Exhibits;
 import com.example.myapplication.recyclerView.ListAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +43,7 @@ public class ListExhibitsFragments extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    List<Exhibits> exhibitsList;
+    List<ItemMuseo> itemMuseoList;
     RecyclerView recyclerExhibits;
 
     Activity activity;
@@ -77,14 +78,16 @@ public class ListExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
         //inflo el vista
         View view = inflater.inflate(R.layout.fragment_list_exhibits_fragments, container, false);
-        progressBar = view.findViewById(R.id.progress_bar_listExhibits);
         scrollView = view.findViewById(R.id.scrollListExhibits);
-        //instancio el service para hacer el get a la api
+
+        progressBar = view.findViewById(R.id.progress_bar_listExhibits);
         ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
-        Call<List<Exhibits>> call = serviceExhibits.getAllExhibits(); //hago la llamada
-        call.enqueue(new Callback<List<Exhibits>>() {
+        System.out.println("por buscar todos los itemsMUseo");
+
+        Call<List<ItemMuseo>> call = serviceExhibits.getAllItemsMuseo(); //hago la llamada
+        call.enqueue(new Callback<List<ItemMuseo>>() {
             @Override
-            public void onResponse(Call<List<Exhibits>> call, Response<List<Exhibits>> response) {
+            public void onResponse(Call<List<ItemMuseo>> call, Response<List<ItemMuseo>> response) {
                 if(!response.isSuccessful()){
                     System.out.println("Codigo: " + response.code());
                 }
@@ -95,30 +98,34 @@ public class ListExhibitsFragments extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Exhibits>> call, Throwable t) {
+            public void onFailure(Call<List<ItemMuseo>> call, Throwable t) {
                 System.out.println("Hubo un error inesperado" + t.getMessage());
             }
         });
 
+
+        /*
+        MiTareaAsincrona tarea2 = new MiTareaAsincrona(view,scrollView,progressBar,serviceExhibits);
+        tarea2.execute();*/
         return view;
     }
 
 
 
-    private void loadExhibitsList(List<Exhibits> exhibitsList, View view){
+    private void loadExhibitsList(List<ItemMuseo> itemMuseoList, View view){
         //direcciono mi recycler view
         recyclerExhibits = view.findViewById(R.id.recyclerId);
         recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
-        ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(),exhibitsList);
+        ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(), itemMuseoList);
         //le coloco el adapter que ya hemos hecho
         recyclerExhibits.setAdapter(listAdapterExhibits);
 
         listAdapterExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Exhibits exhibitsSelected = exhibitsList.get(recyclerExhibits.getChildAdapterPosition(view));
-                Toast.makeText(getContext(), "Selecciono :"+  exhibitsSelected.getTitle(), Toast.LENGTH_SHORT).show();
-                interfaceComunicaFragments.sentExhibits(exhibitsSelected);
+                ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
+                Toast.makeText(getContext(), "Selecciono :"+  itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
+                interfaceComunicaFragments.sentExhibits(itemMuseoSelected);
             }
         });
     }
@@ -133,4 +140,71 @@ public class ListExhibitsFragments extends Fragment {
         }
     }
 
+    private class MiTareaAsincrona extends AsyncTask<Void, Void, Boolean> {
+        private View view;
+        private ScrollView scrollView;
+        private ProgressBar progressBar;
+        private ServiceExhibits serviceExhibits;
+
+
+        public MiTareaAsincrona(View view, ScrollView scrollView, ProgressBar progressBar, ServiceExhibits serviceExhibits) {
+            this.view = view;
+            this.scrollView = scrollView;
+            this.progressBar = progressBar;
+            this.serviceExhibits = serviceExhibits;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+          Call<List<ItemMuseo>> call = serviceExhibits.getAllItemsMuseo(); //hago la llamada
+            call.enqueue(new Callback<List<ItemMuseo>>() {
+                @Override
+                public void onResponse(Call<List<ItemMuseo>> call, Response<List<ItemMuseo>> response) {
+                    if(!response.isSuccessful()){
+                        System.out.println("Codigo: " + response.code());
+                    }
+                    System.out.println("Se obtuvo el json correctamente");
+                    loadExhibitsList(response.body(),view);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    scrollView.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFailure(Call<List<ItemMuseo>> call, Throwable t) {
+                    System.out.println("Hubo un error inesperado" + t.getMessage());
+                }
+            });
+
+            return true;
+        }
+
+        /*@Override
+        protected void onProgressUpdate(Integer... values) {
+            int progreso = values[0].intValue();
+
+            //pbarProgreso.setProgress(progreso);
+        }*/
+
+        @Override
+        protected void onPreExecute() {
+            //pbarProgreso.setMax(100);
+            //pbarProgreso.setProgress(0);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            System.out.println("Se ingreso a onPostExecute");
+            progressBar.setVisibility(View.INVISIBLE);
+            scrollView.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onCancelled() {
+            Toast.makeText(getActivity().getBaseContext(), "Tarea cancelada!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
+

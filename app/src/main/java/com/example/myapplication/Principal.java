@@ -17,7 +17,7 @@ import com.example.myapplication.fragments.ListExhibitsFragments;
 import com.example.myapplication.fragments.ListFavoritesExhibitsFragments;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
-import com.example.myapplication.modelo.Exhibits;
+import com.example.myapplication.modelo.ItemMuseo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -80,12 +80,12 @@ public class Principal extends AppCompatActivity implements
     }
 
     @Override
-    public void sentExhibits(Exhibits exhibits) {
+    public void sentExhibits(ItemMuseo itemMuseo) {
         fragmentExhibitsDetaills = new FragmentExhibitsDetaills();
         //con la clase Bundle es como se transporta objetos entre fragments
         Bundle bundleSent = new Bundle();
         //envio el objeto cuya clave es "objeto"
-        bundleSent.putSerializable("objeto", exhibits);
+        bundleSent.putSerializable("objeto", itemMuseo);
         fragmentExhibitsDetaills.setArguments(bundleSent);
 
         //cargo el fragments en la activity actual
