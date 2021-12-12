@@ -4,5 +4,5 @@ import com.example.myapplication.modelo.ItemMuseo;
 
 //utilizo esta interfaz para pasar un objeto exhibicion de un fragments a otro
 public interface IComunicationsFragment {
-    public void sentExhibits(ItemMuseo itemMuseo);
+    public void sentItemMuseo(ItemMuseo itemMuseo);
 }

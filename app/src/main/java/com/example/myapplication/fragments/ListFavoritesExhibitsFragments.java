@@ -106,7 +106,7 @@ public class ListFavoritesExhibitsFragments extends Fragment {
                 ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
 
                 Toast.makeText(getContext(), "Selecciono :"+  itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
-                interfaceComunicaFragments.sentExhibits(itemMuseoSelected);
+                interfaceComunicaFragments.sentItemMuseo(itemMuseoSelected);
             }
         });
     }

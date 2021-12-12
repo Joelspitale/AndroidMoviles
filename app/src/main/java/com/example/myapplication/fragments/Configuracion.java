@@ -38,10 +38,8 @@ public class Configuracion extends Fragment {
     private Preference preference = new Preference();
     Fragment fragmentProfile;
     Fragment fragmentSugerencia;
-    private  ImageView imageProfile;
 
     public Configuracion() {
-        // Required empty public constructor
     }
 
     public static Configuracion newInstance(String param1, String param2) {
@@ -68,13 +66,6 @@ public class Configuracion extends Fragment {
         TextView text_name = view.findViewById(R.id.text_name);
         text_name.setHint(user.getName());
 
-        imageProfile = view.findViewById(R.id.image_profile);
-        imageProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               loadImagen();
-            }
-        });
 
         Button buttonSugerencia = view.findViewById(R.id.buttonSugerencia);
         buttonSugerencia.setOnClickListener(new View.OnClickListener() {
@@ -146,21 +137,6 @@ public class Configuracion extends Fragment {
             e.printStackTrace();
         } catch (NoEncontradoException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void loadImagen(){
-        Intent myIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        myIntent.setType("image/");
-        startActivityForResult(myIntent.createChooser(myIntent, "Seleccione la Aplicacion"),1);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_OK){
-            Uri path = data.getData();
-            imageProfile.setImageURI(path);
         }
     }
 }

@@ -2,7 +2,6 @@ package com.example.myapplication.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -124,7 +123,7 @@ public class ListExhibitsFragments extends Fragment {
                 ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
 
                 Toast.makeText(getContext(), "Selecciono :"+  itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
-                interfaceComunicaFragments.sentExhibits(itemMuseoSelected);
+                interfaceComunicaFragments.sentItemMuseo(itemMuseoSelected);
             }
         });
     }

@@ -36,8 +36,7 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
         ItemMuseo itemMuseo = itemMuseoList.get(position);
         ((ItemMuseoListViewHolder) holder).getTxtTitle().setText(itemMuseo.getItemTitle());
         ((ItemMuseoListViewHolder) holder).getTxtRoomName().setText(itemMuseo.getRoomName());
-//        ((ExhibitsListViewHolder) holder).getTxtContent().setText(exhibit.getContent());
-//
+        //en caso de que queramos mostrar una imagen en las cards
         //extraigo la imagen de la url y la cargo en el layaout o en su defecto traigo una icono por defecto
         //((ExhibitsListViewHolder) holder).getFoto().setImageResource(exhibit.getImagenId());
 //        Picasso.Builder builder = new Picasso.Builder(context);
@@ -66,16 +65,14 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
     public  class ItemMuseoListViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle;
         private TextView txtRoomName;
-//        private TextView txtContent;
-//        private ImageView foto;
+//       private ImageView foto;
 
         //direcciono layaout con variables de java
         public ItemMuseoListViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.idExhibitsTitle);
             txtRoomName = (TextView) itemView.findViewById(R.id.idExhibitsIntroduction);
-//            txtContent = (TextView) itemView.findViewById(R.id.idExhibitsContent);
-//            foto = (ImageView) itemView.findViewById(R.id.idImagen);
+//          foto = (ImageView) itemView.findViewById(R.id.idImagen);
         }
 
         public TextView getTxtTitle() {

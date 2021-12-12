@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.example.myapplication.fragments.Configuracion;
 import com.example.myapplication.fragments.FragmentExhibitsDetaills;
 import com.example.myapplication.fragments.ListExhibitsFragments;
@@ -80,7 +78,7 @@ public class Principal extends AppCompatActivity implements
     }
 
     @Override
-    public void sentExhibits(ItemMuseo itemMuseo) {
+    public void sentItemMuseo(ItemMuseo itemMuseo) {
         fragmentExhibitsDetaills = new FragmentExhibitsDetaills();
         //con la clase Bundle es como se transporta objetos entre fragments
         Bundle bundleSent = new Bundle();
