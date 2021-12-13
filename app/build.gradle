@@ -54,12 +54,12 @@ dependencies {
     implementation 'androidx.core:core:1.5.0-alpha04'
     implementation "androidx.room:room-runtime:2.3.0"
     implementation "androidx.cardview:cardview:1.0.0"
-    /*implementation files('C:/Users/matia/Downloads/Telegram Desktop/activation.jar')
+    implementation files('C:/Users/matia/Downloads/Telegram Desktop/activation.jar')
     implementation files('C:/Users/matia/Downloads/Telegram Desktop/additionnal.jar')
-    implementation files('C:/Users/matia/Downloads/Telegram Desktop/mail.jar')*/
-    implementation files('/home/joel/Escritorio/drive-download-20211124T150104Z-001/activation.jar')
-    implementation files('/home/joel/Escritorio/drive-download-20211124T150104Z-001/additionnal.jar')
-    implementation files('/home/joel/Escritorio/drive-download-20211124T150104Z-001/mail.jar')
+    implementation files('C:/Users/matia/Downloads/Telegram Desktop/mail.jar')
+//    implementation files('/home/joel/Escritorio/drive-download-20211124T150104Z-001/activation.jar')
+//    implementation files('/home/joel/Escritorio/drive-download-20211124T150104Z-001/additionnal.jar')
+//    implementation files('/home/joel/Escritorio/drive-download-20211124T150104Z-001/mail.jar')
     annotationProcessor "androidx.room:room-compiler:2.3.0"
 
     testImplementation 'junit:junit:4.+'

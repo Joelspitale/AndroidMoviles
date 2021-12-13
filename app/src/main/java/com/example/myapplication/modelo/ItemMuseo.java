@@ -20,15 +20,19 @@ public class ItemMuseo implements Serializable {
     @ColumnInfo(name = "imagenId")
     private String itemMainPicture;
     private String imagenDetails;
+    private String itemYoutube;
+    private String itemTags;
 
 
-    public ItemMuseo(long id, String itemTitle, String itemIntro, String itemMainContent, String itemMainPicture, String imagenDetails) {
+    public ItemMuseo(long id, String itemTitle, String itemIntro, String itemMainContent, String itemMainPicture, String imagenDetails, String itemYoutube, String itemTags) {
         this.id = id;
         this.itemTitle = itemTitle;
         this.itemIntro = itemIntro;
         this.itemMainContent = itemMainContent;
         this.itemMainPicture = itemMainPicture;
         this.imagenDetails = imagenDetails;
+        this.itemYoutube = itemYoutube;
+        this.itemTags = itemTags;
     }
 
     public ItemMuseo() {
@@ -89,5 +93,21 @@ public class ItemMuseo implements Serializable {
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
+    }
+
+    public String getItemYoutube() {
+        return itemYoutube;
+    }
+
+    public void setItemYoutube(String itemYoutube) {
+        this.itemYoutube = itemYoutube;
+    }
+
+    public String getItemTags() {
+        return itemTags;
+    }
+
+    public void setItemTags(String itemTags) {
+        this.itemTags = itemTags;
     }
 }

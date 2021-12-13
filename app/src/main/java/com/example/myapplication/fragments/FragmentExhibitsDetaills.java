@@ -1,6 +1,7 @@
 package com.example.myapplication.fragments;
 
 import android.app.ProgressDialog;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
+
 import com.example.myapplication.R;
 import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.ExhibitsBusiness;
@@ -189,7 +192,6 @@ public class FragmentExhibitsDetaills extends Fragment{
                 //.error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
                 .into(imageDetails);
                  //si la obtiene la meto en el layaout de la imagen de la card
-
         //pinto el corazon o no en funcion si existe en la bd
         exhibitsExistInBd(itemMuseo);
 

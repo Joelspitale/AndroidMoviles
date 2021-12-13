@@ -10,10 +10,10 @@ import retrofit2.http.Path;
 
 public interface ServiceExhibits {
 
-    @GET("v1/find-all-items-museo-dto")
+    @GET("/find-all-items-museo-dto")
     Call<List<ItemMuseo>> getAllItemsMuseo();
 
-    @GET("v1/find-one-items-museo/{id}")
+    @GET("/find-one-items-museo/{id}")
     Call<ItemMuseo> getOneItemMuseoById(@Path(value = "id", encoded = true) long id);
 
 }
