@@ -1,10 +1,12 @@
 package com.example.myapplication.fragments;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.AppDatabase;
@@ -29,13 +30,22 @@ import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentExhibitsDetaills extends Fragment{
+public class FragmentExhibitsDetaills extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -48,7 +58,10 @@ public class FragmentExhibitsDetaills extends Fragment{
     private ProgressBar progressBar;
     private ScrollView scrollView;
     private CheckBox checkBox;
-    private ItemMuseo exhibit;
+    private ItemMuseo itemMuseo;
+    private Button buttonYoutube;
+    private ChipGroup chipGroup;
+    private ImageCarousel carousel;
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
         FragmentExhibitsDetaills fragment = new FragmentExhibitsDetaills();
@@ -75,20 +88,23 @@ public class FragmentExhibitsDetaills extends Fragment{
         View view = inflater.inflate(R.layout.fragment_exhibits_detaills, container, false);
 
         //hago el direccionamiento de los layaout con variables del entorno
-        txtTitleDetaills= view.findViewById(R.id.titleAtractionDetaills);
+        txtTitleDetaills = view.findViewById(R.id.titleAtractionDetaills);
         txtIntroductionDetails = view.findViewById(R.id.introductionAtractionDetaills);
         txtContentDetails = view.findViewById(R.id.contentAtractionDetaills);
         imageDetails = view.findViewById(R.id.imageAtractionDetaills);
         progressBar = view.findViewById(R.id.progress_bar_item_Museo);
         scrollView = view.findViewById(R.id.ScrollDetails);
         checkBox = view.findViewById(R.id.like);
+        buttonYoutube = view.findViewById(R.id.botonYoutube);
+        chipGroup = view.findViewById(R.id.chipGroup);
+        carousel = view.findViewById(R.id.carousel);
 
 
         Button bottomVolverExhibits = view.findViewById(R.id.buttonReturnAtractionDetaills);
         bottomVolverExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    getActivity().getSupportFragmentManager().popBackStack();
+                getActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
@@ -104,13 +120,13 @@ public class FragmentExhibitsDetaills extends Fragment{
             call.enqueue(new Callback<ItemMuseo>() {
                 @Override
                 public void onResponse(Call<ItemMuseo> call, Response<ItemMuseo> response) {
-                    if(!response.isSuccessful()){
+                    if (!response.isSuccessful()) {
                         System.out.println("Codigo: " + response.code());
                     }
                     System.out.println("Se obtuvo el json correctamente");
-                    exhibit = response.body();
-                    loadExhibit(exhibit);
-                    for(int i= 0 ; i<100000000;i++);    //para darle mas tiempo a la ap
+                    itemMuseo = response.body();
+                    loadExhibit(itemMuseo);
+                    for (int i = 0; i < 100000000; i++) ;    //para darle mas tiempo a la ap
                     bottomVolverExhibits.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     scrollView.setVisibility(View.VISIBLE);
@@ -134,10 +150,10 @@ public class FragmentExhibitsDetaills extends Fragment{
         bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                System.out.println("Agregar a favoritos la exibicion con id:" + exhibit.getId()+
-                        "titulo" + exhibit.getItemTitle());
+                System.out.println("Agregar a favoritos la exibicion con id:" + itemMuseo.getId() +
+                        "titulo" + itemMuseo.getItemTitle());
                 try {
-                    addOrDeleteFavoritesExhibits(exhibit);
+                    addOrDeleteFavoritesExhibits(itemMuseo);
                     //Recarga fragment
                 } catch (NegocioException e) {
                     e.printStackTrace();
@@ -148,6 +164,14 @@ public class FragmentExhibitsDetaills extends Fragment{
                 }
             }
         });
+
+        buttonYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(itemMuseo.getItemYoutube())));
+            }
+        });
+
         return view;
     }
 
@@ -156,45 +180,72 @@ public class FragmentExhibitsDetaills extends Fragment{
         AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
         ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
         ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
-        if(checkBox.isChecked()){
+        if (checkBox.isChecked()) {
             System.out.println("la exhibicion esta activada");
             exhibitsRepository.insert(itemMuseo);
             checkBox.setChecked(true);
-        }else{
+        } else {
             System.out.println("la exhibicion esta desactivada");
             exhibitsRepository.delete(itemMuseo);
             checkBox.setChecked(false);
         }
     }
 
-    private void exhibitsExistInBd(ItemMuseo itemMuseo){
+    private void exhibitsExistInBd(ItemMuseo itemMuseo) {
         AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
         ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
         ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
         try {
             exhibitsRepository.load(itemMuseo.getId());
             checkBox.setChecked(true);
-        }catch (Exception e){
+        } catch (Exception e) {
             checkBox.setChecked(false);
         }
     }
 
 
-    private void loadExhibit(ItemMuseo itemMuseo){
+    private void loadExhibit(ItemMuseo itemMuseo) {
 
         txtTitleDetaills.setText(itemMuseo.getItemTitle());
         txtIntroductionDetails.setText(itemMuseo.getItemIntro());
         txtContentDetails.setText(itemMuseo.getItemMainContent());
+        addChip(itemMuseo.getItemTags().split(","));
+        cargarCarousel();
         Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
         builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
         builder.build().load(itemMuseo.getItemMainPicture()) //busco la imagen de la url del json
                 //.placeholder(R.drawable.ic_launcher_background)
                 //.error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
                 .into(imageDetails);
-                 //si la obtiene la meto en el layaout de la imagen de la card
+        //si la obtiene la meto en el layaout de la imagen de la card
         //pinto el corazon o no en funcion si existe en la bd
         exhibitsExistInBd(itemMuseo);
 
+    }
+
+    private void cargarCarousel() {
+        List<CarouselItem> list = new ArrayList<>();
+        list.add(
+                //Aca adentro van los datos
+                new CarouselItem(
+                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
+                )
+        );
+        list.add(
+                new CarouselItem(
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Prototipo_Pucara_AX-01.jpg/440px-Prototipo_Pucara_AX-01.jpg"
+                )
+        );
+        carousel.setData(list);
+    }
+
+    private void addChip(String[] chips){
+        Chip chip;
+        for (int i = 0; i < chips.length; i ++){
+            chip = new Chip(getContext());
+            chip.setText(chips[i]);
+            chipGroup.addView(chip);
+        }
     }
 
 
@@ -207,7 +258,7 @@ public class FragmentExhibitsDetaills extends Fragment{
         private Button bottomVolverExhibits;
 
 
-        public MiTareaAsincrona(View view, ScrollView scrollView, ProgressBar progressBar, ServiceExhibits serviceExhibits, ItemMuseo itemMuseo,Button bottomVolverExhibits) {
+        public MiTareaAsincrona(View view, ScrollView scrollView, ProgressBar progressBar, ServiceExhibits serviceExhibits, ItemMuseo itemMuseo, Button bottomVolverExhibits) {
             this.view = view;
             this.scrollView = scrollView;
             this.progressBar = progressBar;
@@ -222,12 +273,12 @@ public class FragmentExhibitsDetaills extends Fragment{
             call.enqueue(new Callback<ItemMuseo>() {
                 @Override
                 public void onResponse(Call<ItemMuseo> call, Response<ItemMuseo> response) {
-                    if(!response.isSuccessful()){
+                    if (!response.isSuccessful()) {
                         System.out.println("Codigo: " + response.code());
                     }
                     System.out.println("Se obtuvo el json correctamente");
                     loadExhibit(response.body());
-                    for(int i= 0 ; i<100000000;i++);    //para darle mas tiempo a la ap
+                    for (int i = 0; i < 100000000; i++) ;    //para darle mas tiempo a la ap
                 }
 
                 @Override

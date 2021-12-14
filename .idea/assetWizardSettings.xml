@@ -305,8 +305,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_iua_logo" />
-                            <entry key="sourceFile" value="$USER_HOME$/Descargas/IUA.svg" />
+                            <entry key="outputName" value="ic_youtube_almost_black_logo_wine" />
+                            <entry key="sourceFile" value="C:\Users\matia\Desktop\ProyectoAndroid\YouTube-Almost-Black-Logo.wine.svg" />
                           </map>
                         </option>
                       </PersistentState>

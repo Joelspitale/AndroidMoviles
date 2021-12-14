@@ -54,6 +54,7 @@ dependencies {
     implementation 'androidx.core:core:1.5.0-alpha04'
     implementation "androidx.room:room-runtime:2.3.0"
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.5'
     implementation files('C:/Users/matia/Downloads/Telegram Desktop/activation.jar')
     implementation files('C:/Users/matia/Downloads/Telegram Desktop/additionnal.jar')
     implementation files('C:/Users/matia/Downloads/Telegram Desktop/mail.jar')
