@@ -85,5 +85,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit
     <string name="sugerencia">Dejanos tu sugerencia</string>
     <string name="InputSugerencia">Sugerencia</string>
     <string name="sendSugest">Enviar sugerencia</string>
+    <string name="link_audio">Link Audio</string>
 
 </resources>

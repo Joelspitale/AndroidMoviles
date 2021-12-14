@@ -22,9 +22,13 @@ public class ItemMuseo implements Serializable {
     private String imagenDetails;
     private String itemYoutube;
     private String itemTags;
+    private String itemAudioLink;
+    private double itemLat;
+    private double itemLong;
 
 
-    public ItemMuseo(long id, String itemTitle, String itemIntro, String itemMainContent, String itemMainPicture, String imagenDetails, String itemYoutube, String itemTags) {
+    public ItemMuseo(long id, String itemTitle, String itemIntro, String itemMainContent, String itemMainPicture,
+                     String imagenDetails, String itemYoutube, String itemTags, String itemAudioLink, double itemLat, double itemLong) {
         this.id = id;
         this.itemTitle = itemTitle;
         this.itemIntro = itemIntro;
@@ -33,6 +37,9 @@ public class ItemMuseo implements Serializable {
         this.imagenDetails = imagenDetails;
         this.itemYoutube = itemYoutube;
         this.itemTags = itemTags;
+        this.itemAudioLink = itemAudioLink;
+        this.itemLat = itemLat;
+        this.itemLong = itemLong;
     }
 
     public ItemMuseo() {
@@ -109,5 +116,29 @@ public class ItemMuseo implements Serializable {
 
     public void setItemTags(String itemTags) {
         this.itemTags = itemTags;
+    }
+
+    public String getItemAudioLink() {
+        return itemAudioLink;
+    }
+
+    public void setItemAudioLink(String itemAudioLink) {
+        this.itemAudioLink = itemAudioLink;
+    }
+
+    public double getItemLat() {
+        return itemLat;
+    }
+
+    public void setItemLat(double itemLat) {
+        this.itemLat = itemLat;
+    }
+
+    public double getItemLong() {
+        return itemLong;
+    }
+
+    public void setItemLong(double itemLong) {
+        this.itemLong = itemLong;
     }
 }
