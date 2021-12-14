@@ -5,6 +5,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static com.example.myapplication.utils.Constants.MAX_SIZE_PASSWORD;
 import static com.example.myapplication.utils.Constants.MIN_SIZE_PASSWORD;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class SingIn extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         setTitle(R.string.miTitulo);
         preferences.initPreference(getBaseContext());
+
         String[] permisos= {READ_EXTERNAL_STORAGE, CAMERA, INTERNET};
         verifyPermision(permisos);
 
