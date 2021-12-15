@@ -89,5 +89,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit
     <string name="no_hay_conexion_a_internet">No hay conexion a internet</string>
     <string name="verifiqueSuConexion">Verifique su conexion a internet e intente nuevamente</string>
     <string name="reintentar">Reintentar</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
 </resources>

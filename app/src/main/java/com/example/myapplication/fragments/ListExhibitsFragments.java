@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,16 +125,22 @@ public class ListExhibitsFragments extends Fragment {
     private void loadExhibitsList(List<ItemMuseo> itemMuseoList, View view) {
         //direcciono mi recycler view
         recyclerExhibits = view.findViewById(R.id.recyclerId);
+        Log.i("Prueba", "1");
         recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
+        Log.i("Prueba", "2");
         ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(), itemMuseoList);
+        Log.i("Prueba", "3");
         //le coloco el adapter que ya hemos hecho
         recyclerExhibits.setAdapter(listAdapterExhibits);
-
+        Log.i("Prueba", "4");
         listAdapterExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
 
+                Log.i("Prueba", "5");
                 Toast.makeText(getContext(), "Selecciono :" + itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
                 interfaceComunicaFragments.sentItemMuseo(itemMuseoSelected);
             }

@@ -106,6 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
+
                     <Button
                         android:id="@+id/botonAudio"
                         android:layout_width="wrap_content"
@@ -114,19 +115,29 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="10dp"
                         android:backgroundTint="@color/principal_blue"
-                        android:text="@string/link_audio"
-                        android:drawableLeft="@drawable/ic_baseline_volume_up_24" />
+                        android:drawableLeft="@drawable/ic_baseline_volume_up_24"
+                        android:text="@string/link_audio" />
+
                     <Button
                         android:id="@+id/botonYoutube"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
                         android:layout_gravity="center"
                         android:layout_marginTop="15dp"
-                        android:backgroundTint="@color/red"
                         android:layout_toRightOf="@+id/botonAudio"
-                        android:layout_alignParentBottom="true"
+                        android:backgroundTint="@color/red"
                         android:drawableLeft="@drawable/ic_youtube_almost_black_logo_wine" />
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/botonMaps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/white"
+                    android:drawableLeft="@drawable/ic_google_maps_logo"/>
 
                 <TextView
                     android:layout_width="match_parent"

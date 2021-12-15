@@ -27,6 +27,7 @@ import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
+import com.example.myapplication.modelo.ItemGallery;
 import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
@@ -62,6 +63,7 @@ public class FragmentExhibitsDetaills extends Fragment {
     private Button buttonYoutube;
     private ChipGroup chipGroup;
     private ImageCarousel carousel;
+    private Button buttonMaps;
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
         FragmentExhibitsDetaills fragment = new FragmentExhibitsDetaills();
@@ -98,6 +100,7 @@ public class FragmentExhibitsDetaills extends Fragment {
         buttonYoutube = view.findViewById(R.id.botonYoutube);
         chipGroup = view.findViewById(R.id.chipGroup);
         carousel = view.findViewById(R.id.carousel);
+        buttonMaps = view.findViewById(R.id.botonMaps);
 
 
         Button bottomVolverExhibits = view.findViewById(R.id.buttonReturnAtractionDetaills);
@@ -172,6 +175,15 @@ public class FragmentExhibitsDetaills extends Fragment {
             }
         });
 
+        buttonMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/?q=" + itemMuseo.getItemLat() + ","+ itemMuseo.getItemLong() +"&z=14")));
+            }
+        });
+
+
+
         return view;
     }
 
@@ -210,7 +222,7 @@ public class FragmentExhibitsDetaills extends Fragment {
         txtIntroductionDetails.setText(itemMuseo.getItemIntro());
         txtContentDetails.setText(itemMuseo.getItemMainContent());
         addChip(itemMuseo.getItemTags().split(","));
-        cargarCarousel();
+        cargarCarousel(itemMuseo.getItemGallery());
         Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
         builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
         builder.build().load(itemMuseo.getItemMainPicture()) //busco la imagen de la url del json
@@ -223,19 +235,18 @@ public class FragmentExhibitsDetaills extends Fragment {
 
     }
 
-    private void cargarCarousel() {
+    private void cargarCarousel(List<ItemGallery> itemGalleryList) {
         List<CarouselItem> list = new ArrayList<>();
-        list.add(
-                //Aca adentro van los datos
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
-                )
-        );
-        list.add(
-                new CarouselItem(
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Prototipo_Pucara_AX-01.jpg/440px-Prototipo_Pucara_AX-01.jpg"
-                )
-        );
+        for (int i = 0; i < itemGalleryList.size(); i++){
+            list.add(
+                    //Aca adentro van los datos
+                    new CarouselItem(
+                            itemGalleryList.get(i).getUrl()
+                    )
+            );
+        }
+
+
         carousel.setData(list);
     }
 
