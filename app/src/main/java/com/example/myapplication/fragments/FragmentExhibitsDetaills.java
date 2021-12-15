@@ -35,6 +35,8 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -62,7 +64,8 @@ public class FragmentExhibitsDetaills extends Fragment {
     private ItemMuseo itemMuseo;
     private Button buttonYoutube;
     private ChipGroup chipGroup;
-    private ImageCarousel carousel;
+    private CarouselView carouselView;
+    private List<ItemGallery> listURLsImage;
     private Button buttonMaps;
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
@@ -99,7 +102,7 @@ public class FragmentExhibitsDetaills extends Fragment {
         checkBox = view.findViewById(R.id.like);
         buttonYoutube = view.findViewById(R.id.botonYoutube);
         chipGroup = view.findViewById(R.id.chipGroup);
-        carousel = view.findViewById(R.id.carousel);
+        carouselView = view.findViewById(R.id.carouselView);
         buttonMaps = view.findViewById(R.id.botonMaps);
 
 
@@ -217,12 +220,11 @@ public class FragmentExhibitsDetaills extends Fragment {
 
 
     private void loadExhibit(ItemMuseo itemMuseo) {
-
         txtTitleDetaills.setText(itemMuseo.getItemTitle());
         txtIntroductionDetails.setText(itemMuseo.getItemIntro());
         txtContentDetails.setText(itemMuseo.getItemMainContent());
         addChip(itemMuseo.getItemTags().split(","));
-        cargarCarousel(itemMuseo.getItemGallery());
+        cargarCarousel(itemMuseo);
         Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
         builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
         builder.build().load(itemMuseo.getItemMainPicture()) //busco la imagen de la url del json
@@ -235,20 +237,22 @@ public class FragmentExhibitsDetaills extends Fragment {
 
     }
 
-    private void cargarCarousel(List<ItemGallery> itemGalleryList) {
-        List<CarouselItem> list = new ArrayList<>();
-        for (int i = 0; i < itemGalleryList.size(); i++){
-            list.add(
-                    //Aca adentro van los datos
-                    new CarouselItem(
-                            itemGalleryList.get(i).getUrl()
-                    )
-            );
-        }
-
-
-        carousel.setData(list);
+    private void cargarCarousel(ItemMuseo itemMuseo) {
+        listURLsImage = itemMuseo.getItemGallery();
+        carouselView.setImageListener(imageListener);
+        carouselView.setPageCount(listURLsImage.size());
     }
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+
+            Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
+            builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
+            builder.build().load(listURLsImage.get(position).getUrl()).into(imageView);
+
+        }
+    };
 
     private void addChip(String[] chips){
         Chip chip;

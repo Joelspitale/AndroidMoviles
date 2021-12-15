@@ -93,13 +93,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp" />
 
-                <org.imaginativeworld.whynotimagecarousel.ImageCarousel
-                    android:id="@+id/carousel"
+                <com.synnapps.carouselview.CarouselView
+                    android:id="@+id/carouselView"
                     android:layout_width="match_parent"
                     android:layout_height="256dp"
                     android:layout_marginTop="10dp"
                     app:carouselGravity="CENTER"
                     app:carouselType="SHOWCASE"
+                    app:radius="6dp"
                     app:scaleOnScroll="true" />
 
                 <LinearLayout
