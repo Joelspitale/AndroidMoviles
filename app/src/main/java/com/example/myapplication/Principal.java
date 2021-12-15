@@ -56,7 +56,7 @@ public class Principal extends AppCompatActivity implements
                         transaction.addToBackStack(null);
                         return true;
                     case R.id.menu_google:
-                        myIntent = new Intent(Intent.ACTION_WEB_SEARCH);
+                        myIntent = new Intent(Principal.this, MapsActivity.class);
                         startActivity(myIntent);
                         return true;
                     case R.id.menu_profile:

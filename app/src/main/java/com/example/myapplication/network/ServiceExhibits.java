@@ -13,6 +13,9 @@ public interface ServiceExhibits {
     @GET("v1/find-all-items-museo-dto")
     Call<List<ItemMuseo>> getAllItemsMuseo();
 
+    @GET("v1/find-all-items-museo")
+    Call<List<ItemMuseo>> getAllItemsMuseoComplete();
+
     @GET("v1/find-one-items-museo/{id}")
     Call<ItemMuseo> getOneItemMuseoById(@Path(value = "id", encoded = true) long id);
 

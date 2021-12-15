@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.myapplication.NoInternetConnection;
 import com.example.myapplication.R;
-import com.example.myapplication.SingIn;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
 import com.example.myapplication.modelo.ItemMuseo;
@@ -125,18 +124,13 @@ public class ListExhibitsFragments extends Fragment {
     private void loadExhibitsList(List<ItemMuseo> itemMuseoList, View view) {
         //direcciono mi recycler view
         recyclerExhibits = view.findViewById(R.id.recyclerId);
-        Log.i("Prueba", "1");
         recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
-        Log.i("Prueba", "2");
         ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(), itemMuseoList);
-        Log.i("Prueba", "3");
         //le coloco el adapter que ya hemos hecho
         recyclerExhibits.setAdapter(listAdapterExhibits);
-        Log.i("Prueba", "4");
         listAdapterExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
 
