@@ -3,8 +3,10 @@ package com.example.myapplication.modelo;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(tableName = "ItemMuseo")
 public class ItemMuseo implements Serializable {
@@ -25,7 +27,10 @@ public class ItemMuseo implements Serializable {
     private String itemAudioLink;
     private double itemLat;
     private double itemLong;
-
+    @Ignore
+    private List<ItemGallery> itemGallery;
+    @Ignore
+    private List <ItemExternalLink> itemExternalLinks;
 
     public ItemMuseo(long id, String itemTitle, String itemIntro, String itemMainContent, String itemMainPicture,
                      String imagenDetails, String itemYoutube, String itemTags, String itemAudioLink, double itemLat, double itemLong) {
@@ -140,5 +145,21 @@ public class ItemMuseo implements Serializable {
 
     public void setItemLong(double itemLong) {
         this.itemLong = itemLong;
+    }
+
+    public List<ItemGallery> getItemGallery() {
+        return itemGallery;
+    }
+
+    public void setItemGallery(List<ItemGallery> itemGallery) {
+        this.itemGallery = itemGallery;
+    }
+
+    public List<ItemExternalLink> getItemExternalLinks() {
+        return itemExternalLinks;
+    }
+
+    public void setItemExternalLinks(List<ItemExternalLink> itemExternalLinks) {
+        this.itemExternalLinks = itemExternalLinks;
     }
 }
