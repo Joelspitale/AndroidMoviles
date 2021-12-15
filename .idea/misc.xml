@@ -65,11 +65,13 @@
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/menu.xml" value="0.264" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/menu/prueba.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matia/Documents/GitHub/AndroidMoviles/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_aves.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/ic_groot.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.10833333333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.19166666666666668" />

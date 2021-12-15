@@ -54,7 +54,9 @@ public class Perfil extends Fragment {
         EditText modificarApellido = view.findViewById(R.id.apellidoModificar);
         EditText modificarPass = view.findViewById(R.id.passModificar);
         imageProfile = view.findViewById(R.id.image_profile);
+        loadImageProfileUI(preference.getUriImage(getActivity().getBaseContext()));
         FloatingActionButton cambiarFoto = view.findViewById(R.id.flotingBottonEdit);
+
 
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +69,6 @@ public class Perfil extends Fragment {
         cambiarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("aca toy");
                 loadImagen();
             }
         });
@@ -157,7 +158,6 @@ public class Perfil extends Fragment {
         UserRepository userRepository = new UserBusinnes(userDAO);
         try {
             userRepository.update(user.getName(),user.getLastname(),user.getEmail(),user.getPassword(),user.getId());
-            //userRepository.update(user);
         } catch (NegocioException e) {
             e.printStackTrace();
         } catch (NoEncontradoException e) {
@@ -167,15 +167,22 @@ public class Perfil extends Fragment {
     private void loadImagen(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         intent.setType("image/");
+        System.out.println("ingreso a buscar la imagen");
         startActivityForResult(intent.createChooser(intent, "Seleccione la imagen"),10);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
-        if(requestCode == RESULT_OK && requestCode == 10){
+        System.out.println("ingreso a buscar la imagen2");
+        if(resultCode == RESULT_OK){
             System.out.println("actualiza imagen");
             Uri path = data.getData();
-            imageProfile.setImageURI(data.getData());
+            loadImageProfileUI(path);              //CARGO FOTO A LA ITEM VIEW DE LA UI
+            preference.setUriImage(path);           //lo guardo en shared preference
         }
+    }
+
+    private void loadImageProfileUI(Uri uri) {
+        imageProfile.setImageURI(uri);
     }
 }

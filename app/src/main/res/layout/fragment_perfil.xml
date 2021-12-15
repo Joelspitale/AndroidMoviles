@@ -52,14 +52,14 @@
                 android:layout_marginTop="65dp"
                 android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/image_profile"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/circle"
-                        android:src="@drawable/ic_groot"
-                        tools:background="@drawable/circle" />
+                <ImageView
+                    android:id="@+id/image_profile"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/white"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"/>
 
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
