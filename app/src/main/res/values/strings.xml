@@ -86,5 +86,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit
     <string name="InputSugerencia">Sugerencia</string>
     <string name="sendSugest">Enviar sugerencia</string>
     <string name="link_audio">Link Audio</string>
+    <string name="no_hay_conexion_a_internet">No hay conexion a internet</string>
+    <string name="verifiqueSuConexion">Verifique su conexion a internet e intente nuevamente</string>
+    <string name="reintentar">Reintentar</string>
 
 </resources>

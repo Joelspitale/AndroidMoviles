@@ -23,11 +23,12 @@ import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.register.PasswordVerificed;
 import com.example.myapplication.utils.Preference;
+import com.example.myapplication.utils.VerifyConnection;
 
 import java.security.PrivateKey;
 
 public class Splash extends AppCompatActivity {
-    private boolean isRemember =  false;
+    private boolean isRemember = false;
     private Preference preferences = new Preference();
 
     @Override
@@ -42,19 +43,21 @@ public class Splash extends AppCompatActivity {
                 isRemember = preferences.getSessionActive();
                 nextActivity();
             }
-        },2000);
+        }, 2000);
     }
 
-    private void nextActivity(){
-        if(isRemember){
-            Intent myIntent = new Intent(Splash.this, Principal.class);
-            startActivity(myIntent);
-            finish();
-        }else {
-            Intent myIntent = new Intent(Splash.this, SingIn.class);
-            startActivity(myIntent);
-            finish();
-        }
+    private void nextActivity() {
+
+            if (isRemember) {
+                Intent myIntent = new Intent(Splash.this, Principal.class);
+                startActivity(myIntent);
+                finish();
+            } else {
+                Intent myIntent = new Intent(Splash.this, SingIn.class);
+                startActivity(myIntent);
+                finish();
+            }
+
     }
 
 
@@ -67,10 +70,10 @@ public class Splash extends AppCompatActivity {
         UserRepository userRepository = new UserBusinnes(userDAO);
         try {
             userRepository.insert(user);
-            Log.i( "Splash", "Usuario creado correctamente");
+            Log.i("Splash", "Usuario creado correctamente");
         } catch (NegocioException e) {
             e.printStackTrace();
-            Log.i( "Splash", "Hubo un error con la bd");
+            Log.i("Splash", "Hubo un error con la bd");
         } catch (EncontradoException e) {
             e.printStackTrace();
         }
