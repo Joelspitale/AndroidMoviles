@@ -70,6 +70,14 @@ public class Sugerencia extends Fragment {
                         .execute();
             }
         });
+
+        Button volverSuggest = view.findViewById(R.id.buttonReturnSugerencia);
+        volverSuggest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
         return view;
     }
 

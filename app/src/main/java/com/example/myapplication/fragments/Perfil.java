@@ -94,27 +94,14 @@ public class Perfil extends Fragment {
                     //id
                     userAux.setId(user.getId());
                     //mail
-                    if(modificarMail.getText().length() > 0)
                         userAux.setEmail(String.valueOf(modificarMail.getText()));
-                    else
-                        userAux.setEmail(String.valueOf(modificarMail.getHint()));
                     //password
-                    if(modificarPass.getText().length() > 0)
                         userAux.setPassword(String.valueOf(modificarPass.getText()));
-                    else
-                        userAux.setPassword(String.valueOf(modificarPass.getHint()));
                     //name
-                    if(modificarNombre.getText().length() > 0)
                         userAux.setName(String.valueOf(modificarNombre.getText()));
-                    else
-                        userAux.setName(String.valueOf(modificarNombre.getHint()));
                     //lastname
-                    if(modificarApellido.getText().length() > 0)
                         userAux.setLastname(String.valueOf(modificarApellido.getText()));
-                    else
-                        userAux.setLastname(String.valueOf(modificarApellido.getHint()));
 
-                    System.out.println("antes de la actualizacion"+userAux.toString());
                     actualizacion(userAux);
                     preference.savePreference(userAux.getEmail());
 

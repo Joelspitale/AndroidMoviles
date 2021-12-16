@@ -31,11 +31,10 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
-import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
-import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -53,8 +52,9 @@ public class CamaraDetails extends AppCompatActivity {
     private CheckBox checkBox;
     private ItemMuseo itemMuseo;
     private Button buttonYoutube;
-//    private ChipGroup chipGroup;
-    private ImageCarousel carousel;
+    //    private ChipGroup chipGroup;
+    private List<ItemGallery> listURLsImage;
+    private CarouselView carousel;
     private Button buttonMaps;
 
     @Override
@@ -136,7 +136,7 @@ public class CamaraDetails extends AppCompatActivity {
         buttonMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/?q=" + itemMuseo.getItemLat() + ","+ itemMuseo.getItemLong() +"&z=14")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/?q=" + itemMuseo.getItemLat() + "," + itemMuseo.getItemLong() + "&z=14")));
             }
         });
     }
@@ -173,13 +173,13 @@ public class CamaraDetails extends AppCompatActivity {
         txtTitleDetaills.setText(itemMuseo.getItemTitle());
         txtIntroductionDetails.setText(itemMuseo.getItemIntro());
         txtContentDetails.setText(itemMuseo.getItemMainContent());
-        cargarCarousel(itemMuseo.getItemGallery());
+        cargarCarousel(itemMuseo);
 //        addChip(itemMuseo.getItemTags().split(","));
         Picasso.Builder builder = new Picasso.Builder(getBaseContext());
         builder.downloader(new OkHttp3Downloader(getBaseContext()));
         builder.build().load(itemMuseo.getItemMainPicture()) //busco la imagen de la url del json
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
+//                .placeholder(R.drawable.ic_launcher_background)
+//                .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
                 .into(imageDetails);
         //si la obtiene la meto en el layaout de la imagen de la card
         //pinto el corazon o no en funcion si existe en la bd
@@ -187,18 +187,22 @@ public class CamaraDetails extends AppCompatActivity {
 
     }
 
-    private void cargarCarousel(List<ItemGallery> itemGalleryList) {
-        List<CarouselItem> list = new ArrayList<>();
-        for(int i = 0; i < itemGalleryList.size(); i++)
-        list.add(
-                //Aca adentro van los datos
-                new CarouselItem(
-                        itemGalleryList.get(i).getUrl()
-                )
-        );
-
-        carousel.setData(list);
+    private void cargarCarousel(ItemMuseo itemMuseo) {
+        listURLsImage = itemMuseo.getItemGallery();
+        carousel.setImageListener(imageListener);
+        carousel.setPageCount(listURLsImage.size());
     }
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+
+            Picasso.Builder builder = new Picasso.Builder(getBaseContext());
+            builder.downloader(new OkHttp3Downloader(getBaseContext()));
+            builder.build().load(listURLsImage.get(position).getUrl()).into(imageView);
+
+        }
+    };
 
 //    private void addChip(String[] chips) {
 //        Chip chip;
