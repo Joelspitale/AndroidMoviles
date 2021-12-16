@@ -4,6 +4,6 @@
     <item android:id="@+id/menu_home" android:title="Home" android:icon="@drawable/ic_baseline_home_24" app:showAsAction="always" />
     <item android:id="@+id/menu_favorites" android:title="Favoritos" android:icon="@drawable/ic_baseline_favorite_24" app:showAsAction="always"/>
     <item android:id="@+id/menu_placeholder" android:title="" app:showAsAction="always" />
-    <item android:id="@+id/menu_google" android:title="Google" android:icon="@drawable/ic_google" app:showAsAction="always"/>
+    <item android:id="@+id/menu_google" android:title="Mapa" android:icon="@drawable/ic_baseline_location_on_24" app:showAsAction="always"/>
     <item android:id="@+id/menu_profile" android:title="Mi Perfil" android:icon="@drawable/ic_baseline_person_24" app:showAsAction="always"/>
 </menu>
