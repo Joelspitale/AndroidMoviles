@@ -42,18 +42,16 @@ public class Password extends AppCompatActivity {
                     Intent myIntent = new Intent(Password.this, PasswordVerificed.class);
                     myIntent.putExtra("user", user);
                     startActivity(myIntent);
-                }
+                }else
+                    Toast.makeText(Password.this, "Ingrese un password con una longitud de entre 8 a 20 caracteres", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
 
     private boolean isPasswordValidate(String password) {
-        if (password.length() >= MIN_SIZE_PASSWORD && password.length() <= MAX_SIZE_PASSWORD){
-            inputPassword.setError(null);
-            inputPassword.setErrorEnabled(false);
+        if (password.length() >= MIN_SIZE_PASSWORD && password.length() <= MAX_SIZE_PASSWORD)
             return true;
-        }
-        inputPassword.setError("Ingrese un password que tenga una longitud de entre 8 a 20 caracteres");
         return false;
     }
 

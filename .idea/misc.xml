@@ -99,7 +99,7 @@
         <entry key="app/src/main/res/layout/activity_register_email.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_lastname.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register_name.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_register_password.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_register_password.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_registro5.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_registro_lastname.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro_passwordverificed.xml" value="0.2" />

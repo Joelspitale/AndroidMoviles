@@ -11,6 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.SingIn;
+import com.example.myapplication.database.AppDatabase;
+import com.example.myapplication.database.business.UserBusinnes;
+import com.example.myapplication.database.dao.UserDAO;
+import com.example.myapplication.database.repository.UserRepository;
+import com.example.myapplication.excepciones.EncontradoException;
+import com.example.myapplication.excepciones.NegocioException;
+import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -35,7 +42,7 @@ public class Email extends AppCompatActivity {
         bottonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 String email = inputEmail.getEditText().getText().toString();
-                if(isEmailValidate(email)){
+                if(isEmailValidate(email) && emailNotExist(email)){
                     User user = (User) getIntent().getExtras().getSerializable("user");
                     user.setEmail(email);
                     Intent myIntent = new Intent(Email.this, Password.class);
@@ -54,6 +61,25 @@ public class Email extends AppCompatActivity {
         }
         inputEmail.setError("Mail invalido");
         return false;
+    }
+
+    private boolean emailNotExist(String email) {
+        AppDatabase db = AppDatabase.getInstance(getBaseContext());
+        UserDAO userDAO = db.userDAO();
+        UserRepository userRepository = new UserBusinnes(userDAO);
+        try {
+            userRepository.findUserByEmail(email);
+            inputEmail.setError("Ya existe un usuario con ese correo");
+            return false;
+        } catch (NegocioException e) {
+            inputEmail.setError("Ya existe un usuario con ese correo");
+            e.printStackTrace();
+            return false;
+        } catch (NoEncontradoException e) {
+            inputEmail.setError(null);
+            inputEmail.setErrorEnabled(false);
+            return true;
+        }
     }
 
 }

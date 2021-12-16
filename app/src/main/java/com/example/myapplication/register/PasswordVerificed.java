@@ -2,6 +2,7 @@ package com.example.myapplication.register;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -43,13 +44,12 @@ public class PasswordVerificed extends AppCompatActivity {
                 String passwordValidate = inputPasswordValidate.getEditText().getText().toString();
                 User user = (User) getIntent().getExtras().getSerializable("user");
                 if(consistencyBetweenPassword(passwordValidate,user.getPassword() )){
-                    System.out.println("Nombre :" + user.getName());
-                    System.out.println("apellido :" + user.getLastname());
-                    System.out.println("email :" + user.getEmail());
+                    Log.i("Verificando obtencion datos passwordVerificed","Nombre :" + user.getName()+ "apellido :" + user.getLastname()+ "email :" + user.getEmail());
                     saveUserDatabase(user);
                     Intent myIntent = new Intent(PasswordVerificed.this, SingIn.class);
                     startActivity(myIntent);
-                }
+                }else
+                    Toast.makeText(PasswordVerificed.this, "No coinciden las contraseñas,vuelva a intentarlo", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -71,13 +71,8 @@ public class PasswordVerificed extends AppCompatActivity {
     }
 
     private boolean consistencyBetweenPassword(String passwordValidate,String passwordInitial) {
-        if(passwordValidate.equals(passwordInitial)) {
-            Toast.makeText(PasswordVerificed.this, "Se ha logueado con exito", Toast.LENGTH_SHORT).show();
-            inputPasswordValidate.setError(null);
-            inputPasswordValidate.setErrorEnabled(false);
+        if(passwordValidate.equals(passwordInitial))
             return true;
-        }
-        inputPasswordValidate.setError("No coinciden las contraseñas");
         return false;
     }
 
