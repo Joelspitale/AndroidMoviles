@@ -41,16 +41,18 @@ public class LastName extends AppCompatActivity {
                     Intent myIntent = new Intent(LastName.this, Email.class);
                     myIntent.putExtra("user", user);
                     startActivity(myIntent);
-                }else
-                    Toast.makeText(LastName.this, "El Apellido no puede estar vacio", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     private boolean validateLastName(String lastName){
-        String lastNameAux = lastName.replace(" ","");
-        if(lastNameAux.length()==0)
+        if(lastName.trim().length()==0){
+            inputLastName.setError("Apellido invalido");
             return false;
+        }
+        inputLastName.setError(null);
+        inputLastName.setErrorEnabled(false);
         return true;
     }
 }

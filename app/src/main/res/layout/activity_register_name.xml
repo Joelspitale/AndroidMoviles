@@ -41,19 +41,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/InputnameUser"
-            android:inputType="text"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            app:errorEnabled="true"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:focusableInTouchMode="true"
             app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/principal_blue"
-            app:hintTextColor="@color/principal_blue"
             app:startIconDrawable="@drawable/ic_baseline_person_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:inputType="text"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>

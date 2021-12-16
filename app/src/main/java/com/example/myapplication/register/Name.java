@@ -43,16 +43,17 @@ public class Name extends AppCompatActivity {
                     myIntent.putExtra("user", user);
                     startActivity(myIntent);
                 }
-                else
-                    Toast.makeText(Name.this, "El nombre no puede estar vacio", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private boolean validateName(String name){
-        String nameAux = name.replace(" ","");
-        if(nameAux.length()==0)
+        if(name.trim().length()==0){
+            inputName.setError("Nombre invalido");
             return false;
+        }
+        inputName.setError(null);
+        inputName.setErrorEnabled(false);
         return true;
     }
 

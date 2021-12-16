@@ -49,8 +49,7 @@ public class PasswordVerificed extends AppCompatActivity {
                     saveUserDatabase(user);
                     Intent myIntent = new Intent(PasswordVerificed.this, SingIn.class);
                     startActivity(myIntent);
-                }else
-                    Toast.makeText(PasswordVerificed.this, "No coinciden las contraseñas,vuelva a intentarlo", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -74,8 +73,11 @@ public class PasswordVerificed extends AppCompatActivity {
     private boolean consistencyBetweenPassword(String passwordValidate,String passwordInitial) {
         if(passwordValidate.equals(passwordInitial)) {
             Toast.makeText(PasswordVerificed.this, "Se ha logueado con exito", Toast.LENGTH_SHORT).show();
+            inputPasswordValidate.setError(null);
+            inputPasswordValidate.setErrorEnabled(false);
             return true;
         }
+        inputPasswordValidate.setError("No coinciden las contraseñas");
         return false;
     }
 

@@ -45,14 +45,14 @@
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:focusableInTouchMode="true"
+            app:errorEnabled="true"
             app:boxBackgroundColor="@color/white"
-            app:hintTextColor="@color/principal_blue"
-            app:boxStrokeColor="@color/principal_blue"
             app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:inputType="textEmailAddress"
                 />
 

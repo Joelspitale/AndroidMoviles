@@ -41,14 +41,19 @@ public class Email extends AppCompatActivity {
                     Intent myIntent = new Intent(Email.this, Password.class);
                     myIntent.putExtra("user", user);
                     startActivity(myIntent);
-                }else
-                    Toast.makeText(Email.this, "Ingrese un mail Valido", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     private boolean isEmailValidate(String correo) {
-        return Patterns.EMAIL_ADDRESS.matcher(correo).matches();
+        if(Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
+            inputEmail.setError(null);
+            inputEmail.setErrorEnabled(false);
+            return true;
+        }
+        inputEmail.setError("Mail invalido");
+        return false;
     }
 
 }
