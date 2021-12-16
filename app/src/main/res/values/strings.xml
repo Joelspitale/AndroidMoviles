@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> BYU app</string>
+    <string name="app_name">Museo IUA</string>
     <string name="saludar">Bienvenido a BYU</string>
     <string name="bienvenida">Bienvenido al Home</string>
     <string name="enviarMail">Enviar correo</string>
