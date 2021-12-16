@@ -74,14 +74,11 @@ public class Perfil extends Fragment {
         });
 
         //se los coloca como fondo
-        modificarMail.setHint(user.getEmail());
-        modificarNombre.setHint(user.getName());
-        modificarApellido.setHint(user.getLastname());
-        String pass = "";
-        for (int i = 0; i < user.getPassword().length(); i++){
-            pass = pass + "*";
-        }
-        modificarPass.setHint(pass);
+        modificarMail.setText(user.getEmail());
+        modificarNombre.setText(user.getName());
+        modificarApellido.setText(user.getLastname());
+
+        modificarPass.setText(user.getPassword());
 
         btnModificar.setOnClickListener(new View.OnClickListener() {
             @Override
