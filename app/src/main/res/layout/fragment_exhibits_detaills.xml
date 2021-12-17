@@ -22,10 +22,8 @@
             android:textColor="@color/principal_blue"
             android:translationZ="1dp"
             android:visibility="invisible"
-            app:icon="@drawable/ic_flechaatras"
-            app:iconTint="@color/principal_blue"
-            app:strokeColor="@color/white"
-            app:strokeWidth="0dp" />
+            android:drawableLeft="@drawable/ic_flechaatras"
+            android:drawableTint="@color/principal_blue" />
 
         <ScrollView
             android:id="@+id/ScrollDetails"
