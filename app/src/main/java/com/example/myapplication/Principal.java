@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.example.myapplication.fragments.Configuracion;
 import com.example.myapplication.fragments.FragmentExhibitsDetaills;
 import com.example.myapplication.fragments.ListExhibitsFragments;
@@ -16,6 +18,7 @@ import com.example.myapplication.fragments.ListFavoritesExhibitsFragments;
 import com.example.myapplication.fragments.interfaceFragments.IComunicationsFragment;
 import com.example.myapplication.fragments.interfaceFragments.OnFragmentInteractionListener;
 import com.example.myapplication.modelo.ItemMuseo;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,6 +28,7 @@ public class Principal extends AppCompatActivity implements
     FragmentTransaction transaction;
     Fragment fragmentInicio, fragmentConfig, fragmentFavorites;
     FragmentExhibitsDetaills fragmentExhibitsDetaills;
+    private Tools tools = new Tools();
 
 
     @Override
@@ -72,8 +76,12 @@ public class Principal extends AppCompatActivity implements
         botonQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(Principal.this, CameraActivity.class);
-                startActivity(myIntent);
+                if(tools.verifyPermision(Principal.this)){
+                    Intent myIntent = new Intent(Principal.this, CameraActivity.class);
+                    startActivity(myIntent);
+                }else{
+                    Toast.makeText(getBaseContext(), "La App no tiene permisos para usar la camara", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

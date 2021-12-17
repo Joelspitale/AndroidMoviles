@@ -4,16 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 
 public class CameraActivity extends AppCompatActivity {
-
     private CodeScanner mCodeScanner;
     static final int REQUEST = 1;
 
@@ -30,7 +29,7 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         long codigo = Long.parseLong(result.getText());
-                        Toast.makeText(CameraActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Log.i(this.getClass().getName(), result.getText());
                         Intent myIntent = new Intent(CameraActivity.this, CamaraDetails.class);
                         myIntent.putExtra("codigoQR", codigo);
                         startActivity(myIntent);
