@@ -6,27 +6,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import com.example.myapplication.database.AppDatabase;
-import com.example.myapplication.database.business.UserBusinnes;
-import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.UserRepository;
-import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
-import com.example.myapplication.register.PasswordVerificed;
 import com.example.myapplication.utils.SendMailAsynTask;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.util.Random;
 
 public class ForgetPassword extends AppCompatActivity {
     private TextInputLayout inputEmail;
+    private UserRepository userRepository;
+    private Tools tools;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
         inputEmail= (TextInputLayout) findViewById(R.id.sentCorreoUser);
+        tools = new Tools();
+        userRepository  = tools.getRepositoryUser(this);
 
         Button botonVolver = findViewById(R.id.buttonReturnForgetPass);
         botonVolver.setOnClickListener(new View.OnClickListener() {
@@ -50,8 +50,6 @@ public class ForgetPassword extends AppCompatActivity {
                     Intent myIntent = new Intent(ForgetPassword.this, SingIn.class);
                     startActivity(myIntent);
                 }
-
-
             }
         });
 
@@ -59,25 +57,23 @@ public class ForgetPassword extends AppCompatActivity {
 
 
     private User findUserByEmail(String email) {
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
+        User user;
         try {
-            return userRepository.findUserByEmail(email);
+            user = userRepository.findUserByEmail(email);
+            inputEmail.setError(null);
+            inputEmail.setErrorEnabled(false);
+            return user;
         } catch (NegocioException e) {
-            Toast.makeText(this, "Hubo un problema con la bd", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         } catch (NoEncontradoException e) {
-            Toast.makeText(this, "No existe el mail ingresado", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+        inputEmail.setError("No existe un usuario con este correo");
+
     return null;
     }
 
     private void updateUser(User user) {
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
         try {
             userRepository.update(user.getName(),user.getLastname(),user.getEmail(),user.getPassword(),user.getId());
         } catch (NegocioException e) {

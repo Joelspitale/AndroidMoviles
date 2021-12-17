@@ -14,21 +14,27 @@ import com.example.myapplication.SingIn;
 import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.UserBusinnes;
 import com.example.myapplication.database.dao.UserDAO;
+import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class Email extends AppCompatActivity {
     private TextInputLayout inputEmail;
+    private Tools tools;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_email);
         inputEmail = (TextInputLayout) findViewById(R.id.editCorreo);
+        tools = new Tools();
+        userRepository = tools.getRepositoryUser(this);
 
         Button bottonReturn = findViewById(R.id.buttonReturnEmail);
         bottonReturn.setOnClickListener(new View.OnClickListener() {
@@ -64,9 +70,6 @@ public class Email extends AppCompatActivity {
     }
 
     private boolean emailNotExist(String email) {
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
         try {
             userRepository.findUserByEmail(email);
             inputEmail.setError("Ya existe un usuario con ese correo");

@@ -2,13 +2,11 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication.utils.VerifyConnection;
+import com.example.myapplication.utils.Tools;
 
 public class NoInternetConnection extends AppCompatActivity {
 
@@ -21,8 +19,8 @@ public class NoInternetConnection extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                VerifyConnection verifyConnection = new VerifyConnection();
-                if(verifyConnection.verifyConnection(NoInternetConnection.this)){
+                Tools tools = new Tools();
+                if(tools.verifyConnection(NoInternetConnection.this)){
                     finish();
                 }
             }

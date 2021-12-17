@@ -26,7 +26,7 @@ import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.register.Name;
 import com.example.myapplication.utils.Preference;
-import com.example.myapplication.utils.VerifyConnection;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SingIn extends AppCompatActivity {
@@ -46,9 +46,9 @@ public class SingIn extends AppCompatActivity {
         String[] permisos = {READ_EXTERNAL_STORAGE, CAMERA, INTERNET, ACCESS_NETWORK_STATE};
         verifyPermision(permisos);
 
-        VerifyConnection verifyConnection = new VerifyConnection();
+        Tools tools = new Tools();
 
-        if (verifyConnection.verifyConnection(SingIn.this)) { //Realiza verificacion si esta conectado a internet
+        if (tools.verifyConnection(SingIn.this)) { //Realiza verificacion si esta conectado a internet
             inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
             inputPassword = (TextInputLayout) findViewById(R.id.inputTextPassword);
 

@@ -29,7 +29,7 @@ import com.example.myapplication.network.ServiceExhibits;
 import java.util.List;
 
 import com.example.myapplication.recyclerView.ListAdapter;
-import com.example.myapplication.utils.VerifyConnection;
+import com.example.myapplication.utils.Tools;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,9 +82,9 @@ public class ListExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
         //inflo el vista
         View view = inflater.inflate(R.layout.fragment_list_exhibits_fragments, container, false);
-        VerifyConnection verifyConnection = new VerifyConnection();
+        Tools tools = new Tools();
 
-        if (verifyConnection.verifyConnection(getActivity())) { //Realiza verificacion si esta conectado a internet
+        if (tools.verifyConnection(getActivity())) { //Realiza verificacion si esta conectado a internet
             scrollView = view.findViewById(R.id.scrollListExhibits);
 
             progressBar = view.findViewById(R.id.progress_bar_listExhibits);

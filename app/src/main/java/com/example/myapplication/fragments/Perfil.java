@@ -10,12 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.AppDatabase;
@@ -25,14 +27,23 @@ import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
+import com.example.myapplication.register.Password;
 import com.example.myapplication.utils.Preference;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Perfil extends Fragment {
     private Preference preference = new Preference();
     private ImageView imageProfile;
-    public Perfil() {
-    }
+    private Tools tools;
+    private UserRepository userRepository;
+    private EditText modificarMail;
+    private EditText modificarNombre;
+    private EditText modificarApellido ;
+    private EditText modificarPass;
+    private FloatingActionButton cambiarFoto;
+
+    public Perfil() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,19 +55,24 @@ public class Perfil extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
         preference.initPreference(getActivity().getBaseContext());
-        System.out.println("el mail del usuario logueado actualmente es :" + preference.getEmailSharedPreferences());
-        User user = userExistInBd(preference.getEmailSharedPreferences());
+        Log.i("Perfil.class","el mail del usuario logueado actualmente es :" + preference.getEmailSharedPreferences());
 
+        //direccionamientos UI
         Button btnModificar = view.findViewById(R.id.btnModificar);
         Button btnAtras = view.findViewById(R.id.buttonReturnPerfil);
-        EditText modificarMail = view.findViewById(R.id.mailModificar);
-        EditText modificarNombre = view.findViewById(R.id.nombreModificar);
-        EditText modificarApellido = view.findViewById(R.id.apellidoModificar);
-        EditText modificarPass = view.findViewById(R.id.passModificar);
+        modificarMail = view.findViewById(R.id.mailModificar);
+        modificarNombre = view.findViewById(R.id.nombreModificar);
+        modificarApellido = view.findViewById(R.id.apellidoModificar);
+        modificarPass = view.findViewById(R.id.passModificar);
+        cambiarFoto = view.findViewById(R.id.flotingBottonEdit);
+        //Instancias
         imageProfile = view.findViewById(R.id.image_profile);
         loadImageProfileUI(preference.getUriImage(getActivity().getBaseContext()));
-        FloatingActionButton cambiarFoto = view.findViewById(R.id.flotingBottonEdit);
+        tools = new Tools();
+        userRepository = tools.getRepositoryUser(getActivity());
+        User user = userExistInBd(preference.getEmailSharedPreferences());
 
+        loadEdiText(user);
 
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +81,6 @@ public class Perfil extends Fragment {
             }
         });
 
-
         cambiarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,16 +88,10 @@ public class Perfil extends Fragment {
             }
         });
 
-        //se los coloca como fondo
-        modificarMail.setText(user.getEmail());
-        modificarNombre.setText(user.getName());
-        modificarApellido.setText(user.getLastname());
-
-        modificarPass.setText(user.getPassword());
-
         btnModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("JOELL123456789");
                 if (btnModificar.getText().equals("MODIFICAR")) {
                     modificarMail.setEnabled(true);
                     modificarNombre.setEnabled(true);
@@ -91,18 +100,19 @@ public class Perfil extends Fragment {
                     btnModificar.setText(R.string.Confirmar);
                 } else {
                     User userAux = new User();
-                    //id
                     userAux.setId(user.getId());
-                    //mail
-                        userAux.setEmail(String.valueOf(modificarMail.getText()));
-                    //password
-                        userAux.setPassword(String.valueOf(modificarPass.getText()));
-                    //name
-                        userAux.setName(String.valueOf(modificarNombre.getText()));
-                    //lastname
-                        userAux.setLastname(String.valueOf(modificarApellido.getText()));
+                    userAux.setEmail(String.valueOf(modificarMail.getText()));
+                    userAux.setPassword(String.valueOf(modificarPass.getText()));
+                    userAux.setName(String.valueOf(modificarNombre.getText()));
+                    userAux.setLastname(String.valueOf(modificarApellido.getText()));
 
-                    actualizacion(userAux);
+                    if(validateDataUser(userAux)){
+                        actualizacion(userAux);
+                    }else {
+                        Toast.makeText(getContext(), "No se actualizaron los datos debido al ingreso de datos invalidos", Toast.LENGTH_SHORT).show();
+                        loadEdiText(user);
+                    }
+
                     preference.savePreference(userAux.getEmail());
 
                     modificarMail.setEnabled(false);
@@ -117,9 +127,6 @@ public class Perfil extends Fragment {
         return view;
     }
     private User userExistInBd(String email){
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
         User userAux = new User();
         userAux.setEmail("No existe el usuario");
         userAux.setPassword("No existe usuario");
@@ -128,18 +135,15 @@ public class Perfil extends Fragment {
             userAux =  userRepository.findUserByEmail(email);
         }catch (NoEncontradoException e){
             e.printStackTrace();
-            System.out.println("no se encontro el usuario en la base de datos");
+            Log.i("Perfil.class","no se encontro el usuario en la base de datos");
         } catch (NegocioException e) {
             e.printStackTrace();
-            System.out.println("Problemas con la bd");
+            Log.i("Perfil.class","Problemas con la bd");
         }
         return userAux;
     }
 
     public void actualizacion(User user) {
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
         try {
             userRepository.update(user.getName(),user.getLastname(),user.getEmail(),user.getPassword(),user.getId());
         } catch (NegocioException e) {
@@ -148,25 +152,36 @@ public class Perfil extends Fragment {
             e.printStackTrace();
         }
     }
+    private boolean validateDataUser(User user){
+        if(tools.isPasswordValidate(user.getPassword()) && tools.isNameOrLastNameCorrect(user.getName())&&
+                tools.isNameOrLastNameCorrect(user.getLastname()) && tools.isEmailValidate(user.getEmail()))
+            return true;
+        return false;
+    }
+
     private void loadImagen(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         intent.setType("image/");
-        System.out.println("ingreso a buscar la imagen");
         startActivityForResult(intent.createChooser(intent, "Seleccione la imagen"),10);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
-        System.out.println("ingreso a buscar la imagen2");
         if(resultCode == RESULT_OK){
-            System.out.println("actualiza imagen");
             Uri path = data.getData();
-            loadImageProfileUI(path);              //CARGO FOTO A LA ITEM VIEW DE LA UI
-            preference.setUriImage(path);           //lo guardo en shared preference
+            loadImageProfileUI(path);
+            preference.setUriImage(path);
         }
     }
 
     private void loadImageProfileUI(Uri uri) {
         imageProfile.setImageURI(uri);
+    }
+
+    private void loadEdiText(User user){
+        modificarMail.setText(user.getEmail());
+        modificarNombre.setText(user.getName());
+        modificarApellido.setText(user.getLastname());
+        modificarPass.setText(user.getPassword());
     }
 }

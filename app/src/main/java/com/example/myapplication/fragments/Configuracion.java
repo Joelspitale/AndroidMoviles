@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.SingIn;
-import com.example.myapplication.database.AppDatabase;
-import com.example.myapplication.database.business.ExhibitsBusiness;
-import com.example.myapplication.database.business.UserBusinnes;
-import com.example.myapplication.database.dao.ExhibitsDAO;
-import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.ExhibitsRepository;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.NegocioException;
@@ -25,6 +21,8 @@ import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.utils.Preference;
+import com.example.myapplication.utils.Tools;
+
 import java.util.List;
 
 public class Configuracion extends Fragment {
@@ -32,6 +30,7 @@ public class Configuracion extends Fragment {
     Fragment fragmentProfile;
     Fragment fragmentSugerencia;
     private ImageView imageProfile;
+    private Tools tools = new Tools();
 
     public Configuracion() {
     }
@@ -98,9 +97,7 @@ public class Configuracion extends Fragment {
     }
 
     private User userExistInBd(String email){
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
+        UserRepository userRepository = tools.getRepositoryUser(getActivity());
         User userAux = new User();
         userAux.setEmail("No existe el usuario");
         userAux.setPassword("No existe usuario");
@@ -118,12 +115,9 @@ public class Configuracion extends Fragment {
     }
 
     private void deleteAllFavorites(){
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
-        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
-
+        ExhibitsRepository exhibitsRepository = tools.getRepositoryItemUseo(getActivity());
         try {
-            System.out.println("Eliminando todos los favoritos de usuario ");
+            Log.i("Configuracion.class","Eliminando todos los favoritos de usuario ");
             List<ItemMuseo> itemMuseoList = exhibitsRepository.getAllFavorites();
             for(int i = 0; i< itemMuseoList.size(); i++) {
                 exhibitsRepository.delete(itemMuseoList.get(i));

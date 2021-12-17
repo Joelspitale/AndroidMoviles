@@ -5,13 +5,10 @@ import static com.example.myapplication.utils.Constants.PASSWORD;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.database.business.UserBusinnes;
@@ -19,13 +16,8 @@ import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
-import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
-import com.example.myapplication.register.PasswordVerificed;
 import com.example.myapplication.utils.Preference;
-import com.example.myapplication.utils.VerifyConnection;
-
-import java.security.PrivateKey;
 
 public class Splash extends AppCompatActivity {
     private boolean isRemember = false;
