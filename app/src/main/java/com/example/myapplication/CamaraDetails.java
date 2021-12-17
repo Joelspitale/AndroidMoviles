@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -74,7 +75,7 @@ public class CamaraDetails extends AppCompatActivity {
             }
         });
 
-
+        tools.nextActivityNotConnection(this);
         long id = (long) getIntent().getExtras().getSerializable("codigoQR");
         ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
         Call<ItemMuseo> call = serviceExhibits.getOneItemMuseoById(id);
@@ -131,11 +132,11 @@ public class CamaraDetails extends AppCompatActivity {
 
     private void addOrDeleteFavoritesExhibits(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException, EncontradoException {
         if (checkBox.isChecked()) {
-            System.out.println("la exhibicion esta activada");
+            Log.i(this.getClass().getName(),"la exhibicion esta activada");
             exhibitsRepository.insert(itemMuseo);
             checkBox.setChecked(true);
         } else {
-            System.out.println("la exhibicion esta desactivada");
+            Log.i(this.getClass().getName(),"la exhibicion esta desactivada");
             exhibitsRepository.delete(itemMuseo);
             checkBox.setChecked(false);
         }

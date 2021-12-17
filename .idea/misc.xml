@@ -110,10 +110,12 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_configuracion.xml" value="0.11" />
         <entry key="app/src/main/res/layout/fragment_exhibits_detaills.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_list_exhibits_fragments.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_list_favorites_exhibits_fragments.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_perfil.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_picture_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/header_navigation_bar.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_view_exhibits.xml" value="0.33" />
         <entry key="app/src/main/res/layout/nav_header_home_drawer.xml" value="0.22" />

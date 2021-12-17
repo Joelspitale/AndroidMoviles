@@ -26,6 +26,7 @@ public class Principal extends AppCompatActivity implements
     Fragment fragmentInicio, fragmentConfig, fragmentFavorites;
     FragmentExhibitsDetaills fragmentExhibitsDetaills;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

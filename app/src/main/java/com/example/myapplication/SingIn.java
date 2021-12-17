@@ -1,12 +1,8 @@
 package com.example.myapplication;
 
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.ACCESS_NETWORK_STATE;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,48 +29,42 @@ public class SingIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_signin);
-        setTitle(R.string.miTitulo);
         preferences.initPreference(getBaseContext());
-        String[] permisos = {READ_EXTERNAL_STORAGE, CAMERA, INTERNET, ACCESS_NETWORK_STATE};
-        verifyPermision(permisos);
         tools = new Tools();
+        tools.verifyPermision(this);
 
-        if (tools.verifyConnection(SingIn.this)) {
-            inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
-            inputPassword = (TextInputLayout) findViewById(R.id.inputTextPassword);
+        tools.nextActivityNotConnection(this);
+        inputEmail = (TextInputLayout) findViewById(R.id.inputTextEmail);
+        inputPassword = (TextInputLayout) findViewById(R.id.inputTextPassword);
 
-            Button botonIngresar = findViewById(R.id.buttonIngresar);
-            botonIngresar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (validarDatos()) {
-                        preferences.savePreference(email);
-                        preferences.setSessionActive(true);
-                        nextActivity();
-                    } else
-                        Toast.makeText(SingIn.this, "Error al iniciar Sesion revise sus credenciales", Toast.LENGTH_SHORT).show();
-                }
-            });
+        Button botonIngresar = findViewById(R.id.buttonIngresar);
+        botonIngresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validarDatos()) {
+                    preferences.savePreference(email);
+                    preferences.setSessionActive(true);
+                    nextActivity();
+                } else
+                    Toast.makeText(SingIn.this, "Error al iniciar Sesion revise sus credenciales", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-            Button botonRegistrar = findViewById(R.id.buttonRegister);
-            botonRegistrar.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    Intent myIntent = new Intent(SingIn.this, Name.class);
-                    startActivityForResult(myIntent, REQUEST);
-                }
-            });
+        Button botonRegistrar = findViewById(R.id.buttonRegister);
+        botonRegistrar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(SingIn.this, Name.class);
+                startActivityForResult(myIntent, REQUEST);
+            }
+        });
 
-            Button botonOlvidar = findViewById(R.id.buttonForgetPass);
-            botonOlvidar.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    Intent myIntent = new Intent(SingIn.this, ForgetPassword.class);
-                    startActivityForResult(myIntent, REQUEST);
-                }
-            });
-        } else {
-            Intent myIntent = new Intent(SingIn.this, NoInternetConnection.class);
-            startActivity(myIntent);
-        }
+        Button botonOlvidar = findViewById(R.id.buttonForgetPass);
+        botonOlvidar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(SingIn.this, ForgetPassword.class);
+                startActivityForResult(myIntent, REQUEST);
+            }
+        });
     }
 
     private boolean validarDatos() {
@@ -113,18 +103,6 @@ public class SingIn extends AppCompatActivity {
     private void nextActivity() {
         Intent myIntent = new Intent(SingIn.this, Principal.class);
         startActivity(myIntent);
-    }
-
-    private boolean verifyPermision(String[] permision) {
-        if (checkSelfPermission(permision[0]) == PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(permision[1]) == PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(permision[2]) == PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(permision[3]) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            requestPermissions(permision, 100);
-        }
-        return false;
     }
 
     @Override

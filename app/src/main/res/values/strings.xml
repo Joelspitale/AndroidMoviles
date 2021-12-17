@@ -4,7 +4,7 @@
     <string name="bienvenida">Bienvenido al Home</string>
     <string name="enviarMail">Enviar correo</string>
     <string name="respuestaMail">salio exitoso el enviar el mail</string>
-    <string name="miTitulo">BYU titulo</string>
+    <string name="miTitulo">Mi Museo</string>
     <string name="toas">Este es el toast declararo en el OnPause</string>
     <string name="snackbar">"Se preciono el boton flotante"</string>
     <string name="InputnameUser"> Nombre</string>
@@ -90,5 +90,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed dui non elit
     <string name="verifiqueSuConexion">Verifique su conexion a internet e intente nuevamente</string>
     <string name="reintentar">Reintentar</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_fell_back_registers">FellBackRegisters</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 </resources>

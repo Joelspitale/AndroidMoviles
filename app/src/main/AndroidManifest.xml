@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="com.example.myapplication" >
 
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
     <!--
@@ -22,8 +22,7 @@
         android:roundIcon="@mipmap/ic_menu_main_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true">
-
+        android:usesCleartextTraffic="true" >
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -54,7 +53,7 @@
             android:exported="true" />
         <activity
             android:name=".Splash"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

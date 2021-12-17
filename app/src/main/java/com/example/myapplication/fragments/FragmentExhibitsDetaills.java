@@ -32,6 +32,7 @@ import com.example.myapplication.modelo.ItemGallery;
 import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.jakewharton.picasso.OkHttp3Downloader;
@@ -68,6 +69,8 @@ public class FragmentExhibitsDetaills extends Fragment {
     private CarouselView carouselView;
     private List<ItemGallery> listURLsImage;
     private Button buttonMaps;
+    private Tools tools= new Tools();
+    private ExhibitsRepository exhibitsRepository;
 
     public static FragmentExhibitsDetaills newInstance(String param1, String param2) {
         FragmentExhibitsDetaills fragment = new FragmentExhibitsDetaills();
@@ -105,6 +108,8 @@ public class FragmentExhibitsDetaills extends Fragment {
         chipGroup = view.findViewById(R.id.chipGroup);
         carouselView = view.findViewById(R.id.carouselView);
         buttonMaps = view.findViewById(R.id.botonMaps);
+        tools.nextActivityNotConnection(getActivity());
+        exhibitsRepository= tools.getRepositoryItemUseo(getActivity());
 
 
         Button bottomVolverExhibits = view.findViewById(R.id.buttonReturnAtractionDetaills);
@@ -185,9 +190,6 @@ public class FragmentExhibitsDetaills extends Fragment {
 
     //si existe en la bd entonces activo el check box
     private void addOrDeleteFavoritesExhibits(ItemMuseo itemMuseo) throws NegocioException, NoEncontradoException, EncontradoException {
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
-        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
         if (checkBox.isChecked()) {
             System.out.println("la exhibicion esta activada");
             exhibitsRepository.insert(itemMuseo);
@@ -200,9 +202,6 @@ public class FragmentExhibitsDetaills extends Fragment {
     }
 
     private void exhibitsExistInBd(ItemMuseo itemMuseo) {
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
-        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
         try {
             exhibitsRepository.load(itemMuseo.getId());
             checkBox.setChecked(true);

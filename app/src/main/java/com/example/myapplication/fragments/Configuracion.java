@@ -59,7 +59,7 @@ public class Configuracion extends Fragment {
         setImageUri(preference.getUriImage(getActivity().getBaseContext()));
         TextView text_name = view.findViewById(R.id.text_name);
         text_name.setHint(user.getName());
-
+        tools.verifyPermision(getActivity());
 
         Button buttonSugerencia = view.findViewById(R.id.buttonSugerencia);
         buttonSugerencia.setOnClickListener(new View.OnClickListener() {

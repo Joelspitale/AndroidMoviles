@@ -44,6 +44,7 @@ public class ListExhibitsFragments extends Fragment {
     private String mParam1;
     private String mParam2;
     private OnFragmentInteractionListener mListener;
+    private Tools tools;
     List<ItemMuseo> itemMuseoList;
     RecyclerView recyclerExhibits;
     Activity activity;
@@ -78,7 +79,8 @@ public class ListExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_list_exhibits_fragments, container, false);
-        Tools tools = new Tools();
+        tools = new Tools();
+        tools.verifyPermision(getActivity());
 
         if (tools.verifyConnection(getActivity())) {
             scrollView = view.findViewById(R.id.scrollListExhibits);

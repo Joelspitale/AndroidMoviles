@@ -50,7 +50,6 @@ public class Splash extends AppCompatActivity {
 
     }
 
-
     private void saveUserDatabaseDefault() {
         User user = new User();
         user.setName(ADMIN);
