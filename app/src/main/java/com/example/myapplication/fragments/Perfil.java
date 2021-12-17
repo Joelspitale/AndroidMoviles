@@ -34,6 +34,7 @@ public class Perfil extends Fragment {
     private EditText modificarApellido ;
     private EditText modificarPass;
     private FloatingActionButton cambiarFoto;
+    private User user;
 
     public Perfil() {}
 
@@ -62,7 +63,7 @@ public class Perfil extends Fragment {
         loadImageProfileUI(preference.getUriImage(getActivity().getBaseContext()));
         tools = new Tools();
         userRepository = tools.getRepositoryUser(getActivity());
-        User user = userExistInBd(preference.getEmailSharedPreferences());
+        user = userExistInBd(preference.getEmailSharedPreferences());
 
         loadEdiText(user);
 
@@ -83,7 +84,6 @@ public class Perfil extends Fragment {
         btnModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("JOELL123456789");
                 if (btnModificar.getText().equals("MODIFICAR")) {
                     changeStateEditEdiText(true);
                     btnModificar.setText(R.string.Confirmar);
@@ -110,11 +110,17 @@ public class Perfil extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        loadEdiText(user);
+    }
+
     private User userExistInBd(String email){
         User userAux = new User();
         userAux.setEmail("No existe el usuario");
         userAux.setPassword("No existe usuario");
-
         try {
             userAux =  userRepository.findUserByEmail(email);
         }catch (NoEncontradoException e){
