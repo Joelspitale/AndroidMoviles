@@ -1,9 +1,8 @@
 package com.example.myapplication;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -92,10 +91,10 @@ public class SingIn extends AppCompatActivity {
             userAux = userRepository.findUserByEmail(email);
         } catch (NoEncontradoException e) {
             e.printStackTrace();
-            System.out.println("no se encontro el usuario en la base de datos");
+            Log.i(this.getClass().getName(),"no se encontro el usuario en la base de datos");
         } catch (NegocioException e) {
             e.printStackTrace();
-            System.out.println("Problemas con la bd");
+            Log.i(this.getClass().getName(),"Problemas con la bd");
         }
         return userAux;
     }

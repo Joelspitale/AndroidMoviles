@@ -90,6 +90,7 @@
         <entry key="app/src/main/res/layout/activity_list_exhibits.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_list_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/activity_no_internet_connection.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_perfiles.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_principal.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_progress_bar.xml" value="0.19322916666666667" />
