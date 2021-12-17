@@ -1,32 +1,30 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.utils.Constants.ADMIN;
 import static com.example.myapplication.utils.Constants.EMAIL;
 import static com.example.myapplication.utils.Constants.PASSWORD;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-
-import com.example.myapplication.database.AppDatabase;
-import com.example.myapplication.database.business.UserBusinnes;
-import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.utils.Preference;
+import com.example.myapplication.utils.Tools;
 
 public class Splash extends AppCompatActivity {
     private boolean isRemember = false;
+    private Tools tools;
     private Preference preferences = new Preference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        tools = new Tools();
         preferences.initPreference(getBaseContext());
         saveUserDatabaseDefault();
         new Handler().postDelayed(new Runnable() {
@@ -55,11 +53,11 @@ public class Splash extends AppCompatActivity {
 
     private void saveUserDatabaseDefault() {
         User user = new User();
+        user.setName(ADMIN);
+        user.setLastname(ADMIN);
         user.setEmail(EMAIL);
         user.setPassword(PASSWORD);
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
+        UserRepository userRepository = tools.getRepositoryUser(this);
         try {
             userRepository.insert(user);
             Log.i("Splash", "Usuario creado correctamente");

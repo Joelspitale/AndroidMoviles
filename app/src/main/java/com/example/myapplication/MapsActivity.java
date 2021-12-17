@@ -1,11 +1,9 @@
 package com.example.myapplication;
 
 import androidx.fragment.app.FragmentActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.myapplication.modelo.ItemMuseo;
 import com.example.myapplication.network.RetrofitClientInstance;
 import com.example.myapplication.network.ServiceExhibits;
@@ -89,8 +87,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println("Hubo un error inesperado" + t.getMessage());
             }
         });
-        // Add a marker in Sydney and move the camera
-
-
     }
 }

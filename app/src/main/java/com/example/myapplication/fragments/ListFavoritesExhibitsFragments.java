@@ -3,6 +3,7 @@ package com.example.myapplication.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,20 +28,15 @@ import com.example.myapplication.modelo.ItemMuseo;
 import java.util.List;
 
 import com.example.myapplication.recyclerView.ListAdapter;
+import com.example.myapplication.utils.Tools;
 
 public class ListFavoritesExhibitsFragments extends Fragment {
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    List<ItemMuseo> itemMuseoList;
+    private Tools tools;
     RecyclerView recyclerExhibits;
-
     Activity activity;
     IComunicationsFragment interfaceComunicaFragments;
 
@@ -71,13 +67,9 @@ public class ListFavoritesExhibitsFragments extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_list_favorites_exhibits_fragments, container, false);
-
         LinearLayout linearLayout = view.findViewById(R.id.faltaFavs);
-
-        //instancio mi db
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        ExhibitsDAO exhibitsDAO = db.exhibitsDAO();
-        ExhibitsRepository exhibitsRepository = new ExhibitsBusiness(exhibitsDAO);
+        tools = new Tools();
+        ExhibitsRepository exhibitsRepository = tools.getRepositoryItemUseo(this.getActivity());
         try {
             if(exhibitsRepository.getAllFavorites().size() !=0)
                 loadExhibitsList(exhibitsRepository.getAllFavorites(),view);
@@ -93,19 +85,16 @@ public class ListFavoritesExhibitsFragments extends Fragment {
 
 
     private void loadExhibitsList(List<ItemMuseo> itemMuseoList, View view){
-        //direcciono mi recycler view
         recyclerExhibits = view.findViewById(R.id.recyclerId);
         recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
         ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(), itemMuseoList);
-        //le coloco el adapter que ya hemos hecho
         recyclerExhibits.setAdapter(listAdapterExhibits);
 
         listAdapterExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
-
-                Toast.makeText(getContext(), "Selecciono :"+  itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
+                Log.i(this.getClass().getName(), "Selecciono :"+  itemMuseoSelected.getItemTitle());
                 interfaceComunicaFragments.sentItemMuseo(itemMuseoSelected);
             }
         });

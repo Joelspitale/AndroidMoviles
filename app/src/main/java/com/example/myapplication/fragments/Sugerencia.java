@@ -1,37 +1,25 @@
 package com.example.myapplication.fragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.example.myapplication.ForgetPassword;
 import com.example.myapplication.R;
-import com.example.myapplication.database.AppDatabase;
-import com.example.myapplication.database.business.UserBusinnes;
-import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
 import com.example.myapplication.utils.Preference;
 import com.example.myapplication.utils.SendMailAsynTask;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.textfield.TextInputLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Sugerencia#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Sugerencia extends Fragment {
-
-
     private Preference preference = new Preference();
+    private Tools tools;
 
     public Sugerencia() {
         // Required empty public constructor
@@ -52,7 +40,7 @@ public class Sugerencia extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sugerencia, container, false);
-
+        tools = new Tools();
         preference.initPreference(getActivity().getBaseContext());
         User user = userExistInBd(preference.getEmailSharedPreferences());
 
@@ -82,9 +70,7 @@ public class Sugerencia extends Fragment {
     }
 
     private User userExistInBd(String email){
-        AppDatabase db = AppDatabase.getInstance(getActivity().getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
+        UserRepository userRepository = tools.getRepositoryUser(this.getActivity());
         User userAux = new User();
         userAux.setEmail("No existe el usuario");
         userAux.setPassword("No existe usuario");
@@ -93,10 +79,10 @@ public class Sugerencia extends Fragment {
             userAux =  userRepository.findUserByEmail(email);
         }catch (NoEncontradoException e){
             e.printStackTrace();
-            System.out.println("no se encontro el usuario en la base de datos");
+            Log.i("Sugerencia.class","no se encontro el usuario en la base de datos");
         } catch (NegocioException e) {
             e.printStackTrace();
-            System.out.println("Problemas con la bd");
+            Log.i("Sugerencia.class","Problemas con la bd");
         }
         return userAux;
     }

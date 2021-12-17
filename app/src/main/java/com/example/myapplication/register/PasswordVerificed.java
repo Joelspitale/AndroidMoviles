@@ -6,29 +6,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.Principal;
 import com.example.myapplication.R;
 import com.example.myapplication.SingIn;
-import com.example.myapplication.database.AppDatabase;
-import com.example.myapplication.database.business.UserBusinnes;
-import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.EncontradoException;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.modelo.User;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class PasswordVerificed extends AppCompatActivity {
     private TextInputLayout inputPasswordValidate;
+    private Tools tools;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_passwordverificed);
         inputPasswordValidate= (TextInputLayout) findViewById(R.id.inputPasswordVerificed);
+        tools = new Tools();
 
         Button bottonReturn = findViewById(R.id.buttonReturnPasswordVerificed);
         bottonReturn.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +41,7 @@ public class PasswordVerificed extends AppCompatActivity {
                 String passwordValidate = inputPasswordValidate.getEditText().getText().toString();
                 User user = (User) getIntent().getExtras().getSerializable("user");
                 if(consistencyBetweenPassword(passwordValidate,user.getPassword() )){
-                    Log.i("Verificando obtencion datos passwordVerificed","Nombre :" + user.getName()+ "apellido :" + user.getLastname()+ "email :" + user.getEmail());
+                    Log.i(this.getClass().getName(),"Nombre :" + user.getName()+ "apellido :" + user.getLastname()+ "email :" + user.getEmail());
                     saveUserDatabase(user);
                     Intent myIntent = new Intent(PasswordVerificed.this, SingIn.class);
                     startActivity(myIntent);
@@ -55,9 +52,7 @@ public class PasswordVerificed extends AppCompatActivity {
     }
 
     private void saveUserDatabase(User user) {
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        UserDAO userDAO = db.userDAO();
-        UserRepository userRepository = new UserBusinnes(userDAO);
+        UserRepository userRepository = tools.getRepositoryUser(this);
         try {
             userRepository.insert(user);
             Toast.makeText(PasswordVerificed.this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show();

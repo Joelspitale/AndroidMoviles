@@ -10,17 +10,19 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.modelo.User;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LastName extends AppCompatActivity {
-
     private TextInputLayout inputLastName;
+    private Tools tools;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_lastname);
         inputLastName = (TextInputLayout) findViewById(R.id.inputLastName);
+        tools = new Tools();
 
         Button bottonReturn = findViewById(R.id.buttonReturnLastName);
         bottonReturn.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +49,7 @@ public class LastName extends AppCompatActivity {
     }
 
     private boolean validateLastName(String lastName){
-        if(lastName.trim().length()==0){
+        if(!tools.isNameOrLastNameCorrect(lastName)){
             inputLastName.setError("Apellido invalido");
             return false;
         }

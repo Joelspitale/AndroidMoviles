@@ -1,11 +1,9 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.myapplication.utils.Tools;
 
 public class NoInternetConnection extends AppCompatActivity {

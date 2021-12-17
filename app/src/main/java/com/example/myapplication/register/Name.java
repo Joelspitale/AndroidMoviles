@@ -4,24 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.R;
 import com.example.myapplication.SingIn;
 import com.example.myapplication.modelo.User;
+import com.example.myapplication.utils.Tools;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class Name extends AppCompatActivity {
-
     private TextInputLayout inputName;
+    private Tools tools;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_name);
         inputName = (TextInputLayout) findViewById(R.id.inputName);
+        tools = new Tools();
 
         Button bottonReturn = findViewById(R.id.buttonReturnName);
         bottonReturn.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +47,7 @@ public class Name extends AppCompatActivity {
     }
 
     private boolean validateName(String name){
-        if(name.trim().length()==0){
+        if(!tools.isNameOrLastNameCorrect(name)){
             inputName.setError("Nombre invalido");
             return false;
         }

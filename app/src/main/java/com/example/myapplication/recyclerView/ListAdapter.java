@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.modelo.ItemMuseo;
-
 import java.util.List;
 
 public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoListViewHolder> implements View.OnClickListener{
@@ -36,15 +35,6 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
         ItemMuseo itemMuseo = itemMuseoList.get(position);
         ((ItemMuseoListViewHolder) holder).getTxtTitle().setText(itemMuseo.getItemTitle());
         ((ItemMuseoListViewHolder) holder).getTxtRoomName().setText(itemMuseo.getRoomName());
-        //en caso de que queramos mostrar una imagen en las cards
-        //extraigo la imagen de la url y la cargo en el layaout o en su defecto traigo una icono por defecto
-        //((ExhibitsListViewHolder) holder).getFoto().setImageResource(exhibit.getImagenId());
-//        Picasso.Builder builder = new Picasso.Builder(context);
-//        builder.downloader(new OkHttp3Downloader(context));
-//        builder.build().load(exhibit.getImagenId()) //busco la imagen de la url del json
-//                .placeholder(R.drawable.ic_launcher_background)
-//                .error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
-//                .into(((ExhibitsListViewHolder) holder).getFoto()); //si la obtiene la meto en el layaout de la imagen de la card
     }
 
     @Override
@@ -65,14 +55,11 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
     public  class ItemMuseoListViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle;
         private TextView txtRoomName;
-//       private ImageView foto;
 
-        //direcciono layaout con variables de java
         public ItemMuseoListViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.idExhibitsTitle);
             txtRoomName = (TextView) itemView.findViewById(R.id.idExhibitsIntroduction);
-//          foto = (ImageView) itemView.findViewById(R.id.idImagen);
         }
 
         public TextView getTxtTitle() {
@@ -90,7 +77,6 @@ public class ListAdapter extends  RecyclerView.Adapter<ListAdapter.ItemMuseoList
         public void setTxtRoomName(TextView txtRoomName) {
             this.txtRoomName = txtRoomName;
         }
-
 
     }
 }

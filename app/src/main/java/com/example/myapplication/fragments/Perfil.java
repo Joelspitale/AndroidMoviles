@@ -1,14 +1,11 @@
 package com.example.myapplication.fragments;
 
 import static android.app.Activity.RESULT_OK;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,16 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.myapplication.R;
-import com.example.myapplication.database.AppDatabase;
-import com.example.myapplication.database.business.UserBusinnes;
-import com.example.myapplication.database.dao.UserDAO;
 import com.example.myapplication.database.repository.UserRepository;
 import com.example.myapplication.excepciones.NegocioException;
 import com.example.myapplication.excepciones.NoEncontradoException;
 import com.example.myapplication.modelo.User;
-import com.example.myapplication.register.Password;
 import com.example.myapplication.utils.Preference;
 import com.example.myapplication.utils.Tools;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -93,10 +85,7 @@ public class Perfil extends Fragment {
             public void onClick(View view) {
                 System.out.println("JOELL123456789");
                 if (btnModificar.getText().equals("MODIFICAR")) {
-                    modificarMail.setEnabled(true);
-                    modificarNombre.setEnabled(true);
-                    modificarApellido.setEnabled(true);
-                    modificarPass.setEnabled(true);
+                    changeStateEditEdiText(true);
                     btnModificar.setText(R.string.Confirmar);
                 } else {
                     User userAux = new User();
@@ -106,19 +95,14 @@ public class Perfil extends Fragment {
                     userAux.setName(String.valueOf(modificarNombre.getText()));
                     userAux.setLastname(String.valueOf(modificarApellido.getText()));
 
-                    if(validateDataUser(userAux)){
+                    if(validateDataUser(userAux))
                         actualizacion(userAux);
-                    }else {
+                    else{
                         Toast.makeText(getContext(), "No se actualizaron los datos debido al ingreso de datos invalidos", Toast.LENGTH_SHORT).show();
                         loadEdiText(user);
                     }
-
                     preference.savePreference(userAux.getEmail());
-
-                    modificarMail.setEnabled(false);
-                    modificarNombre.setEnabled(false);
-                    modificarApellido.setEnabled(false);
-                    modificarPass.setEnabled(false);
+                    changeStateEditEdiText(false);
                     btnModificar.setText(R.string.btnModificar);
                 }
             }
@@ -183,5 +167,12 @@ public class Perfil extends Fragment {
         modificarNombre.setText(user.getName());
         modificarApellido.setText(user.getLastname());
         modificarPass.setText(user.getPassword());
+    }
+
+    private void changeStateEditEdiText(boolean estado){
+        modificarMail.setEnabled(estado);
+        modificarNombre.setEnabled(estado);
+        modificarApellido.setEnabled(estado);
+        modificarPass.setEnabled(estado);
     }
 }

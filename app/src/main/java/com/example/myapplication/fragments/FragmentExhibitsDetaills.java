@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,7 +93,7 @@ public class FragmentExhibitsDetaills extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_exhibits_detaills, container, false);
 
-        //hago el direccionamiento de los layaout con variables del entorno
+
         txtTitleDetaills = view.findViewById(R.id.titleAtractionDetaills);
         txtIntroductionDetails = view.findViewById(R.id.introductionAtractionDetaills);
         txtContentDetails = view.findViewById(R.id.contentAtractionDetaills);
@@ -114,15 +115,12 @@ public class FragmentExhibitsDetaills extends Fragment {
             }
         });
 
-
-        //recibo y extraigo el objeto en el que hizo click en la lista
         Bundle objectExhibit = getArguments();
-        //verifico que el objeto que me enviaron no esta vacio
         if (objectExhibit != null) {
-
             ItemMuseo exhibitMemoria = (ItemMuseo) objectExhibit.getSerializable("objeto");
             ServiceExhibits serviceExhibits = RetrofitClientInstance.getRetrofit().create(ServiceExhibits.class);
             Call<ItemMuseo> call = serviceExhibits.getOneItemMuseoById(exhibitMemoria.getId());
+
             call.enqueue(new Callback<ItemMuseo>() {
                 @Override
                 public void onResponse(Call<ItemMuseo> call, Response<ItemMuseo> response) {
@@ -132,7 +130,7 @@ public class FragmentExhibitsDetaills extends Fragment {
                     System.out.println("Se obtuvo el json correctamente");
                     itemMuseo = response.body();
                     loadExhibit(itemMuseo);
-                    for (int i = 0; i < 100000000; i++) ;    //para darle mas tiempo a la ap
+                    for (int i = 0; i < 150000000; i++) ;    //para darle mas tiempo a la ap
                     bottomVolverExhibits.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     scrollView.setVisibility(View.VISIBLE);
@@ -147,20 +145,18 @@ public class FragmentExhibitsDetaills extends Fragment {
                 }
             });
 
-            //MiTareaAsincrona tarea2 = new MiTareaAsincrona(view,scrollView,progressBar,serviceExhibits,exhibit,bottomVolverExhibits);
+            //MiTareaAsincrona tarea2 = new MiTareaAsincrona(view,scrollView,progressBar,serviceExhibits,exhibitMemoria,bottomVolverExhibits);
             //tarea2.execute();
         }
 
-        //obtengo el icono del favorito
         CheckBox bottomFavorites = view.findViewById(R.id.like);
         bottomFavorites.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                System.out.println("Agregar a favoritos la exibicion con id:" + itemMuseo.getId() +
+                Log.i(this.getClass().getName(),"Agregar a favoritos la exibicion con id:" + itemMuseo.getId() +
                         "titulo" + itemMuseo.getItemTitle());
                 try {
                     addOrDeleteFavoritesExhibits(itemMuseo);
-                    //Recarga fragment
                 } catch (NegocioException e) {
                     e.printStackTrace();
                 } catch (NoEncontradoException e) {
@@ -184,9 +180,6 @@ public class FragmentExhibitsDetaills extends Fragment {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/?q=" + itemMuseo.getItemLat() + ","+ itemMuseo.getItemLong() +"&z=14")));
             }
         });
-
-
-
         return view;
     }
 
@@ -227,14 +220,9 @@ public class FragmentExhibitsDetaills extends Fragment {
         cargarCarousel(itemMuseo);
         Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
         builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
-        builder.build().load(itemMuseo.getItemMainPicture()) //busco la imagen de la url del json
-                //.placeholder(R.drawable.ic_launcher_background)
-                //.error(R.drawable.ic_launcher_background)   //en caso que no pueda obtener la foto muestra este icono
+        builder.build().load(itemMuseo.getItemMainPicture())
                 .into(imageDetails);
-        //si la obtiene la meto en el layaout de la imagen de la card
-        //pinto el corazon o no en funcion si existe en la bd
         exhibitsExistInBd(itemMuseo);
-
     }
 
     private void cargarCarousel(ItemMuseo itemMuseo) {
@@ -246,11 +234,9 @@ public class FragmentExhibitsDetaills extends Fragment {
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
-
             Picasso.Builder builder = new Picasso.Builder(getActivity().getBaseContext());
             builder.downloader(new OkHttp3Downloader(getActivity().getBaseContext()));
             builder.build().load(listURLsImage.get(position).getUrl()).into(imageView);
-
         }
     };
 

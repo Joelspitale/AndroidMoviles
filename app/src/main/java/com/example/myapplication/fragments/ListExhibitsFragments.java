@@ -41,15 +41,11 @@ public class ListExhibitsFragments extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private ProgressBar progressBar;
     private ScrollView scrollView;
-
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
-
     List<ItemMuseo> itemMuseoList;
     RecyclerView recyclerExhibits;
-
     Activity activity;
     IComunicationsFragment interfaceComunicaFragments;
 
@@ -80,11 +76,11 @@ public class ListExhibitsFragments extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //inflo el vista
+
         View view = inflater.inflate(R.layout.fragment_list_exhibits_fragments, container, false);
         Tools tools = new Tools();
 
-        if (tools.verifyConnection(getActivity())) { //Realiza verificacion si esta conectado a internet
+        if (tools.verifyConnection(getActivity())) {
             scrollView = view.findViewById(R.id.scrollListExhibits);
 
             progressBar = view.findViewById(R.id.progress_bar_listExhibits);
@@ -98,7 +94,6 @@ public class ListExhibitsFragments extends Fragment {
                     if (!response.isSuccessful()) {
                         System.out.println("Codigo: " + response.code());
                     }
-                    System.out.println("Se obtuvo el json correctamente");
                     loadExhibitsList(response.body(), view);
                     progressBar.setVisibility(View.INVISIBLE);
                     scrollView.setVisibility(View.VISIBLE);
@@ -106,12 +101,10 @@ public class ListExhibitsFragments extends Fragment {
 
                 @Override
                 public void onFailure(Call<List<ItemMuseo>> call, Throwable t) {
-                    System.out.println("Hubo un error inesperado" + t.getMessage());
+                    Log.i(this.getClass().getName(),"Hubo un error inesperado" + t.getMessage());
                 }
             });
-        /*
-        MiTareaAsincrona tarea2 = new MiTareaAsincrona(view,scrollView,progressBar,serviceExhibits);
-        tarea2.execute();*/
+
         } else {
             Intent myIntent = new Intent(getActivity(), NoInternetConnection.class);
             startActivity(myIntent);
@@ -122,18 +115,15 @@ public class ListExhibitsFragments extends Fragment {
 
 
     private void loadExhibitsList(List<ItemMuseo> itemMuseoList, View view) {
-        //direcciono mi recycler view
         recyclerExhibits = view.findViewById(R.id.recyclerId);
         recyclerExhibits.setLayoutManager(new LinearLayoutManager(getContext()));
         ListAdapter listAdapterExhibits = new ListAdapter(getActivity().getBaseContext(), itemMuseoList);
-        //le coloco el adapter que ya hemos hecho
         recyclerExhibits.setAdapter(listAdapterExhibits);
+
         listAdapterExhibits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ItemMuseo itemMuseoSelected = itemMuseoList.get(recyclerExhibits.getChildAdapterPosition(view));
-
                 Log.i("Prueba", "5");
                 Toast.makeText(getContext(), "Selecciono :" + itemMuseoSelected.getItemTitle(), Toast.LENGTH_SHORT).show();
                 interfaceComunicaFragments.sentItemMuseo(itemMuseoSelected);
